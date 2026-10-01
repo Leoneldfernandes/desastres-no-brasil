@@ -6,14 +6,16 @@
     <meta name="theme-color" content="#07111f">
     <meta
       name="description"
-      content="Mapa mensal dos registros oficiais de desastres no Brasil."
+      content="Desastres no Brasil: mapa interativo de ocorrências e impactos ao longo do tempo."
     >
-    <title>Atlas Espaço-Temporal de Desastres</title>
+    <title>Desastres no Brasil</title>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=799bed771a6a">
+    <link rel="stylesheet" href="assets/css/app.css?v=81b3016617ab">
     <script defer src="assets/vendor/leaflet.js"></script>
-    <script defer src="assets/js/export.js?v=cabac15401e9" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
-    <script defer src="assets/js/app.js?v=3475699cb028"></script>
+    <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
+    <script defer src="assets/js/app.js?v=24964410063a"></script>
+    <script defer src="assets/js/visitor-config.js?v=0f0cb2df6955"></script>
+    <script defer src="assets/js/welcome.js?v=68054f17af45"></script>
   </head>
   <body>
     <a class="skip-link" href="#map">Ir para o mapa</a>
@@ -23,7 +25,8 @@
         <span class="brand-mark" aria-hidden="true"></span>
         <div>
           <p class="eyebrow" id="brandCoverage">Atlas brasileiro</p>
-          <h1>Desastres no tempo</h1>
+          <h1>Desastres no Brasil</h1>
+          <p class="brand-subtitle">Mapa interativo de ocorrências e impactos ao longo do tempo</p>
           <p class="author-credit">
             Por:
             <a href="http://lattes.cnpq.br/4668011474465628" target="_blank" rel="noopener">
@@ -34,6 +37,9 @@
       </div>
 
       <div class="header-actions">
+        <button class="about-button" id="openWelcome" type="button" aria-haspopup="dialog" hidden>
+          Sobre e privacidade
+        </button>
         <label class="field field-uf" for="ufSelector">
           <span>Recorte territorial</span>
           <select id="ufSelector" disabled>
@@ -484,6 +490,52 @@
         <div class="modal-content" id="detailContent"></div>
       </section>
     </div>
+
+    <dialog class="welcome-dialog" id="welcomeDialog" aria-labelledby="welcomeTitle" aria-describedby="welcomeIntro">
+      <div class="welcome-content">
+        <p class="eyebrow">Bem-vindo</p>
+        <h2 id="welcomeTitle">Desastres no Brasil</h2>
+        <p class="welcome-subtitle">Mapa interativo de ocorrências e impactos ao longo do tempo</p>
+        <p id="welcomeIntro">
+          Explore os registros oficiais de desastres no Brasil. Escolha o local, o período e o
+          tipo de desastre para visualizar ocorrências, danos humanos e prejuízos econômicos.
+          Use a reprodução para acompanhar as mudanças mês a mês.
+        </p>
+        <div id="welcomeConsent" hidden>
+          <p class="welcome-consent">
+            Ao concordar, você autoriza o registro deste acesso em estatísticas privadas,
+            para medir o alcance do projeto. Você pode mudar essa escolha em “Sobre e privacidade”.
+          </p>
+          <details class="welcome-privacy">
+            <summary>Como funciona a contagem?</summary>
+            <p>
+              O GoatCounter recebe o acesso a esta página e o horário, para produzir totais por
+              período. Não enviamos os filtros, municípios consultados, links compartilhados ou
+              histórico de navegação. A coleta de localização, navegador e outras características
+              técnicas fica desativada no painel, assim como a identificação de sessões.
+            </p>
+            <p>
+              Como em qualquer conexão, o serviço recebe seu endereço IP e cabeçalhos técnicos;
+              segundo sua política, não grava o IP nem o cabeçalho completo do navegador.
+              Os dados são hospedados na Finlândia e na Alemanha. Apenas Leonel Delmiro Fernandes,
+              responsável pelo projeto, tem acesso ao painel de estatísticas.
+            </p>
+            <p>
+              Sua escolha fica salva neste navegador por até seis meses. Recusar não limita o
+              mapa; retirar a autorização interrompe novas contagens, sem apagar totais já agregados.
+              A hospedagem e os mapas de fundo têm suas próprias conexões, independentemente deste contador.
+              <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">Política do GoatCounter</a>.
+            </p>
+          </details>
+        </div>
+        <p class="welcome-note" id="welcomeNoCounter">Use os filtros e a linha do tempo para começar.</p>
+        <div class="welcome-actions">
+          <button class="button welcome-choice" id="acceptVisit" type="button" hidden>Concordo e continuar</button>
+          <button class="button welcome-choice" id="declineVisit" type="button" hidden>Continuar sem contabilizar</button>
+          <button class="button" id="continueWelcome" type="button">Explorar mapa</button>
+        </div>
+      </div>
+    </dialog>
 
     <noscript>
       <p class="noscript">Ative o JavaScript para visualizar o mapa e a linha temporal.</p>

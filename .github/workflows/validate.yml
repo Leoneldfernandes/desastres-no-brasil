@@ -51,7 +51,11 @@ jobs:
           scripts/validate_build.py
 
       - name: Verificar sintaxe da aplicação
-        run: node --check assets/js/app.js
+        run: |
+          node --check assets/js/app.js
+          node --check assets/js/visitor-config.js
+          node --check assets/js/welcome.js
+          node --test tests/welcome.test.cjs
 
       - name: Validar integridade dos dados publicados
         run: python scripts/validate_build.py --data data --strict-current

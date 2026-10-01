@@ -720,7 +720,7 @@ def make_outputs(
         )
 
     manifest = {
-        "title": "Atlas Espaço-Temporal de Desastres",
+        "title": "Desastres no Brasil",
         "version": args.version,
         "sourceUrl": args.source_url,
         "sourceSha256": source_sha256,
