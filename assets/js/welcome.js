@@ -7,21 +7,27 @@
   const declineButton = document.getElementById("declineVisit");
   const continueButton = document.getElementById("continueWelcome");
   const consent = document.getElementById("welcomeConsent");
+  const analyticsChoice = document.getElementById("analyticsChoice");
+  const saveButton = document.getElementById("saveVisitChoice");
   const noCounter = document.getElementById("welcomeNoCounter");
   if (!dialog || typeof dialog.showModal !== "function") return;
 
-  const preferenceKey = "desastres-visit-choice-v1";
+  const preferenceKey = "desastres-google-visit-choice-v2";
   const introKey = "desastres-welcome-seen-v1";
   const lifetime = 180 * 24 * 60 * 60 * 1000;
   const config = window.VISITOR_METRICS || {};
   // Closed by default: an unconfigured counter must not request consent or send requests.
-  const endpoint = typeof config.endpoint === "string"
-    && /^https:\/\/[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.goatcounter\.com\/count$/.test(config.endpoint)
-    && config.privacySettingsVerified === true ? config.endpoint : "";
-  const enabled = Boolean(endpoint);
+  const measurementId = typeof config.measurementId === "string"
+    && /^G-[A-Z0-9]+$/.test(config.measurementId)
+    && config.privacySettingsVerified === true ? config.measurementId : "";
+  const enabled = Boolean(measurementId);
+  const disableKey = `ga-disable-${measurementId}`;
   let choice = readChoice();
-  let attempted = false;
-  let pending = null;
+  let tag = null;
+  let tagReady = false;
+  let configured = false;
+  let pageViewSent = false;
+  if (enabled) window[disableKey] = true;
 
   function read(key) {
     try { return window.localStorage.getItem(key); } catch { return null; }
@@ -42,45 +48,91 @@
   }
 
   function countAccess() {
-    if (!enabled || choice !== "accepted" || attempted || document.visibilityState !== "visible"
+    if (!enabled || choice !== "accepted" || document.visibilityState !== "visible"
         || document.prerendering || window.navigator.webdriver
         || window.location.hostname !== "leoneldfernandes.github.io") return;
-    attempted = true;
-    const url = new URL(endpoint);
-    // One stable path: neither the old/new URL nor a query/hash can fragment the count.
-    url.searchParams.set("p", "/mapa");
-    url.searchParams.set("t", "Desastres no Brasil");
-    url.searchParams.set("r", "");
-    url.searchParams.set("rnd", String(Date.now()));
-    pending = new AbortController();
-    // No remote script, API token, cookies, referrer, screen size or map interaction data.
-    window.fetch(url.href, {
-      mode: "no-cors",
-      credentials: "omit",
-      referrerPolicy: "no-referrer",
-      cache: "no-store",
-      signal: pending.signal,
-    }).catch(() => { /* A blocked/unavailable counter must never block the map. */ })
-      .finally(() => { pending = null; });
+    if (!tag) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("consent", "default", {
+        analytics_storage: "denied", ad_storage: "denied",
+        ad_user_data: "denied", ad_personalization: "denied",
+      });
+      tag = document.createElement("script");
+      tag.async = true;
+      tag.referrerPolicy = "no-referrer";
+      tag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      tag.onload = () => { tagReady = true; countAccess(); };
+      tag.onerror = () => { /* Blocking Analytics never blocks the map. */ };
+      document.head.appendChild(tag);
+      return;
+    }
+    if (!tagReady) return;
+    if (pageViewSent && window[disableKey] === false) return;
+    window[disableKey] = false;
+    window.gtag("consent", "update", {
+      analytics_storage: "granted", ad_storage: "denied",
+      ad_user_data: "denied", ad_personalization: "denied",
+    });
+    // Report the published page without map filters, query or fragment.
+    const page = {
+      page_title: "Desastres no Brasil",
+      page_location: window.location.origin + window.location.pathname,
+      page_referrer: "",
+    };
+    if (!configured) {
+      window.gtag("js", new Date());
+      window.gtag("config", measurementId, {
+        ...page, send_page_view: false,
+        allow_google_signals: false, allow_ad_personalization_signals: false,
+        cookie_prefix: "dnb", cookie_domain: "leoneldfernandes.github.io",
+        cookie_path: "/", cookie_expires: 180 * 24 * 60 * 60, cookie_update: false,
+      });
+      configured = true;
+    }
+    if (!pageViewSent) {
+      pageViewSent = true;
+      window.gtag("event", "page_view", { ...page, send_to: measurementId });
+    }
+  }
+
+  function stopAnalytics() {
+    if (!enabled) return;
+    window[disableKey] = true;
+    if (window.gtag) window.gtag("consent", "update", {
+      analytics_storage: "denied", ad_storage: "denied",
+      ad_user_data: "denied", ad_personalization: "denied",
+    });
+    // Remove only this project's first-party Analytics cookies, not other sites' cookies.
+    for (const cookie of document.cookie.split(";")) {
+      const name = cookie.split("=")[0].trim();
+      if (!/^dnb_ga(?:_|$)/.test(name)) continue;
+      for (const domain of ["", "; domain=leoneldfernandes.github.io", "; domain=.leoneldfernandes.github.io"]) {
+        document.cookie = `${name}=; max-age=0; path=/${domain}; SameSite=Lax; Secure`;
+      }
+    }
   }
 
   function setChoice(value) {
     choice = value;
     save(preferenceKey, JSON.stringify({ value, at: Date.now() }));
     save(introKey, "yes");
-    if (value === "declined") pending?.abort();
+    analyticsChoice.checked = value === "accepted";
+    if (value === "declined") stopAnalytics();
     dialog.close();
     countAccess();
   }
 
   function openWelcome() {
     if (dialog.open) return;
+    analyticsChoice.checked = choice === "accepted";
     dialog.showModal();
     document.dispatchEvent(new CustomEvent("welcome-dialog-change", { detail: { open: true } }));
     (enabled ? declineButton : continueButton).focus();
   }
 
   consent.hidden = !enabled;
+  saveButton.hidden = !enabled;
   noCounter.hidden = enabled;
   acceptButton.hidden = !enabled;
   declineButton.hidden = !enabled;
@@ -89,6 +141,7 @@
   openButton.addEventListener("click", openWelcome);
   acceptButton.addEventListener("click", () => setChoice("accepted"));
   declineButton.addEventListener("click", () => setChoice("declined"));
+  saveButton.addEventListener("click", () => setChoice(analyticsChoice.checked ? "accepted" : "declined"));
   continueButton.addEventListener("click", () => {
     save(introKey, "yes");
     dialog.close();
@@ -111,7 +164,8 @@
   window.addEventListener("storage", (event) => {
     if (event.key !== preferenceKey && event.key !== null) return;
     choice = readChoice();
-    if (choice !== "accepted") pending?.abort();
+    if (choice !== "accepted") stopAnalytics();
+    analyticsChoice.checked = choice === "accepted";
     if (!choice) openWelcome();
   });
   dialog.addEventListener("close", () => {

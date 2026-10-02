@@ -2,7 +2,7 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
-A apresentação inicial orienta a navegação. A integração de contagem privada exige um painel GoatCounter configurado e só registra aberturas após autorização. Antes da configuração, não solicita consentimento nem envia visitas. Veja [ativação das métricas e migração do endereço](docs/metricas-e-migracao.md).
+A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4 e só são ativadas após autorização do visitante. Antes da configuração da propriedade, a apresentação não solicita consentimento nem envia visitas. Veja [ativação das métricas e migração do endereço](docs/metricas-e-migracao.md).
 
 <!-- atlas-release:start -->
 Mapa espaço-temporal dos registros oficiais de desastres no Brasil, com cobertura nacional e todos os meses de janeiro de 1991 a dezembro de 2025.
