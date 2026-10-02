@@ -4,9 +4,11 @@ Título aprovado: **Desastres no Brasil**.
 
 Subtítulo: **Mapa interativo de ocorrências e impactos ao longo do tempo**.
 
-Endereço previsto após renomear o repositório: `https://leoneldfernandes.github.io/desastres-no-brasil/`.
+Endereço publicado após a renomeação do repositório: `https://leoneldfernandes.github.io/desastres-no-brasil/`.
 
 ## Google Analytics 4
+
+A propriedade **Desastres no Brasil** e seu fluxo Web foram configurados em 1 de outubro de 2026. ID de medição público: `G-3606SCXD0R`. A conferência administrativa confirmou: medição otimizada desligada; Google Signals e dados fornecidos pelo usuário não ativados; coleta granular de localização/dispositivo desligada; personalização de anúncios permitida em 0 de 307 regiões; compartilhamento opcional da conta desligado; retenção de usuários e eventos em dois meses, sem redefinir o prazo com nova atividade; acesso da conta restrito ao responsável. A ativação no código está condicionada à autorização de cada visitante.
 
 A integração permanece desativada até existir uma propriedade real e suas opções serem conferidas. Nesse intervalo, a janela apresenta o mapa e o botão “Explorar mapa”, sem pedir uma autorização que ainda não seria usada.
 

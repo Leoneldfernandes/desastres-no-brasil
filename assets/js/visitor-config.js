@@ -3,6 +3,6 @@
  * Instruções: docs/metricas-e-migracao.md.
  */
 window.VISITOR_METRICS = Object.freeze({
-  measurementId: "",
-  privacySettingsVerified: false,
+  measurementId: "G-3606SCXD0R",
+  privacySettingsVerified: true,
 });
