@@ -197,7 +197,7 @@ class TemporalAnalysisTests(unittest.TestCase):
         self.assertIn("gap: 5px", player_style.group("body"))
         self.assertIn("min-width: 0", settings_style.group("body"))
         self.assertIn("gap: 5px", settings_style.group("body"))
-        self.assertIn("width: 92px", speed_style.group("body"))
+        self.assertIn("width: 136px", speed_style.group("body"))
         self.assertIn("width: 120px", toggle_style.group("body"))
 
     def test_missing_municipality_opens_the_existing_locator(self) -> None:

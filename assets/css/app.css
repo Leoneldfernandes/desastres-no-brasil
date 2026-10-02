@@ -316,13 +316,24 @@ input:focus-visible,
 }
 
 .about-button {
-  padding: 7px 9px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: var(--surface-2);
-  font-size: 0.7rem;
+  width: 100%;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cyan);
+  font-size: 0.73rem;
+  font-weight: 700;
   cursor: pointer;
 }
+.about-icon { width: 16px; height: 16px; flex: 0 0 auto; }
+.about-button:hover span { text-decoration: underline; }
 
 .author-credit a {
   color: var(--cyan);
@@ -1288,6 +1299,8 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .timeline {
+  container-name: timeline;
+  container-type: inline-size;
   position: absolute;
   z-index: 500;
   right: 16px;
@@ -1307,7 +1320,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
 .temporal-analysis-header {
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(175px, 220px) minmax(300px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 0.65fr) minmax(0, 1fr);
   grid-template-areas:
     "heading information ."
     "contexts information metrics";
@@ -1660,10 +1673,14 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
 .play-button:hover { background: linear-gradient(135deg, #0795b7, #167dac); }
 
+.speed-field > span { text-align: center; }
 .speed-field select {
-  width: 92px;
-  min-width: 92px;
-  height: 32px;
+  width: 136px;
+  min-width: 136px;
+  height: 36px;
+  padding: 0 28px 0 12px;
+  text-align: center;
+  text-align-last: center;
 }
 
 .range-row {
@@ -2322,8 +2339,6 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
   .header-actions { align-items: end; flex-wrap: wrap; }
 
-  .about-button { flex: 0 0 100%; }
-
   .field-uf { flex: 1; }
 
   .field-uf select {
@@ -2512,11 +2527,9 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 .site-release-info .update-status-details { padding: 0; }
 .header-actions { flex-shrink: 0; align-items: flex-end; gap: 10px; }
 .header-actions .field,
-.header-actions .about-button,
 .header-actions .update-status-wrap { flex: 0 0 180px; width: 180px; }
 .header-actions .field > span { text-align: center; }
 .header-actions .field select,
-.header-actions .about-button,
 .header-actions .status-badge {
   width: 100%;
   min-width: 0;
@@ -2530,8 +2543,6 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   line-height: 1.2;
 }
 .header-actions .field select { padding-right: 30px; text-overflow: ellipsis; cursor: pointer; }
-.header-actions .about-button { width: 180px; white-space: nowrap; }
-.header-actions .about-button:hover,
 .header-actions .field select:hover { border-color: var(--line-strong); background: var(--surface-2); }
 .header-actions .status-badge[aria-expanded="true"] { border-color: var(--line-strong); background: var(--surface-2); }
 .north-indicator { color: #eef6ff; }
@@ -2547,15 +2558,56 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 @media (max-width: 1100px) {
   :root { --header-height: 150px; }
   .app-header { height: auto; align-items: stretch; flex-direction: column; gap: 12px; padding: 12px; }
-  .header-actions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: end; gap: 10px; }
+  .header-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; gap: 10px; }
   .header-actions .field,
-  .header-actions .about-button,
   .header-actions .update-status-wrap { width: 100%; max-width: none; }
 }
 @media (max-width: 760px) {
   :root { --header-height: auto; }
   .header-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .header-actions .field select,
-  .header-actions .about-button,
   .header-actions .status-badge { min-height: 44px; }
+}
+
+/* Reflow follows the map panel width, including desktop sidebars. */
+@container timeline (max-width: 780px) {
+  .timeline-topline {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "period settings" "player player";
+    gap: 10px;
+  }
+  .period-share { min-width: 0; flex-wrap: wrap; }
+  .current-period { min-width: 0; }
+  .playback-settings { flex-wrap: wrap; }
+  .player-controls { justify-self: center; }
+}
+@container timeline (max-width: 740px) {
+  .temporal-analysis-header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "heading information" "contexts metrics";
+    gap: 8px;
+  }
+  .temporal-chart-tooltip { min-height: 54px; }
+  .temporal-context-options,
+  .temporal-metric-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container timeline (max-width: 540px) {
+  .timeline-topline {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "period" "player" "settings" "share";
+  }
+  .period-share { display: contents; }
+  .period-display { grid-area: period; text-align: center; }
+  .share-view-button { grid-area: share; justify-self: center; }
+  .playback-settings { justify-content: center; }
+}
+@container timeline (max-width: 420px) {
+  .temporal-analysis-header {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "heading" "contexts" "information" "metrics";
+  }
+  .temporal-analysis-heading span { max-width: 100%; }
 }
