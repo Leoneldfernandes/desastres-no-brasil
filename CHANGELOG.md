@@ -13,6 +13,13 @@ Em todo PR, conferir se a alteração exige uma nova versão:
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
+## 0.43.3 — 02/10/2026
+
+- Alinha o conjunto de abas ao centro do mapa em telas largas, evitando o deslocamento para a direita em Full HD.
+- Aproxima e sobrepõe discretamente as capinhas, reforçando a aba selecionada em primeiro plano.
+- Mantém o tamanho das letras, suaviza as abas inativas e preserva a altura do cabeçalho.
+- Disponibiliza uma página de revisão de layout em 1920 × 1080 e outras larguras, independente da interface principal.
+
 ## 0.43.2 — 02/10/2026
 
 - Recupera as proporções da proposta visual aprovada, com abas mais largas e texto legível no cabeçalho.
