@@ -2379,6 +2379,19 @@ function handleTypeChange(event) {
 }
 
 function bindEvents() {
+  document.addEventListener("site-section-change", (event) => {
+    if (event.detail.section === "mapa") {
+      removePlaybackBlock("section");
+      refreshMapLayout();
+      renderVirtualRows();
+    } else {
+      state.playbackWanted = false;
+      addPlaybackBlock("section");
+      closeMapTooltip();
+    }
+    // Keep the current filters when browser history changes only the section.
+    syncViewUrl();
+  });
   document.addEventListener("welcome-dialog-change", (event) => {
     if (event.detail.open) addPlaybackBlock("welcome");
     else removePlaybackBlock("welcome");
@@ -2527,7 +2540,7 @@ function bindEvents() {
       }
       return;
     }
-    if (!state.ready || !dom.detailModal.classList.contains("is-hidden")) return;
+    if (!state.ready || !dom.detailModal.classList.contains("is-hidden") || document.getElementById("section-mapa").hidden) return;
     if (event.target.closest("input, select, button, #map")) return;
     if (event.code === "Space") {
       event.preventDefault();

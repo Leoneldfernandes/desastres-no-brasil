@@ -13,6 +13,14 @@ Em todo PR, conferir se a alteração exige uma nova versão:
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre está prevista para `0.43.0`.
 
+## 0.43.0 — 02/10/2026
+
+- Adiciona a navegação superior Mapa / Dashboard / Sobre, com o mapa como tela inicial.
+- Preserva filtros e mês ao mudar de seção; pausa a reprodução fora do mapa e ajusta o mapa ao voltar.
+- Informa que o Dashboard está em desenvolvimento, com acesso ao mapa atual.
+- Inicia o Sobre com autoria, fonte Atlas Digital, limites de interpretação, metodologia e preferências de privacidade.
+- Permite navegação por teclado, links diretos e histórico voltar/avançar; adapta as três opções às telas pequenas e aos temas claro e escuro.
+
 ## 0.42.4 — 02/10/2026
 
 - Atualiza o aviso de privacidade após ativar a coleta de cidades no Google Analytics.
