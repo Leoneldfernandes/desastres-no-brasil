@@ -67,12 +67,14 @@ class EventDetailInteractionTests(unittest.TestCase):
         self.assertIsNotNone(canvas)
         self.assertIsNotNone(grid)
         self.assertIn("contain: paint", table.group("body"))
-        self.assertIn("background: #07111f", table.group("body"))
+        self.assertIn("--bg: #07111f;", self.styles)
+        self.assertIn("--bg: #f3f7fb;", self.styles)
+        self.assertIn("background: var(--bg)", table.group("body"))
         self.assertIn("overflow-x: hidden", table.group("body"))
         self.assertIn("overflow-y: auto", table.group("body"))
         self.assertIn("overflow: visible", canvas.group("body"))
-        self.assertIn("background: #07111f", canvas.group("body"))
-        self.assertIn("background: #07111f", row)
+        self.assertIn("background: var(--bg)", canvas.group("body"))
+        self.assertIn("background: var(--bg)", row)
         self.assertIn(
             "grid-template-columns: minmax(70px, 1.05fr) "
             "minmax(78px, 1.2fr) 43px 56px",

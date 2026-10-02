@@ -9,8 +9,9 @@
       content="Desastres no Brasil: mapa interativo de ocorrências e impactos ao longo do tempo."
     >
     <title>Desastres no Brasil</title>
+    <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=d930098a7254">
+    <link rel="stylesheet" href="assets/css/app.css?v=4d9e88aafaa5">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/app.js?v=24964410063a"></script>
@@ -37,6 +38,14 @@
       </div>
 
       <div class="header-actions">
+        <label class="field field-theme" for="themeSelector" hidden>
+          <span>Aparência</span>
+          <select id="themeSelector" title="Sistema acompanha a aparência do seu computador">
+            <option value="system">Sistema</option>
+            <option value="light">Claro</option>
+            <option value="dark">Escuro</option>
+          </select>
+        </label>
         <button class="about-button" id="openWelcome" type="button" aria-haspopup="dialog" hidden>
           Sobre e privacidade
         </button>
@@ -96,7 +105,7 @@
                 <dd id="publishedCoverage">—</dd>
               </div>
               <div>
-                <dt>Geração do site</dt>
+                <dt>Geração da base de dados</dt>
                 <dd id="publishedGeneratedAt">—</dd>
               </div>
               <div>
@@ -112,6 +121,23 @@
             <a id="updateSourceLink" href="https://atlasdigital.mdr.gov.br/" target="_blank" rel="noopener">
               https://atlasdigital.mdr.gov.br/
             </a>
+            <section class="site-release-info" aria-labelledby="siteReleaseTitle">
+              <h3 id="siteReleaseTitle">Atualização do site</h3>
+              <dl class="update-status-details">
+                <div>
+                  <dt>Versão do site</dt>
+                  <dd>v0.42.0 · Em desenvolvimento</dd>
+                </div>
+                <div>
+                  <dt>Data de implementação</dt>
+                  <dd><time datetime="2026-10-01">01/10/2026</time></dd>
+                </div>
+                <div>
+                  <dt>Última atualização do site</dt>
+                  <dd><time datetime="2026-10-01">01/10/2026</time></dd>
+                </div>
+              </dl>
+            </section>
           </section>
         </div>
       </div>
