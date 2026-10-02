@@ -13,6 +13,12 @@ Em todo PR, conferir se a alteração exige uma nova versão:
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
+## 0.43.6 — 02/10/2026
+
+- Identifica a seção como “Sobre o projeto \"Desastres no Brasil\"”, deixando claro que apresenta a ferramenta.
+- Adiciona o subtítulo “Mapa interativo de ocorrências e impactos ao longo do tempo”, com apenas quatro pixels de espaço abaixo do título.
+- Remove o rótulo repetido “O projeto” e mantém um intervalo maior antes do texto de apresentação.
+
 ## 0.43.5 — 02/10/2026
 
 - Corrige o título da seção para “Sobre os desastres no Brasil”.
