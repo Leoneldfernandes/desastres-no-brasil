@@ -11,6 +11,8 @@ VERSIONED_ASSETS = (
     "assets/js/export.js",
     "assets/js/export-worker.js",
     "assets/js/app.js",
+    "assets/js/visitor-config.js",
+    "assets/js/welcome.js",
 )
 
 

@@ -165,8 +165,11 @@ const UPDATE_STATES = new Set([
   "update-available",
   "check-failed",
 ]);
+const publishedRepository = window.location.hostname === "leoneldfernandes.github.io"
+  ? window.location.pathname.split("/").filter(Boolean)[0] || "desastres-no-brasil"
+  : "desastres-no-brasil";
 const UPDATE_STATUS_URL =
-  "https://raw.githubusercontent.com/Leoneldfernandes/desastres-temporais/atlas-status/data/update-status.json";
+  `https://raw.githubusercontent.com/Leoneldfernandes/${publishedRepository}/atlas-status/data/update-status.json`;
 
 const dom = Object.fromEntries(
   [
@@ -704,7 +707,7 @@ function exportMetadata(rows, mode) {
   const firstPeriod = mode === "history" ? state.periods[0] : state.periods[state.currentPeriod];
   const lastPeriod = mode === "history" ? state.periods.at(-1) : firstPeriod;
   return {
-    titulo: "Dados filtrados — Desastres no tempo",
+    titulo: "Dados filtrados — Desastres no Brasil",
     autor: "Leonel Delmiro Fernandes",
     gerado_em: new Date().toISOString(),
     fonte: "Atlas Digital de Desastres no Brasil — Sedec/MIDR",
@@ -2192,6 +2195,8 @@ function syncPlaybackUi() {
     message = "Linha temporal aguardando o fim do movimento do mapa.";
   } else if (state.playbackWanted && state.playbackBlocks.has("detail")) {
     message = "Reprodução pausada enquanto os detalhes estão abertos.";
+  } else if (state.playbackWanted && state.playbackBlocks.has("welcome")) {
+    message = "Reprodução pausada enquanto a apresentação está aberta.";
   } else if (state.playbackWanted && state.playbackBlocks.has("scope")) {
     message = "Reprodução pausada durante a troca de recorte territorial.";
   }
@@ -2374,6 +2379,10 @@ function handleTypeChange(event) {
 }
 
 function bindEvents() {
+  document.addEventListener("welcome-dialog-change", (event) => {
+    if (event.detail.open) addPlaybackBlock("welcome");
+    else removePlaybackBlock("welcome");
+  });
   dom.retryButton.addEventListener("click", () => window.location.reload());
   dom.dataStatus.addEventListener("click", () => {
     setUpdateStatusPanel(dom.dataStatus.getAttribute("aria-expanded") !== "true");

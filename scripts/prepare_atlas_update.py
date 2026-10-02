@@ -143,7 +143,7 @@ def download_release(
         source_url,
         headers={
             "Accept": "text/csv,application/octet-stream;q=0.9,*/*;q=0.1",
-            "User-Agent": "desastres-temporais-atlas-update/1.0",
+            "User-Agent": "desastres-no-brasil-atlas-update/1.0",
         },
     )
     output.parent.mkdir(parents=True, exist_ok=True)

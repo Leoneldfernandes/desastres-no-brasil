@@ -118,7 +118,7 @@ def fetch_downloads_page(url: str = DOWNLOADS_URL, timeout: int = 30) -> str:
         url,
         headers={
             "Accept": "text/html,application/xhtml+xml",
-            "User-Agent": "desastres-temporais-atlas-check/1.0",
+            "User-Agent": "desastres-no-brasil-atlas-check/1.0",
         },
     )
     with urlopen(request, timeout=timeout) as response:
