@@ -2514,6 +2514,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 .header-actions .field,
 .header-actions .about-button,
 .header-actions .update-status-wrap { flex: 0 0 180px; width: 180px; }
+.header-actions .field > span { text-align: center; }
 .header-actions .field select,
 .header-actions .about-button,
 .header-actions .status-badge {
