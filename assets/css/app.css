@@ -2729,7 +2729,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 }
 @media (min-width: 1101px) and (max-width: 1599px) {
   .folder-header .header-actions .field,
-  .folder-header .header-actions .update-status-wrap { width: 148px; }
+  .folder-header .header-actions .update-status-wrap { flex: 0 0 148px; width: 148px; }
   .folder-header .header-actions .field select,
   .folder-header .header-actions .status-badge { width: 100%; min-width: 0; }
 }
