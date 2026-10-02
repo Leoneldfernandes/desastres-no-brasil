@@ -13,6 +13,13 @@ Em todo PR, conferir se a alteração exige uma nova versão:
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
+## 0.43.7 — 02/10/2026
+
+- Apresenta os autores em um quadro de largura completa, um abaixo do outro, com os mesmos tamanhos de texto e sem divisória vertical.
+- Identifica Leonel Delmiro Fernandes como Engenheiro Civil (UVA), preservando a condição de mestrando em Desastres Naturais.
+- Inclui Lindberg Nascimento Júnior como coautor e orientador, com o resumo biográfico aprovado e seu currículo Lattes.
+- Acrescenta o vínculo acadêmico e o link do LabClima/UFSC e organiza os três quadros informativos abaixo da autoria.
+
 ## 0.43.6 — 02/10/2026
 
 - Identifica a seção como “Sobre o projeto \"Desastres no Brasil\"”, deixando claro que apresenta a ferramenta.
