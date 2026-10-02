@@ -2503,7 +2503,6 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 }
 
 
-.field-theme select { min-width: 108px; }
 .site-release-info {
   margin-top: 14px;
   padding: 14px 15px;
@@ -2511,7 +2510,29 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 }
 .site-release-info h3 { margin: 0 0 10px; font-size: 0.8rem; }
 .site-release-info .update-status-details { padding: 0; }
-.header-actions { flex-shrink: 0; gap: 10px; }
+.header-actions { flex-shrink: 0; align-items: flex-end; gap: 10px; }
+.header-actions .field,
+.header-actions .about-button,
+.header-actions .update-status-wrap { flex: 0 0 180px; width: 180px; }
+.header-actions .field select,
+.header-actions .about-button,
+.header-actions .status-badge {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.73rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.header-actions .field select { padding-right: 30px; text-overflow: ellipsis; cursor: pointer; }
+.header-actions .about-button { width: 180px; white-space: nowrap; }
+.header-actions .about-button:hover,
+.header-actions .field select:hover { border-color: var(--line-strong); background: var(--surface-2); }
+.header-actions .status-badge[aria-expanded="true"] { border-color: var(--line-strong); background: var(--surface-2); }
 .north-indicator { color: #eef6ff; }
 .north-arrow { border-bottom-color: #eef6ff; }
 .leaflet-control-scale-line { text-shadow: none; }
@@ -2522,15 +2543,18 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 :root[data-theme="light"] .update-status-panel,
 :root[data-theme="light"] .export-modal,
 :root[data-theme="light"] .detail-modal { box-shadow: 0 18px 50px rgba(30, 58, 79, 0.2); }
-@media (min-width: 761px) and (max-width: 1100px) {
-  .app-header { gap: 12px; padding-inline: 12px; }
-  .header-actions { gap: 8px; }
-  .field-uf select { min-width: 140px; }
-  .status-badge { min-width: 120px; }
-  .about-button { max-width: 92px; white-space: normal; }
+@media (max-width: 1100px) {
+  :root { --header-height: 150px; }
+  .app-header { height: auto; align-items: stretch; flex-direction: column; gap: 12px; padding: 12px; }
+  .header-actions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: end; gap: 10px; }
+  .header-actions .field,
+  .header-actions .about-button,
+  .header-actions .update-status-wrap { width: 100%; max-width: none; }
 }
 @media (max-width: 760px) {
-  .field-theme { flex: 0 0 108px; }
-  .field-uf { flex: 1 1 140px; }
-  .update-status-wrap { max-width: none; flex: 1 1 100%; }
+  :root { --header-height: auto; }
+  .header-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .header-actions .field select,
+  .header-actions .about-button,
+  .header-actions .status-badge { min-height: 44px; }
 }

@@ -11,7 +11,7 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=4d9e88aafaa5">
+    <link rel="stylesheet" href="assets/css/app.css?v=7413b803a459">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/app.js?v=24964410063a"></script>
@@ -38,21 +38,21 @@
       </div>
 
       <div class="header-actions">
+        <label class="field field-uf" for="ufSelector">
+          <span>Recorte territorial</span>
+          <select id="ufSelector" disabled>
+            <option value="BR">Brasil inteiro</option>
+          </select>
+        </label>
+        <button class="about-button" id="openWelcome" type="button" aria-haspopup="dialog" hidden>
+          Sobre e privacidade
+        </button>
         <label class="field field-theme" for="themeSelector" hidden>
           <span>Aparência</span>
           <select id="themeSelector" title="Sistema acompanha a aparência do seu computador">
             <option value="system">Sistema</option>
             <option value="light">Claro</option>
             <option value="dark">Escuro</option>
-          </select>
-        </label>
-        <button class="about-button" id="openWelcome" type="button" aria-haspopup="dialog" hidden>
-          Sobre e privacidade
-        </button>
-        <label class="field field-uf" for="ufSelector">
-          <span>Recorte territorial</span>
-          <select id="ufSelector" disabled>
-            <option value="BR">Brasil inteiro</option>
           </select>
         </label>
         <div class="update-status-wrap">
@@ -126,11 +126,11 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.42.0 · Em desenvolvimento</dd>
+                  <dd>v0.42.1 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
-                  <dd><time datetime="2026-10-01">01/10/2026</time></dd>
+                  <dd><time datetime="2026-08-20">20/08/2026</time></dd>
                 </div>
                 <div>
                   <dt>Última atualização do site</dt>
