@@ -11,7 +11,15 @@ Em todo PR, conferir se a alteração exige uma nova versão:
 - Documentação, rotinas internas ou atualização exclusiva dos dados: manter a versão da interface, a menos que também mude o funcionamento do site.
 - Primeira versão completa e revisada: `1.0.0`, mediante decisão do responsável pelo site.
 
-A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, sua data de implementação e a última atualização do site. A navegação Mapa / Dashboard / Sobre está prevista para `0.43.0`.
+A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre está prevista para `0.43.0`.
+
+## 0.42.1 — 01/10/2026
+
+- Corrige a data de implementação original para 20/08/2026, mantendo a última atualização em 01/10/2026.
+
+- Organiza os controles do topo na ordem Recorte territorial, Sobre e privacidade, Aparência e indicador de atualização.
+- Uniformiza altura, largura, formato arredondado, tipografia e alinhamento dos controles, seguindo o modelo do indicador Atlas verificado.
+- Mantém a ordem dos controles em quatro colunas nas telas intermediárias e duas colunas nas telas menores, com alvos de toque de 44 px.
 
 ## 0.42.0 — 01/10/2026
 
