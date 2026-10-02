@@ -2745,7 +2745,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
     padding: 12px 12px 0;
   }
   .folder-header .brand { grid-column: 1; grid-row: 1; }
-  .folder-header .header-actions { grid-column: 2; grid-row: 1; }
+  .folder-header .header-actions { grid-column: 2; grid-row: 1; justify-self: stretch; }
   .folder-header .site-navigation { grid-column: 1 / -1; grid-row: 2; margin-bottom: 0; width: min(332px, 100%); justify-self: center; }
 }
 @media (max-width: 760px) {
