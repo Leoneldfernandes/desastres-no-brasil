@@ -11,7 +11,7 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=3b9b379a3e8a">
+    <link rel="stylesheet" href="assets/css/app.css?v=ec737548e427">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/app.js?v=24964410063a"></script>
@@ -44,9 +44,6 @@
             <option value="BR">Brasil inteiro</option>
           </select>
         </label>
-        <button class="about-button" id="openWelcome" type="button" aria-haspopup="dialog" hidden>
-          Sobre e privacidade
-        </button>
         <label class="field field-theme" for="themeSelector" hidden>
           <span>Aparência</span>
           <select id="themeSelector" title="Sistema acompanha a aparência do seu computador">
@@ -126,7 +123,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.42.2 · Em desenvolvimento</dd>
+                  <dd>v0.42.3 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -134,7 +131,7 @@
                 </div>
                 <div>
                   <dt>Última atualização do site</dt>
-                  <dd><time datetime="2026-10-01">01/10/2026</time></dd>
+                  <dd><time datetime="2026-10-02">02/10/2026</time></dd>
                 </div>
               </dl>
             </section>
@@ -205,6 +202,13 @@
           </p>
           <button class="button export-open-button" type="button" id="openExport">
             Baixar dados filtrados
+          </button>
+          <button class="about-button" id="openWelcome" type="button" aria-haspopup="dialog" hidden>
+            <svg class="about-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+              <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M10 9v5M10 6v.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+            <span>Sobre e privacidade</span>
           </button>
         </section>
       </aside>
