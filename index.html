@@ -11,7 +11,7 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=a8b0cba97b99">
+    <link rel="stylesheet" href="assets/css/app.css?v=916a071593d9">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/app.js?v=05a2b3abdef1"></script>
@@ -22,7 +22,7 @@
   <body>
     <a class="skip-link" href="#map">Ir para o mapa</a>
 
-    <header class="app-header">
+    <header class="app-header folder-header">
       <div class="brand">
         <span class="brand-mark" aria-hidden="true"></span>
         <div>
@@ -37,6 +37,14 @@
           </p>
         </div>
       </div>
+
+    <nav class="site-navigation" aria-label="Seções do site">
+      <div class="site-tabs" id="siteNavigation" role="tablist" aria-label="Mapa, Dashboard e Sobre">
+        <button id="tab-mapa" type="button" role="tab" aria-selected="true" aria-controls="section-mapa">Mapa</button>
+        <button id="tab-dashboard" type="button" role="tab" aria-selected="false" aria-controls="section-dashboard" tabindex="-1">Dashboard</button>
+        <button id="tab-sobre" type="button" role="tab" aria-selected="false" aria-controls="section-sobre" tabindex="-1">Sobre</button>
+      </div>
+    </nav>
 
       <div class="header-actions">
         <label class="field field-uf" for="ufSelector">
@@ -124,7 +132,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.43.0 · Em desenvolvimento</dd>
+                  <dd>v0.43.1 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -141,13 +149,7 @@
       </div>
     </header>
 
-    <nav class="site-navigation" aria-label="Seções do site">
-      <div class="site-tabs" id="siteNavigation" role="tablist" aria-label="Mapa, Dashboard e Sobre">
-        <button id="tab-mapa" type="button" role="tab" aria-selected="true" aria-controls="section-mapa">Mapa</button>
-        <button id="tab-dashboard" type="button" role="tab" aria-selected="false" aria-controls="section-dashboard" tabindex="-1">Dashboard</button>
-        <button id="tab-sobre" type="button" role="tab" aria-selected="false" aria-controls="section-sobre" tabindex="-1">Sobre</button>
-      </div>
-    </nav>
+
 
     <main class="site-content">
     <section class="app-shell" id="section-mapa" role="tabpanel" aria-labelledby="tab-mapa">
