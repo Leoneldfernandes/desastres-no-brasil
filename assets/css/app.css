@@ -293,6 +293,10 @@
 .site-page h2 { margin: 0 0 16px; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.2; }
 .site-page p { line-height: 1.65; }
 .site-page-lead { max-width: 720px; color: var(--body-secondary); font-size: 1.05rem; }
+.about-heading { margin-bottom: 20px; }
+.about-heading h2 { margin: 0; }
+.about-heading .about-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.4; }
+.about-heading + .site-page-lead { margin-top: 0; }
 .site-page a { color: var(--cyan); }
 .site-page-note { color: var(--muted); }
 .dashboard-placeholder { padding: clamp(24px, 7vh, 80px) 0; }
