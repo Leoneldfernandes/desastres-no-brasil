@@ -2504,6 +2504,13 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
 
 .field-theme select { min-width: 108px; }
+.site-release-info {
+  margin-top: 14px;
+  padding: 14px 15px;
+  border-top: 1px solid var(--line);
+}
+.site-release-info h3 { margin: 0 0 10px; font-size: 0.8rem; }
+.site-release-info .update-status-details { padding: 0; }
 .header-actions { flex-shrink: 0; gap: 10px; }
 .north-indicator { color: #eef6ff; }
 .north-arrow { border-bottom-color: #eef6ff; }

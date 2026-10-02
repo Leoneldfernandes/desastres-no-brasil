@@ -2,6 +2,8 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
+Versão do site: **v0.42.0 · Em desenvolvimento**. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
+
 A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4 e só são ativadas após autorização do visitante. Antes da configuração da propriedade, a apresentação não solicita consentimento nem envia visitas. Veja [ativação das métricas e migração do endereço](docs/metricas-e-migracao.md).
 
 <!-- atlas-release:start -->
