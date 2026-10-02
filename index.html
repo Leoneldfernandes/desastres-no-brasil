@@ -11,10 +11,11 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=ec737548e427">
+    <link rel="stylesheet" href="assets/css/app.css?v=a8b0cba97b99">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
-    <script defer src="assets/js/app.js?v=24964410063a"></script>
+    <script defer src="assets/js/app.js?v=05a2b3abdef1"></script>
+    <script defer src="assets/js/navigation.js?v=0cba2ac131ab"></script>
     <script defer src="assets/js/visitor-config.js?v=68f13d2d94d3"></script>
     <script defer src="assets/js/welcome.js?v=2722b8b9ccb5"></script>
   </head>
@@ -123,7 +124,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.42.4 · Em desenvolvimento</dd>
+                  <dd>v0.43.0 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -140,7 +141,16 @@
       </div>
     </header>
 
-    <main class="app-shell">
+    <nav class="site-navigation" aria-label="Seções do site">
+      <div class="site-tabs" id="siteNavigation" role="tablist" aria-label="Mapa, Dashboard e Sobre">
+        <button id="tab-mapa" type="button" role="tab" aria-selected="true" aria-controls="section-mapa">Mapa</button>
+        <button id="tab-dashboard" type="button" role="tab" aria-selected="false" aria-controls="section-dashboard" tabindex="-1">Dashboard</button>
+        <button id="tab-sobre" type="button" role="tab" aria-selected="false" aria-controls="section-sobre" tabindex="-1">Sobre</button>
+      </div>
+    </nav>
+
+    <main class="site-content">
+    <section class="app-shell" id="section-mapa" role="tabpanel" aria-labelledby="tab-mapa">
       <aside class="sidebar sidebar-left" aria-label="Filtros e indicadores">
         <section class="panel summary-panel">
           <div class="section-heading">
@@ -455,6 +465,48 @@
           </dl>
         </section>
       </aside>
+    </section>
+
+    <section class="site-page" id="section-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" tabindex="0" hidden>
+      <div class="site-page-inner dashboard-placeholder">
+        <p class="eyebrow">Novas perspectivas</p>
+        <h2>Dashboard em desenvolvimento</h2>
+        <p>Novos gráficos e análises em breve.</p>
+        <p class="site-page-note">Enquanto isso, explore as ocorrências e os impactos no mapa interativo.</p>
+        <button class="button" type="button" data-open-map>Explorar o mapa</button>
+      </div>
+    </section>
+
+    <section class="site-page" id="section-sobre" role="tabpanel" aria-labelledby="tab-sobre" tabindex="0" hidden>
+      <div class="site-page-inner">
+        <p class="eyebrow">O projeto</p>
+        <h2>Sobre o Desastres no Brasil</h2>
+        <p class="site-page-lead">Uma forma de explorar onde e quando os desastres foram registrados no Brasil e acompanhar seus impactos ao longo do tempo.</p>
+        <div class="about-grid">
+          <article class="panel about-card">
+            <h3>Autoria</h3>
+            <p>Projeto desenvolvido por <strong>Leonel Delmiro Fernandes</strong>.</p>
+            <a href="http://lattes.cnpq.br/4668011474465628" target="_blank" rel="noopener">Conheça o currículo Lattes</a>
+          </article>
+          <article class="panel about-card">
+            <h3>Fonte dos dados</h3>
+            <p>Atlas Digital de Desastres no Brasil, do MIDR, com participação da UFSC/CEPED. As ocorrências, os danos humanos e os prejuízos econômicos apresentados vêm dos registros dessa base.</p>
+            <a href="https://atlasdigital.mdr.gov.br/" target="_blank" rel="noopener">Acesse o Atlas Digital</a>
+          </article>
+          <article class="panel about-card">
+            <h3>Como interpretar</h3>
+            <p>O mês corresponde à data do evento registrada na fonte. Ausência de registro não significa ausência de desastre. Os valores refletem os danos declarados e podem apresentar limitações ou receber correções.</p>
+            <a href="https://github.com/Leoneldfernandes/desastres-no-brasil/blob/main/docs/metodologia.md" target="_blank" rel="noopener">Leia a metodologia</a>
+          </article>
+          <article class="panel about-card">
+            <h3>Atualização e privacidade</h3>
+            <p>Consulte a versão, as datas do site e a situação da base no indicador do canto superior direito. As estatísticas de acesso usam Google Analytics somente com sua autorização.</p>
+            <button class="button secondary" id="aboutPrivacy" type="button">Preferências de privacidade</button>
+          </article>
+        </div>
+        <button class="button secondary" type="button" data-open-map>Voltar ao mapa</button>
+      </div>
+    </section>
     </main>
 
     <div class="modal-backdrop is-hidden" id="exportModal" role="presentation">
