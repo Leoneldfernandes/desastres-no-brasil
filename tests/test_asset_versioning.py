@@ -7,6 +7,7 @@ from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSIONED_ASSETS = (
+    "assets/js/theme.js",
     "assets/css/app.css",
     "assets/js/export.js",
     "assets/js/export-worker.js",

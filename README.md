@@ -67,6 +67,7 @@ Cada atualização aprovada mantém permanentemente os dois relatórios em `docs
 
 ## Funcionalidades
 
+- aparência clara, escura ou conforme o sistema, com preferência salva neste navegador;
 - 5.573 municípios e unidades equivalentes visíveis desde a abertura;
 - indicador clicável no topo com versão, período, geração e estado da verificação do Atlas;
 - série mensal contínua indicada no manifesto, inclusive os meses sem registros;
