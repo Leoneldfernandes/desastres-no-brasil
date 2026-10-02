@@ -13,6 +13,10 @@ Em todo PR, conferir se a alteração exige uma nova versão:
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre está prevista para `0.43.0`.
 
+## 0.42.2 — 01/10/2026
+
+- Centraliza os títulos Recorte territorial e Aparência sobre seus respectivos controles.
+
 ## 0.42.1 — 01/10/2026
 
 - Corrige a data de implementação original para 20/08/2026, mantendo a última atualização em 01/10/2026.
