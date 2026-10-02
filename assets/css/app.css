@@ -301,11 +301,18 @@
 .site-page-note { color: var(--muted); }
 .dashboard-placeholder { padding: clamp(24px, 7vh, 80px) 0; }
 .dashboard-placeholder > .button { margin-top: 12px; }
-.about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 28px 0; }
+.about-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 28px 0; }
 .about-grid .about-card { padding: 22px; }
 .about-card h3 { margin: 0 0 12px; font-size: 1rem; }
 .about-card p { margin: 0 0 16px; color: var(--body-secondary); font-size: 0.9rem; }
 .about-card a { font-size: 0.85rem; }
+.about-authorship { grid-column: 1 / -1; }
+.about-author + .about-author { margin-top: 28px; }
+.about-authorship p, .about-authorship a { font-size: 1rem; }
+.about-authorship .about-author-role { margin-bottom: 4px; color: var(--muted); font-size: 0.9rem; }
+.about-authorship .about-affiliation { margin: 24px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.about-affiliation a { margin-left: 8px; }
+.about-card .button { max-width: 100%; white-space: normal; }
 @media (max-width: 1180px) {
   .site-page { height: auto; min-height: 60dvh; overflow: visible; }
 }
