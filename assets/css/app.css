@@ -1445,7 +1445,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   transition: opacity 600ms ease;
 }
 
-.timeline.is-playing::before { opacity: 0.9; }
+.timeline.is-playing::before { opacity: 0.5; }
 
 .timeline.is-playing:hover::before,
 .timeline.is-playing:has(:focus-visible)::before { opacity: 1; }
