@@ -1,12 +1,17 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #57, a identificação adotada é `v0.57`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #58, a identificação adotada é `v0.58`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #57 identifica o site como `v0.57`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #58 identifica o site como `v0.58`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.58 — 09/10/2026 · PR #58
+
+- Ajusta o fundo durante a reprodução de 65% para 80% da opacidade habitual, após a avaliação visual do teste.
+- Mantém a transição de 600 ms, a recuperação ao pausar ou usar os controles e a nitidez e dimensões da barra.
 
 ## 0.57 — 09/10/2026 · PR #57
 
