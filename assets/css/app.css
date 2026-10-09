@@ -1427,9 +1427,29 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   padding: 13px 15px 10px;
   border: 1px solid var(--line-strong);
   border-radius: 14px;
-  background: var(--timeline-bg);
   box-shadow: 0 16px 46px rgba(0, 0, 0, 0.48);
   backdrop-filter: blur(12px);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--timeline-bg);
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 600ms ease;
+}
+
+.timeline.is-playing::before { opacity: 0.65; }
+
+.timeline.is-playing:hover::before,
+.timeline.is-playing:has(:focus-visible)::before { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline::before { transition: none; }
 }
 
 .timeline.is-analysis-expanded { max-width: 1040px; }

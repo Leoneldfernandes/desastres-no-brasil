@@ -2,7 +2,7 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
-Versão do site: **v0.56 · Em desenvolvimento**, publicada pelo PR #56. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
+Versão do site: **v0.57 · Em desenvolvimento**, publicada pelo PR #57. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
 
 As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em telas largas, o conjunto acompanha o centro do mapa. As capinhas ficam parcialmente sobrepostas, com a aba selecionada em primeiro plano, conectada à moldura do conteúdo, sem uma faixa separada ocupando a altura do mapa. O Mapa abre inicialmente e preserva os filtros ao alternar de seção; sair dele pausa a reprodução. O Dashboard avisa que novos gráficos e análises estão em desenvolvimento. O Sobre apresenta autoria, fonte dos dados, orientações de interpretação e preferências de privacidade. Os fragmentos `#dashboard` e `#sobre` permitem abrir diretamente essas seções sem alterar os parâmetros da visualização.
 
@@ -137,3 +137,5 @@ Abra `http://localhost:8000`. A página não funciona corretamente ao abrir o HT
 - Imagens de satélite: Esri, Maxar, Earthstar Geographics e comunidade GIS.
 
 As ferramentas no canto superior direito do mapa seguem a ordem Buscar município, Retornar ao panorama, Tela cheia e Compartilhar visualização. Cada botão mostra sua descrição ao passar o mouse ou receber foco pelo teclado; o compartilhamento copia o link com o recorte, período e filtros atuais.
+
+Durante a reprodução, apenas o fundo da barra temporal fica a 65% da opacidade habitual, com transição de 600 ms. Pausar, passar o mouse sobre a barra ou navegar pelos controles com o teclado recupera o fundo original. A posição, dimensões e nitidez dos controles permanecem iguais; a preferência do sistema por movimento reduzido desativa a transição.
