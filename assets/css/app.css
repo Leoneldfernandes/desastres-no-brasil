@@ -224,7 +224,7 @@
   display: flex;
   align-items: flex-end;
   min-width: 0;
-  width: 332px;
+  width: 367.6px;
   max-width: 100%;
   justify-self: center;
   margin-bottom: -10px;
@@ -236,7 +236,7 @@
 .site-tabs button {
   position: relative;
   isolation: isolate;
-  z-index: 0;
+  z-index: 1;
   flex: 1 1 0;
   min-width: 0;
   min-height: 48px;
@@ -249,6 +249,8 @@
   font-size: 0.95rem;
   cursor: pointer;
 }
+.site-tabs button:nth-child(1) { z-index: 3; }
+.site-tabs button:nth-child(2) { z-index: 2; }
 /* The native vector follows the approved folder silhouette without tilting text. */
 .folder-tab-shape {
   position: absolute;
@@ -264,7 +266,7 @@
 .folder-tab-shape path { vector-effect: non-scaling-stroke; }
 .site-tabs button:hover { color: var(--text); }
 .site-tabs button:hover .folder-tab-shape { fill: var(--surface-3); }
-.site-tabs button[aria-selected="true"] { z-index: 2; color: var(--cyan); font-weight: 700; }
+.site-tabs button[aria-selected="true"] { z-index: 4; color: var(--cyan); font-weight: 700; }
 .site-tabs button[aria-selected="true"] .folder-tab-shape {
   height: 100%;
   stroke: color-mix(in srgb, var(--cyan) 70%, var(--line-strong));
@@ -1443,7 +1445,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   transition: opacity 600ms ease;
 }
 
-.timeline.is-playing::before { opacity: 0.8; }
+.timeline.is-playing::before { opacity: 0.9; }
 
 .timeline.is-playing:hover::before,
 .timeline.is-playing:has(:focus-visible)::before { opacity: 1; }
@@ -2787,7 +2789,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   }
   .folder-header .brand { grid-column: 1; grid-row: 1; }
   .folder-header .header-actions { grid-column: 2; grid-row: 1; justify-self: stretch; }
-  .folder-header .site-navigation { grid-column: 1 / -1; grid-row: 2; margin-bottom: 0; width: min(332px, 100%); justify-self: center; }
+  .folder-header .site-navigation { grid-column: 1 / -1; grid-row: 2; margin-bottom: 0; width: min(367.6px, 100%); justify-self: center; }
 }
 @media (max-width: 760px) {
   .app-header.folder-header { grid-template-columns: minmax(0, 1fr); }

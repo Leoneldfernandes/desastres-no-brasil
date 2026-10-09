@@ -1,12 +1,19 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #58, a identificação adotada é `v0.58`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #59, a identificação adotada é `v0.59`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #58 identifica o site como `v0.58`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #59 identifica o site como `v0.59`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.59 — 09/10/2026 · PR #59
+
+- Aumenta a largura de cada aba em 10%, mantendo a sobreposição de 12 pixels e o conjunto centralizado sobre o mapa.
+- Corrige a ordem visual: Mapa à frente de Dashboard, Dashboard à frente de Sobre; a aba selecionada sempre assume o primeiro plano.
+- Mantém altura, textos e adaptação às telas menores.
+- Aumenta o fundo da barra temporal durante a reprodução para 90% da opacidade habitual, mantendo transição de 600 ms e controles integralmente nítidos.
 
 ## 0.58 — 09/10/2026 · PR #58
 
