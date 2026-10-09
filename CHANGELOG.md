@@ -1,12 +1,19 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #60, a identificação adotada é `v0.60`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #62, a identificação adotada é `v0.62`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #60 identifica o site como `v0.60`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #62 identifica o site como `v0.62`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.62 — 09/10/2026 · PR #62
+
+- Aplica 50% de opacidade somente ao fundo dos espaços entre os quadros laterais durante a reprodução, com transição suave de 600 ms.
+- Recupera o fundo sem transparência ao pausar ou interromper a reprodução, incluindo as pausas automáticas.
+- Preserva as cores e a opacidade dos quadros, tabelas, textos e botões, o layout e o fundo da barra temporal já aprovado.
+- Respeita a preferência por movimento reduzido. Os espaços laterais continuam fora da área do mapa; a transparência não estende o mapa por baixo deles.
 
 ## 0.60 — 09/10/2026 · PR #60
 
