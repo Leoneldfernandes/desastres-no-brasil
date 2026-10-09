@@ -1,17 +1,18 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. O número do PR #42 foi escolhido como ponto de partida; os próximos números de versão seguem a regra abaixo, sem depender da numeração dos pull requests.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #55, a identificação adotada é `v0.55`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Em todo PR, conferir se a alteração exige uma nova versão:
-
-- Nova funcionalidade relevante: incrementar o segundo número, por exemplo, `0.42.0` → `0.43.0`.
-- Correção ou pequeno ajuste visual: incrementar o terceiro número, por exemplo, `0.43.0` → `0.43.1`.
-- Documentação, rotinas internas ou atualização exclusiva dos dados: manter a versão da interface, a menos que também mude o funcionamento do site.
-- Primeira versão completa e revisada: `1.0.0`, mediante decisão do responsável pelo site.
+Na publicação atual, o PR #55 identifica o site como `v0.55`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.55 — 09/10/2026 · PR #55
+
+- Atualiza o resultado da verificação semanal ao abrir o indicador do Atlas, sem recarregar a página ou os dados do mapa.
+- Evita consultas simultâneas ao abrir e fechar o menu rapidamente; em falha de conexão, preserva a data da última verificação conhecida.
+- Vincula a identificação desta publicação ao número do PR e preserva a implementação original em 20/08/2026.
 
 ## 0.43.7 — 02/10/2026
 

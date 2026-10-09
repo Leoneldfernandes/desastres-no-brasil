@@ -269,6 +269,7 @@ const state = {
   manifest: null,
   dataVersion: null,
   updateStatus: null,
+  updateStatusRefreshing: false,
   periods: [],
   types: [],
   summaryByPeriod: [],
@@ -961,7 +962,23 @@ function setUpdateStatusPanel(open, restoreFocus = false) {
   if (open && dom.dataStatus.disabled) return;
   dom.updateStatusPanel.classList.toggle("is-hidden", !open);
   dom.dataStatus.setAttribute("aria-expanded", String(open));
+  if (open) void refreshUpdateStatus();
   if (!open && restoreFocus) dom.dataStatus.focus();
+}
+
+async function refreshUpdateStatus() {
+  if (state.updateStatusRefreshing) return;
+  state.updateStatusRefreshing = true;
+  try {
+    const latest = await loadUpdateStatus();
+    if (latest.status === "check-failed" && !latest.checkedAt) {
+      latest.checkedAt = state.updateStatus?.checkedAt || null;
+    }
+    state.updateStatus = latest;
+    renderUpdateStatus();
+  } finally {
+    state.updateStatusRefreshing = false;
+  }
 }
 
 function validateUpdateStatus(payload) {
