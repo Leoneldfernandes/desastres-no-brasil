@@ -138,4 +138,4 @@ Abra `http://localhost:8000`. A página não funciona corretamente ao abrir o HT
 
 As ferramentas no canto superior direito do mapa seguem a ordem Buscar município, Retornar ao panorama, Tela cheia e Compartilhar visualização. Cada botão mostra sua descrição ao passar o mouse ou receber foco pelo teclado; o compartilhamento copia o link com o recorte, período e filtros atuais.
 
-Durante a reprodução, apenas o fundo da barra temporal fica a 80% da opacidade habitual, com transição de 600 ms. Pausar, passar o mouse sobre a barra ou navegar pelos controles com o teclado recupera o fundo original. A posição, dimensões e nitidez dos controles permanecem iguais; a preferência do sistema por movimento reduzido desativa a transição.
+Durante a reprodução, apenas o fundo da barra temporal fica a 90% da opacidade habitual, com transição de 600 ms. Pausar, passar o mouse sobre a barra ou navegar pelos controles com o teclado recupera o fundo original. A posição, dimensões e nitidez dos controles permanecem iguais; a preferência do sistema por movimento reduzido desativa a transição.

@@ -13,6 +13,7 @@ A nova versão só passa a identificar o site após a incorporação e publicaç
 - Aumenta a largura de cada aba em 10%, mantendo a sobreposição de 12 pixels e o conjunto centralizado sobre o mapa.
 - Corrige a ordem visual: Mapa à frente de Dashboard, Dashboard à frente de Sobre; a aba selecionada sempre assume o primeiro plano.
 - Mantém altura, textos e adaptação às telas menores.
+- Aumenta o fundo da barra temporal durante a reprodução para 90% da opacidade habitual, mantendo transição de 600 ms e controles integralmente nítidos.
 
 ## 0.58 — 09/10/2026 · PR #58
 
