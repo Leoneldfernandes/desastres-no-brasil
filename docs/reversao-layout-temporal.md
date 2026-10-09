@@ -10,6 +10,6 @@ Essa referência guarda o código completo anterior: mês à esquerda, reproduç
 
 ## Como retornar ao layout anterior
 
-Preparar um novo PR sobre a versão vigente, consultando o ponto de retorno. Restaurar apenas os trechos de layout temporal alterados por esta reorganização em `assets/css/app.css`, a ordem dos grupos em `index.html` e as expectativas correspondentes em `tests/test_temporal_analysis.py`. Preservar as demais mudanças feitas desde então, inclusive dados e transparência.
+Preparar um novo PR sobre a versão vigente, consultando o ponto de retorno. Restaurar apenas os trechos de layout temporal alterados por esta reorganização em `assets/css/app.css`, a ordem dos grupos em `index.html` e as expectativas correspondentes em `tests/test_temporal_analysis.py` e `tests/test_shared_view.py`. Preservar as demais mudanças feitas desde então, inclusive dados e transparência.
 
 Depois, atualizar o hash de cache do CSS em `index.html`, identificar a publicação pelo número do novo PR e registrar a reversão no histórico. A data original de implementação permanece **20/08/2026**. Conferir novamente reprodução, abertura e fechamento da série, alinhamento dos controles e adaptação às telas menores.
