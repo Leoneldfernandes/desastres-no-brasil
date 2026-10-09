@@ -1,12 +1,18 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #56, a identificação adotada é `v0.56`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #57, a identificação adotada é `v0.57`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #56 identifica o site como `v0.56`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #57 identifica o site como `v0.57`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.57 — 09/10/2026 · PR #57
+
+- Testa o fundo da barra temporal a 65% da opacidade habitual durante a reprodução, preservando textos, botões, posição e dimensões.
+- Aplica transição de 600 ms e recupera o fundo original ao pausar, interromper a reprodução, passar o mouse sobre a barra ou usar seus controles pelo teclado.
+- Respeita a preferência por movimento reduzido. O ajuste fica isolado neste PR para facilitar a reversão se o resultado visual não agradar.
 
 ## 0.56 — 09/10/2026 · PR #56
 
