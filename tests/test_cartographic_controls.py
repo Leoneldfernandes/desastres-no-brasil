@@ -23,8 +23,9 @@ class CartographicControlTests(unittest.TestCase):
         locator = self.page.index('id="municipalityLocator"')
         fullscreen = self.page.index('id="toggleFullscreen"')
         panorama = self.page.index('id="resetMapView"')
-        self.assertLess(locator, fullscreen)
-        self.assertLess(fullscreen, panorama)
+        self.assertLess(locator, panorama)
+        self.assertLess(panorama, fullscreen)
+        self.assertLess(fullscreen, self.page.index('id="shareView"'))
         self.assertRegex(
             self.styles,
             r"(?s)\.north-indicator\s*\{.*?top: 178px;.*?right: 17px;.*?drop-shadow",

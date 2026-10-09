@@ -968,6 +968,7 @@ input:focus-visible,
 }
 
 .map-tool-button {
+  position: relative;
   width: 38px;
   height: 38px;
   display: inline-flex;
@@ -1063,6 +1064,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 }
 
 .municipality-search-toggle {
+  position: relative;
   width: 38px;
   height: 38px;
   display: inline-flex;
@@ -1110,7 +1112,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 .municipality-search-panel {
   position: absolute;
   top: 44px;
-  right: 0;
+  right: -132px;
   width: 326px;
   max-height: min(52dvh, 360px);
   overflow-y: auto;
@@ -1708,38 +1710,53 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   gap: 5px;
 }
 
-.share-view-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 112px;
-  min-height: 36px;
-  gap: 2px;
-  padding: 5px 7px;
-  border: 1px solid var(--line-strong);
-  border-radius: 9px;
-  background: var(--surface-2);
-  color: var(--text);
-  cursor: pointer;
-  font-size: 0.61rem;
-  font-weight: 700;
-  line-height: 1.15;
-  text-align: center;
-  white-space: normal;
-}
-
-.share-view-button:hover {
-  border-color: color-mix(in srgb, var(--cyan) 50%, transparent);
-  background: var(--surface-3);
-}
-
 .share-view-button.is-copied { color: var(--success); }
 
-.share-view-icon { flex: 0 0 auto; }
+.share-view-icon { width: 20px; height: 20px; }
 
 #shareViewLabel {
-  width: 66px;
-  flex: 0 0 66px;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.map-tool-button::after,
+.municipality-search-toggle::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 7px);
+  right: 0;
+  padding: 7px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--control-bg);
+  color: var(--text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.map-tool-button:hover::after,
+.map-tool-button:focus-visible::after,
+.municipality-search-toggle:hover::after,
+.municipality-search-toggle:focus-visible::after,
+.share-view-button.is-copied::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.municipality-search-toggle[aria-expanded="true"]::after {
+  visibility: hidden;
 }
 
 .button,
@@ -2558,8 +2575,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
     grid-template-areas:
       "period"
       "player"
-      "settings"
-      "share";
+      "settings";
   }
 
   .period-share { display: contents; }
@@ -2574,11 +2590,6 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   .playback-settings {
     justify-content: center;
     flex-wrap: wrap;
-  }
-
-  .share-view-button {
-    grid-area: share;
-    justify-self: center;
   }
 
   .speed-field { flex: 0 0 auto; }
@@ -2602,7 +2613,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
   .municipality-search-panel {
     top: 52px;
-    right: 0;
+    right: -150px;
     left: auto;
     width: min(326px, calc(100vw - 32px));
     max-height: min(46dvh, 300px);
@@ -2711,11 +2722,10 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 @container timeline (max-width: 540px) {
   .timeline-topline {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "period" "player" "settings" "share";
+    grid-template-areas: "period" "player" "settings";
   }
   .period-share { display: contents; }
   .period-display { grid-area: period; text-align: center; }
-  .share-view-button { grid-area: share; justify-self: center; }
   .playback-settings { justify-content: center; }
 }
 @container timeline (max-width: 420px) {

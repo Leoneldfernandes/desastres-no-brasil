@@ -13,28 +13,28 @@ class SharedViewTests(unittest.TestCase):
         cls.script = (ROOT / "assets" / "js" / "app.js").read_text(encoding="utf-8")
         cls.styles = (ROOT / "assets" / "css" / "app.css").read_text(encoding="utf-8")
 
-    def test_share_button_has_approved_label_and_fixed_desktop_layout(self) -> None:
+    def test_share_button_has_approved_label_and_stays_in_map_tools(self) -> None:
         self.assertIn('id="shareView"', self.page)
-        self.assertIn('id="shareViewLabel">Compartilhar visualização', self.page)
+        self.assertIn('aria-label="Compartilhar visualização"', self.page)
+        self.assertIn('data-tooltip="Compartilhar visualização"', self.page)
+        self.assertLess(self.page.index('id="toggleFullscreen"'), self.page.index('id="shareView"'))
+        self.assertLess(self.page.index('id="shareView"'), self.page.index('class="north-indicator"'))
         self.assertLess(self.page.index('class="period-share"'), self.page.index('class="player-controls"'))
         self.assertIn('grid-template-areas: "period player settings"', self.styles)
         self.assertIn("grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)", self.styles)
 
-    def test_share_button_looks_clickable_and_keeps_two_line_label(self) -> None:
+    def test_share_button_matches_tools_and_exposes_hover_and_keyboard_labels(self) -> None:
         self.assertIn('class="share-view-icon"', self.page)
-        self.assertLess(self.page.index('id="shareViewLabel"'), self.page.index('class="share-view-icon"'))
-        self.assertIn("width: 112px", self.styles)
-        self.assertIn("min-height: 36px", self.styles)
-        self.assertIn("gap: 2px", self.styles)
-        self.assertIn("justify-content: center", self.styles)
-        self.assertIn("text-align: center", self.styles)
-        self.assertIn("width: 66px", self.styles)
-        self.assertIn("flex: 0 0 66px", self.styles)
+        self.assertIn('class="map-tool-button share-view-button"', self.page)
+        self.assertIn('role="status" aria-live="polite"', self.page)
+        self.assertIn(".map-tool-button:hover::after", self.styles)
+        self.assertIn(".map-tool-button:focus-visible::after", self.styles)
+        self.assertIn(".municipality-search-toggle:hover::after", self.styles)
+        self.assertIn(".municipality-search-toggle:focus-visible::after", self.styles)
+        self.assertIn("content: attr(data-tooltip)", self.styles)
         self.assertIn("border: 1px solid var(--line-strong)", self.styles)
-        self.assertIn("background: var(--surface-2)", self.styles)
-        self.assertIn("white-space: normal", self.styles)
 
-    def test_mobile_places_share_action_below_playback_controls(self) -> None:
+    def test_mobile_keeps_share_in_tools_without_an_empty_playback_row(self) -> None:
         mobile = re.search(
             r"@media \(max-width: 760px\) \{(?P<body>.*?)\n\}",
             self.styles,
@@ -43,9 +43,9 @@ class SharedViewTests(unittest.TestCase):
         self.assertIsNotNone(mobile)
         self.assertIn('"player"', mobile.group("body"))
         self.assertIn('"settings"', mobile.group("body"))
-        self.assertIn('"share"', mobile.group("body"))
-        self.assertIn(".share-view-button", mobile.group("body"))
-        self.assertIn("grid-area: share", mobile.group("body"))
+        self.assertNotIn('"share"', mobile.group("body"))
+        self.assertNotIn("grid-area: share", self.styles)
+        self.assertIn("width: 44px", mobile.group("body"))
 
     def test_url_preserves_scope_period_types_and_open_municipality(self) -> None:
         self.assertIn('params.get("uf")', self.script)

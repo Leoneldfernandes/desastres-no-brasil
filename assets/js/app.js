@@ -607,9 +607,13 @@ async function shareCurrentView() {
   clearTimeout(state.shareFeedbackTimer);
   dom.shareView.classList.add("is-copied");
   dom.shareViewLabel.textContent = "Link copiado";
+  dom.shareView.setAttribute("data-tooltip", "Link copiado");
+  dom.shareView.setAttribute("aria-label", "Link copiado");
   state.shareFeedbackTimer = window.setTimeout(() => {
     dom.shareView.classList.remove("is-copied");
     dom.shareViewLabel.textContent = "Compartilhar visualização";
+    dom.shareView.setAttribute("data-tooltip", "Compartilhar visualização");
+    dom.shareView.setAttribute("aria-label", "Compartilhar visualização");
   }, 2200);
 }
 
@@ -1823,10 +1827,9 @@ function setLocatedMunicipality(code) {
 
   const meta = code ? state.municipalityByCode.get(code) : null;
   dom.municipalitySearchToggle.classList.toggle("has-selection", Boolean(meta));
-  dom.municipalitySearchToggle.setAttribute(
-    "aria-label",
-    meta ? `Município localizado: ${meta.name} — ${meta.uf}` : "Localizar município"
-  );
+  const label = meta ? `Município localizado: ${meta.name} — ${meta.uf}` : "Buscar município";
+  dom.municipalitySearchToggle.setAttribute("aria-label", label);
+  dom.municipalitySearchToggle.setAttribute("data-tooltip", "Buscar município");
   if (!state.restoringView) {
     if (code) setTemporalMunicipality(code, true);
     else if (state.temporalMunicipalityCode === previousCode) setTemporalMunicipality(null);
@@ -2275,7 +2278,7 @@ function syncFullscreenControl() {
   const active = mapIsFullscreen();
   const label = active ? "Sair da tela cheia" : "Visualizar mapa em tela cheia";
   dom.toggleFullscreen.setAttribute("aria-label", label);
-  dom.toggleFullscreen.setAttribute("title", label);
+  dom.toggleFullscreen.setAttribute("data-tooltip", label);
   dom.toggleFullscreen.setAttribute("aria-pressed", String(active));
   dom.toggleFullscreen.classList.toggle("is-active", active);
 }
