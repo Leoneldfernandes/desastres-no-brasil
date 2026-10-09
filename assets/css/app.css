@@ -690,7 +690,12 @@ input:focus-visible,
   gap: 12px;
   padding: 12px;
   overflow: hidden;
-  background: var(--bg);
+  background-color: var(--bg);
+  transition: background-color 600ms ease;
+}
+
+.app-shell.is-playing > .sidebar {
+  background-color: color-mix(in srgb, var(--bg) 50%, transparent);
 }
 
 .sidebar-left {
@@ -1451,6 +1456,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 .timeline.is-playing:has(:focus-visible)::before { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
+  .sidebar { transition: none; }
   .timeline::before { transition: none; }
 }
 

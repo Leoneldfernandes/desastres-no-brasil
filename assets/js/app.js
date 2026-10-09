@@ -229,6 +229,7 @@ const dom = Object.fromEntries(
     "periodSlider",
     "playbackMessage",
     "timelinePanel",
+    "section-mapa",
     "toggleTemporalAnalysis",
     "temporalAnalysis",
     "temporalContextLabel",
@@ -2199,6 +2200,7 @@ function schedulePlayback(delay = state.playbackSpeed) {
 function syncPlaybackUi() {
   clearTimeout(state.playbackTimer);
   dom.timelinePanel.classList.toggle("is-playing", canPlayback());
+  dom["section-mapa"].classList.toggle("is-playing", canPlayback());
   if (state.playbackWanted) {
     dom.playIcon.textContent = "❚❚";
     dom.playLabel.textContent = "Pausar";
