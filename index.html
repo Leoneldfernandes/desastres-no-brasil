@@ -11,10 +11,10 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=d1bad7a23e83">
+    <link rel="stylesheet" href="assets/css/app.css?v=5ca0950882a3">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
-    <script defer src="assets/js/app.js?v=1a4b8b81b3c4"></script>
+    <script defer src="assets/js/app.js?v=1003469995eb"></script>
     <script defer src="assets/js/navigation.js?v=0cba2ac131ab"></script>
     <script defer src="assets/js/visitor-config.js?v=68f13d2d94d3"></script>
     <script defer src="assets/js/welcome.js?v=2722b8b9ccb5"></script>
@@ -132,7 +132,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.55 · Em desenvolvimento</dd>
+                  <dd>v0.56 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -234,7 +234,8 @@
               class="municipality-search-toggle"
               id="municipalitySearchToggle"
               type="button"
-              aria-label="Localizar município"
+              aria-label="Buscar município"
+              data-tooltip="Buscar município"
               aria-expanded="false"
               aria-controls="municipalitySearchPanel"
             >
@@ -267,22 +268,37 @@
           </div>
           <button
             class="map-tool-button"
+            id="resetMapView"
+            type="button"
+            aria-label="Retornar ao panorama do recorte"
+            data-tooltip="Retornar ao panorama do recorte"
+          >
+            <span class="home-view-icon" aria-hidden="true">⌂</span>
+          </button>
+          <button
+            class="map-tool-button"
             id="toggleFullscreen"
             type="button"
             aria-label="Visualizar mapa em tela cheia"
             aria-pressed="false"
-            title="Visualizar mapa em tela cheia"
+            data-tooltip="Visualizar mapa em tela cheia"
           >
             <span class="fullscreen-icon" aria-hidden="true"></span>
           </button>
           <button
-            class="map-tool-button"
-            id="resetMapView"
+            class="map-tool-button share-view-button"
             type="button"
-            aria-label="Retornar ao panorama do recorte"
-            title="Retornar ao panorama do recorte"
+            id="shareView"
+            aria-label="Compartilhar visualização"
+            data-tooltip="Compartilhar visualização"
           >
-            <span class="home-view-icon" aria-hidden="true">⌂</span>
+            <svg class="share-view-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+              <path d="m8.7 10.5 6.6-4m-6.6 7 6.6 4" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="18" cy="19" r="3" />
+            </svg>
+            <span id="shareViewLabel" role="status" aria-live="polite">Compartilhar visualização</span>
           </button>
         </div>
 
@@ -384,10 +400,6 @@
                 <p class="eyebrow">Mês em exibição</p>
                 <strong class="current-period" id="displayPeriod">—</strong>
               </div>
-              <button class="share-view-button" type="button" id="shareView">
-                <span id="shareViewLabel">Compartilhar visualização</span>
-                <span class="share-view-icon" aria-hidden="true">↗</span>
-              </button>
             </div>
             <div class="player-controls">
               <button class="icon-button" type="button" id="previousPeriod" aria-label="Mês anterior">
