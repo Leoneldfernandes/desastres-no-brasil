@@ -1,12 +1,19 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #62, a identificação adotada é `v0.62`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #63, a identificação adotada é `v0.63`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #62 identifica o site como `v0.62`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #63 identifica o site como `v0.63`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.63 — 09/10/2026 · PR #63
+
+- Posiciona os controles de reprodução à esquerda, o mês no centro da barra e velocidade com abertura da série à direita.
+- Uniformiza a altura dos controles e alinha suas bordas; mantém os rótulos centralizados acima do mês e da velocidade.
+- Adapta o agrupamento à largura disponível em telas menores, preservando a legibilidade e os controles de toque.
+- Preserva os ajustes de transparência, a reprodução e o gráfico. Guarda a v0.62 na branch `backup/layout-temporal-v0.62` e documenta a reversão em [Ponto de retorno do layout temporal](docs/reversao-layout-temporal.md).
 
 ## 0.62 — 09/10/2026 · PR #62
 

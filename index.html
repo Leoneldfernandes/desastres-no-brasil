@@ -11,7 +11,7 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=be085d7b2d6c">
+    <link rel="stylesheet" href="assets/css/app.css?v=9c118383bf47">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/app.js?v=61ba882e4f72"></script>
@@ -132,7 +132,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.62 · Em desenvolvimento</dd>
+                  <dd>v0.63 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -395,12 +395,6 @@
           </div>
 
           <div class="timeline-topline">
-            <div class="period-share">
-              <div class="period-display">
-                <p class="eyebrow">Mês em exibição</p>
-                <strong class="current-period" id="displayPeriod">—</strong>
-              </div>
-            </div>
             <div class="player-controls">
               <button class="icon-button" type="button" id="previousPeriod" aria-label="Mês anterior">
                 <span aria-hidden="true">‹</span>
@@ -412,6 +406,12 @@
               <button class="icon-button" type="button" id="nextPeriod" aria-label="Próximo mês">
                 <span aria-hidden="true">›</span>
               </button>
+            </div>
+            <div class="period-share">
+              <div class="period-display">
+                <p class="eyebrow">Mês em exibição</p>
+                <strong class="current-period" id="displayPeriod">—</strong>
+              </div>
             </div>
             <div class="playback-settings">
               <label class="field speed-field" for="speedSelect">
