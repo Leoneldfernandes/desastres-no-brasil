@@ -143,18 +143,18 @@ class TemporalAnalysisTests(unittest.TestCase):
         self.assertGreaterEqual(mobile.group("body").count("min-height: 44px"), 2)
         self.assertIn("overflow-y: auto", mobile.group("body"))
 
-    def test_playback_is_centered_between_balanced_side_columns(self) -> None:
+    def test_period_is_centered_between_playback_and_settings(self) -> None:
         period = self.page.index('class="period-share"')
         player = self.page.index('class="player-controls"')
         settings = self.page.index('class="playback-settings"')
         speed = self.page.index('class="field speed-field"', settings)
         toggle = self.page.index('id="toggleTemporalAnalysis"', settings)
-        self.assertLess(period, player)
-        self.assertLess(player, settings)
+        self.assertLess(player, period)
+        self.assertLess(period, settings)
         self.assertLess(player, speed)
         self.assertLess(speed, toggle)
-        self.assertIn("grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)", self.styles)
-        self.assertIn('grid-template-areas: "period player settings"', self.styles)
+        self.assertIn("grid-template-columns: minmax(0, 1fr) 126px minmax(0, 1fr)", self.styles)
+        self.assertIn('grid-template-areas: "player period settings"', self.styles)
         self.assertIn("justify-self: center", self.styles)
 
     def test_next_month_button_is_not_covered_by_playback_settings(self) -> None:

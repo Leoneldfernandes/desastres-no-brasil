@@ -19,9 +19,9 @@ class SharedViewTests(unittest.TestCase):
         self.assertIn('data-tooltip="Compartilhar visualização"', self.page)
         self.assertLess(self.page.index('id="toggleFullscreen"'), self.page.index('id="shareView"'))
         self.assertLess(self.page.index('id="shareView"'), self.page.index('class="north-indicator"'))
-        self.assertLess(self.page.index('class="period-share"'), self.page.index('class="player-controls"'))
-        self.assertIn('grid-template-areas: "period player settings"', self.styles)
-        self.assertIn("grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)", self.styles)
+        self.assertLess(self.page.index('class="player-controls"'), self.page.index('class="period-share"'))
+        self.assertIn('grid-template-areas: "player period settings"', self.styles)
+        self.assertIn("grid-template-columns: minmax(0, 1fr) 126px minmax(0, 1fr)", self.styles)
 
     def test_share_button_matches_tools_and_exposes_hover_and_keyboard_labels(self) -> None:
         self.assertIn('class="share-view-icon"', self.page)

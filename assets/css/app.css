@@ -1505,7 +1505,8 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
 .temporal-analysis-toggle {
   width: 120px;
-  min-height: 36px;
+  height: 38px;
+  min-height: 38px;
   flex: 0 0 auto;
   padding: 5px 4px;
   font-size: 0.64rem;
@@ -1701,15 +1702,18 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
 .timeline-topline {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  grid-template-areas: "period player settings";
+  grid-template-columns: minmax(0, 1fr) 126px minmax(0, 1fr);
+  grid-template-areas: "player period settings";
   align-items: end;
   gap: 6px;
 }
 
 .current-period {
-  display: block;
-  min-width: 138px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 38px;
   color: var(--cyan);
   font-size: 1.3rem;
   font-variant-numeric: tabular-nums;
@@ -1720,13 +1724,20 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   grid-area: period;
   display: flex;
   align-items: end;
+  justify-content: center;
+  text-align: center;
   gap: 8px;
 }
 
 .player-controls {
   grid-area: player;
-  justify-self: center;
+  justify-self: start;
   gap: 5px;
+}
+
+.player-controls .icon-button {
+  width: 38px;
+  height: 38px;
 }
 
 .playback-settings {
@@ -1826,6 +1837,9 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
 .play-button {
   min-width: 116px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0 12px;
   border-color: color-mix(in srgb, var(--cyan) 45%, transparent);
   background: linear-gradient(135deg, #087e9c, #126e9d);
 }
@@ -1836,7 +1850,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 .speed-field select {
   width: 136px;
   min-width: 136px;
-  height: 36px;
+  height: 38px;
   padding: 0 28px 0 12px;
   text-align: center;
   text-align-last: center;
@@ -2556,6 +2570,14 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 
   .temporal-analysis-toggle { min-height: 44px; }
 
+  .player-controls .icon-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .play-button,
+  .speed-field select { height: 44px; }
+
   .temporal-analysis-header {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
@@ -2723,16 +2745,16 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 }
 
 /* Reflow follows the map panel width, including desktop sidebars. */
-@container timeline (max-width: 780px) {
+@container timeline (max-width: 650px) {
   .timeline-topline {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas: "period settings" "player player";
+    grid-template-areas: "period period" "player settings";
     gap: 10px;
   }
   .period-share { min-width: 0; flex-wrap: wrap; }
   .current-period { min-width: 0; }
   .playback-settings { flex-wrap: wrap; }
-  .player-controls { justify-self: center; }
+  .player-controls { justify-self: start; }
 }
 @container timeline (max-width: 740px) {
   .temporal-analysis-header {
@@ -2754,6 +2776,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   }
   .period-share { display: contents; }
   .period-display { grid-area: period; text-align: center; }
+  .player-controls { justify-self: center; }
   .playback-settings { justify-content: center; }
 }
 @container timeline (max-width: 420px) {
