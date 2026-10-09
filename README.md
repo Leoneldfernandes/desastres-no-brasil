@@ -2,7 +2,7 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
-Versão do site: **v0.43.7 · Em desenvolvimento**. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
+Versão do site: **v0.55 · Em desenvolvimento**, publicada pelo PR #55. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
 
 As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em telas largas, o conjunto acompanha o centro do mapa. As capinhas ficam parcialmente sobrepostas, com a aba selecionada em primeiro plano, conectada à moldura do conteúdo, sem uma faixa separada ocupando a altura do mapa. O Mapa abre inicialmente e preserva os filtros ao alternar de seção; sair dele pausa a reprodução. O Dashboard avisa que novos gráficos e análises estão em desenvolvimento. O Sobre apresenta autoria, fonte dos dados, orientações de interpretação e preferências de privacidade. Os fragmentos `#dashboard` e `#sobre` permitem abrir diretamente essas seções sem alterar os parâmetros da visualização.
 
@@ -44,7 +44,7 @@ Os arquivos da interface (`app.css` e `app.js`) também usam uma versão de cach
 
 Às segundas-feiras, às 8h no fuso `America/Sao_Paulo`, o GitHub consulta a [página oficial de downloads do Atlas](https://atlasdigital.mdr.gov.br/paginas/downloads.xhtml). A rotina lê somente o HTML da página, localiza o CSV consolidado e compara seu endereço e sua versão com a fonte registrada no manifesto. O arquivo completo não é baixado nessa etapa.
 
-O resultado público é mantido em `data/update-status.json` na branch técnica `atlas-status`, separada da branch principal protegida. O site lê esse pequeno arquivo diretamente e pode atualizar somente o aviso. Quando uma nova base é encontrada, os dados do mapa permanecem inalterados até a validação e a aprovação de um pull request específico.
+O resultado público é mantido em `data/update-status.json` na branch técnica `atlas-status`, separada da branch principal protegida. O site lê esse pequeno arquivo diretamente na abertura da página e novamente ao abrir o indicador de atualização, sem precisar recarregar o mapa. Essa leitura consulta o resultado já publicado pela rotina semanal. Quando uma nova base é encontrada, os dados do mapa permanecem inalterados até a validação e a aprovação de um pull request específico.
 
 Se o domínio, o nome do arquivo ou o formato da página não corresponderem ao padrão auditável esperado, a rotina não presume uma versão: publica o estado de falha, preserva a data da última verificação bem-sucedida e encerra a execução com erro para produzir um relatório no GitHub Actions.
 
