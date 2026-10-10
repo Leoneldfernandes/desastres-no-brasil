@@ -11,10 +11,10 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=9c118383bf47">
+    <link rel="stylesheet" href="assets/css/app.css?v=42b27f0efc5b">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
-    <script defer src="assets/js/app.js?v=61ba882e4f72"></script>
+    <script defer src="assets/js/app.js?v=a91116290122"></script>
     <script defer src="assets/js/navigation.js?v=0cba2ac131ab"></script>
     <script defer src="assets/js/visitor-config.js?v=68f13d2d94d3"></script>
     <script defer src="assets/js/welcome.js?v=2722b8b9ccb5"></script>
@@ -132,7 +132,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.63 · Em desenvolvimento</dd>
+                  <dd>v0.64 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -153,7 +153,8 @@
 
     <main class="site-content">
     <section class="app-shell" id="section-mapa" role="tabpanel" aria-labelledby="tab-mapa">
-      <aside class="sidebar sidebar-left" aria-label="Filtros e indicadores">
+      <aside class="sidebar sidebar-left" id="filtersSidebar" aria-label="Filtros e indicadores">
+        <div class="drawer-heading"><strong>Filtros e indicadores</strong><button type="button" class="drawer-close" data-close-map-panel aria-label="Fechar filtros e indicadores">×</button></div>
         <section class="panel summary-panel">
           <div class="section-heading">
             <div>
@@ -227,6 +228,11 @@
 
       <section class="map-stage" id="mapStage" aria-label="Mapa do Brasil">
         <div id="map" tabindex="0" aria-label="Mapa interativo dos municípios brasileiros"></div>
+
+        <div class="map-panel-toggles" role="group" aria-label="Painéis do mapa">
+          <button type="button" id="toggleFiltersPanel" aria-controls="filtersSidebar" aria-expanded="false" data-tooltip="Abrir filtros e indicadores">Filtros e indicadores</button>
+          <button type="button" id="toggleResultsPanel" aria-controls="resultsSidebar" aria-expanded="false" data-tooltip="Abrir resultados e impactos">Resultados e impactos</button>
+        </div>
 
         <div class="map-tools" role="group" aria-label="Controles de visualização do mapa">
           <div class="municipality-locator" id="municipalityLocator">
@@ -441,7 +447,8 @@
         </section>
       </section>
 
-      <aside class="sidebar sidebar-right" aria-label="Resultados do mês">
+      <aside class="sidebar sidebar-right" id="resultsSidebar" aria-label="Resultados do mês">
+        <div class="drawer-heading"><strong>Resultados e impactos</strong><button type="button" class="drawer-close" data-close-map-panel aria-label="Fechar resultados e impactos">×</button></div>
         <section class="panel results-panel">
           <div class="section-heading compact results-heading">
             <div>
@@ -656,3 +663,4 @@
     </noscript>
   </body>
 </html>
+
