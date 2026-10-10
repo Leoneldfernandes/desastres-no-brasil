@@ -127,7 +127,8 @@ class TemporalAnalysisTests(unittest.TestCase):
         self.assertIn('const temporalExpanded = params.get("grafico") === "aberto"', self.script)
         self.assertIn('id="temporalAnalysis" hidden', self.page)
         self.assertIn('aria-expanded="false"', self.page)
-        self.assertIn('>Abrir série temporal</button>', self.page)
+        self.assertIn('aria-label="Abrir série temporal"', self.page)
+        self.assertIn('class="temporal-toggle-label">Abrir série temporal</span>', self.page)
         mobile = re.search(
             r"@media \(max-width: 760px\) \{(?P<body>.*?)\n\}",
             self.styles,
@@ -246,3 +247,4 @@ class TemporalAnalysisTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

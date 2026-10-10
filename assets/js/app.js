@@ -1446,9 +1446,11 @@ function setTemporalAnalysisExpanded(expanded, syncUrl = true) {
   state.temporalExpanded = Boolean(expanded);
   dom.temporalAnalysis.hidden = !state.temporalExpanded;
   dom.toggleTemporalAnalysis.setAttribute("aria-expanded", String(state.temporalExpanded));
-  dom.toggleTemporalAnalysis.textContent = state.temporalExpanded
+  dom.toggleTemporalAnalysis.querySelector(".temporal-toggle-label").textContent = state.temporalExpanded
     ? "Fechar série temporal"
     : "Abrir série temporal";
+  dom.toggleTemporalAnalysis.setAttribute("aria-label", state.temporalExpanded ? "Fechar série temporal" : "Abrir série temporal");
+  if (state.temporalExpanded) window.AtlasMobileUI?.closeLegend();
   dom.mapStage.classList.toggle("temporal-analysis-open", state.temporalExpanded);
   dom.toggleTemporalAnalysis.closest(".timeline").classList.toggle(
     "is-analysis-expanded",
@@ -2203,6 +2205,7 @@ function schedulePlayback(delay = state.playbackSpeed) {
 
 function syncPlaybackUi() {
   clearTimeout(state.playbackTimer);
+  window.AtlasMobileUI?.onPlaybackChanged(canPlayback());
   dom.timelinePanel.classList.toggle("is-playing", canPlayback());
   dom["section-mapa"].classList.toggle("is-playing", canPlayback());
   if (state.playbackWanted) {
@@ -2280,8 +2283,8 @@ function fitScopeOverview() {
   state.fittingScope = true;
   const options = { padding: [18, 18], animate: false };
   if (state.layoutStyle !== "wide") {
-    options.paddingTopLeft = [18, 62];
-    options.paddingBottomRight = [18, dom.timelinePanel.offsetHeight + 36];
+    options.paddingTopLeft = [18, window.AtlasMobileUI?.isMobile() ? 110 : 62];
+    options.paddingBottomRight = [window.AtlasMobileUI?.isMobile() ? 60 : 18, dom.timelinePanel.offsetHeight + 36];
   }
   map.fitBounds(state.geoLayer.getBounds(), options);
   state.fittingScope = false;
@@ -2329,6 +2332,7 @@ function syncMapPanels() {
 }
 
 function setMapPanel(name, open = true, returnFocus = false) {
+  if (open) window.AtlasMobileUI?.closeLegend();
   if (open && state.temporalExpanded) setTemporalAnalysisExpanded(false);
   if (open) state.openMapPanels.add(name);
   else state.openMapPanels.delete(name);
@@ -2389,6 +2393,7 @@ function mapIsFullscreen() {
 function syncFullscreenControl() {
   if (mapIsFullscreen() && state.openMapPanels.size) closeMapPanels();
   const active = mapIsFullscreen();
+  if (active) window.AtlasMobileUI?.closeLegend();
   const label = active ? "Sair da tela cheia" : "Visualizar mapa em tela cheia";
   dom.toggleFullscreen.setAttribute("aria-label", label);
   dom.toggleFullscreen.setAttribute("data-tooltip", label);
@@ -2519,6 +2524,7 @@ function bindEvents() {
   for (const button of document.querySelectorAll("[data-close-map-panel]")) {
     button.addEventListener("click", () => setMapPanel(button.closest(".sidebar").id === "filtersSidebar" ? "filters" : "results", false, true));
   }
+  document.addEventListener("map-legend-opening", closeMapPanels);
   document.addEventListener("site-section-change", (event) => {
     if (event.detail.section === "mapa") {
       removePlaybackBlock("section");
@@ -2749,6 +2755,7 @@ async function initialize() {
     state.updateStatus = updateStatus;
     buildUfSelector();
     buildTypeFilters();
+    window.AtlasMobileUI?.setLegendTypes(state.types);
     const initialView = viewStateFromUrl();
     applyTypeSelection(initialView.types);
     state.restoringView = true;

@@ -1,12 +1,20 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #66, a identificação adotada é `v0.66`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #67, a identificação adotada é `v0.67`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #66 identifica o site como `v0.66`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #67 identifica o site como `v0.67`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.67 — 10/10/2026 · PR #67
+
+- Reorganiza telas pequenas com cabeçalho compacto, menu Opções (aparência, atualizações e privacidade), ferramentas em duas colunas e reprodutor menor, preservando os estilos de desktop.
+- Substitui a legenda fixa no celular por Legenda do mapa recolhível, com as 16 cores de tipologias da própria base, borda de múltiplas tipologias e ausência de eventos.
+- Restringe o efeito de hover a dispositivos com ponteiro preciso e suporte real a hover: durante a reprodução, o fundo mantém opacidade de 50% por toque, com transição suave; textos e botões permanecem sólidos. O foco por teclado continua restaurando o contraste.
+- Mantém os controles reais de aparência e atualização ao alternar orientação/tamanho, sem duplicar campos ou decisões de consentimento.
+- Amplia as dimensões da página de revisão para celular em pé/deitado e tablet em ambas as orientações.
 
 ## 0.66 — 09/10/2026 · PR #66
 
