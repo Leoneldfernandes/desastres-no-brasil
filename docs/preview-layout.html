@@ -24,7 +24,13 @@
         <option value="1920,1080">1920 × 1080 — Full HD</option>
         <option value="1366,768">1366 × 768</option>
         <option value="1280,800">1280 × 800</option>
+        <option value="1280,720">1280 × 720</option>
         <option value="1024,768">1024 × 768</option>
+        <option value="1366,620">1366 × 620</option>
+        <option value="1024,620">1024 × 620</option>
+        <option value="1536,864">1920 × 1080 com zoom de 125% — equivalente</option>
+        <option value="1280,720">1920 × 1080 com zoom de 150% — equivalente</option>
+        <option value="960,540">1920 × 1080 com zoom de 200% — equivalente</option>
         <option value="390,844">390 × 844 — celular</option>
       </select>
     </label>
@@ -46,7 +52,7 @@
       frame.style.transform = `scale(${scale})`;
       stage.style.height = `${Math.ceil(height * scale) + 2}px`;
       frame.title = `Site em ${width} × ${height}`;
-      info.textContent = `${width} × ${height} pixels, exibidos a ${Math.round(scale * 100)}%`;
+      info.textContent = `${width} × ${height} pixels de layout, zoom interno 100%; imagem ajustada a ${Math.round(scale * 100)}% para caber nesta prévia`;
     }
     size.addEventListener('change', fitPreview);
     new ResizeObserver(fitPreview).observe(stage);
@@ -54,3 +60,4 @@
   </script>
 </body>
 </html>
+

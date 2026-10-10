@@ -314,14 +314,21 @@ const state = {
   temporalFrame: null,
   mapCreditsResizeObserver: null,
   restoringView: false,
+  layoutStyle: "wide",
+  openMapPanel: null,
+  mapOverview: true,
+  fittingScope: false,
 };
 
 const mapRenderer = L.canvas({ padding: 0.45, tolerance: 5 });
 const map = L.map("map", {
   center: [-14.4, -52.4],
   zoom: 4,
-  minZoom: 3,
+  minZoom: 2,
   maxZoom: 14,
+  zoomSnap: 0.25,
+  zoomDelta: 0.25,
+  wheelPxPerZoomLevel: 240,
   zoomControl: false,
   preferCanvas: true,
   renderer: mapRenderer,
@@ -1206,10 +1213,7 @@ function renderGeography(geometry, fitBounds = false) {
   }).addTo(map);
 
   if (fitBounds) {
-    map.fitBounds(state.geoLayer.getBounds(), {
-      padding: [18, 18],
-      animate: false,
-    });
+    fitScopeOverview();
   }
 }
 
@@ -2267,10 +2271,101 @@ function resetMapToScope() {
   if (!state.geoLayer) return;
   closeMapTooltip();
   closeMunicipalityPopupImmediately();
-  map.fitBounds(state.geoLayer.getBounds(), {
-    padding: [18, 18],
-    animate: false,
-  });
+  fitScopeOverview();
+}
+
+function fitScopeOverview() {
+  if (!state.geoLayer || dom["section-mapa"].hidden) return;
+  state.mapOverview = true;
+  state.fittingScope = true;
+  const options = { padding: [18, 18], animate: false };
+  if (state.layoutStyle !== "wide") {
+    options.paddingTopLeft = [18, 62];
+    options.paddingBottomRight = [18, dom.timelinePanel.offsetHeight + 36];
+  }
+  map.fitBounds(state.geoLayer.getBounds(), options);
+  state.fittingScope = false;
+}
+
+function layoutStyleForViewport(width, height) {
+  if (width < 1180 || height < 680) return "compact";
+  if (width >= 1600 && height >= 900) return "wide";
+  return "intermediate";
+}
+
+function syncMapPanels(returnFocus = false) {
+  const shell = dom["section-mapa"];
+  const activeElement = document.activeElement;
+  for (const [name, sidebarId, buttonId] of [
+    ["filters", "filtersSidebar", "toggleFiltersPanel"],
+    ["results", "resultsSidebar", "toggleResultsPanel"],
+  ]) {
+    const sidebar = document.getElementById(sidebarId);
+    const button = document.getElementById(buttonId);
+    const floating = state.layoutStyle === "compact" || (state.layoutStyle === "intermediate" && name === "results");
+    const open = floating && state.openMapPanel === name;
+    const visible = !floating || open;
+    sidebar.hidden = !visible;
+    sidebar.inert = !visible;
+    sidebar.classList.toggle("is-drawer", floating);
+    sidebar.classList.toggle("is-open", open);
+    button.setAttribute("aria-expanded", String(open));
+    button.setAttribute("data-tooltip", `${open ? "Fechar" : "Abrir"} ${name === "filters" ? "filtros e indicadores" : "resultados e impactos"}`);
+    if (!visible && sidebar.contains(activeElement)) {
+      (dom.mapStage.contains(button) && !mapIsFullscreen() ? button : dom.mapStage.querySelector("#map")).focus({ preventScroll: true });
+    }
+    if (returnFocus && state.openMapPanel === null && sidebar.contains(activeElement)) button.focus({ preventScroll: true });
+  }
+  shell.dataset.openPanel = state.openMapPanel || "";
+  window.requestAnimationFrame(renderVirtualRows);
+}
+
+function setMapPanel(name, returnFocus = false) {
+  const previous = state.openMapPanel;
+  state.openMapPanel = name;
+  syncMapPanels(returnFocus);
+  if (name) {
+    document.querySelector(`#${name === "filters" ? "filtersSidebar" : "resultsSidebar"} .drawer-close`).focus({ preventScroll: true });
+  } else if (returnFocus && previous) {
+    document.getElementById(previous === "filters" ? "toggleFiltersPanel" : "toggleResultsPanel").focus({ preventScroll: true });
+  }
+}
+
+function syncResponsiveLayout() {
+  const next = layoutStyleForViewport(document.documentElement.clientWidth, window.innerHeight);
+  if (next !== state.layoutStyle) {
+    state.openMapPanel = null;
+    state.layoutStyle = next;
+  }
+  document.body.dataset.layout = next;
+  const headerHeight = document.querySelector(".app-header").getBoundingClientRect().height;
+  document.documentElement.style.setProperty("--responsive-header-height", `${headerHeight}px`);
+  syncMapPanels();
+}
+
+function observeResponsiveLayout() {
+  syncResponsiveLayout();
+  let frame;
+  const refresh = () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      syncResponsiveLayout();
+      if (dom["section-mapa"].hidden) return;
+      const timelineHeight = dom.timelinePanel.offsetHeight;
+      dom["section-mapa"].style.setProperty("--drawer-bottom", `${timelineHeight + 34}px`);
+      map.invalidateSize({ animate: false });
+      if (state.mapOverview) fitScopeOverview();
+      renderVirtualRows();
+      drawTemporalChart();
+    });
+  };
+  if (typeof ResizeObserver === "function") {
+    const observer = new ResizeObserver(refresh);
+    observer.observe(document.querySelector(".app-header"));
+    observer.observe(dom.mapStage);
+    observer.observe(dom.timelinePanel);
+  }
+  window.addEventListener("resize", refresh, { passive: true });
 }
 
 function mapIsFullscreen() {
@@ -2278,6 +2373,7 @@ function mapIsFullscreen() {
 }
 
 function syncFullscreenControl() {
+  if (mapIsFullscreen() && state.openMapPanel) setMapPanel(null);
   const active = mapIsFullscreen();
   const label = active ? "Sair da tela cheia" : "Visualizar mapa em tela cheia";
   dom.toggleFullscreen.setAttribute("aria-label", label);
@@ -2402,12 +2498,20 @@ function handleTypeChange(event) {
 }
 
 function bindEvents() {
+  observeResponsiveLayout();
+  for (const [name, id] of [["filters", "toggleFiltersPanel"], ["results", "toggleResultsPanel"]]) {
+    document.getElementById(id).addEventListener("click", () => setMapPanel(state.openMapPanel === name ? null : name));
+  }
+  for (const button of document.querySelectorAll("[data-close-map-panel]")) {
+    button.addEventListener("click", () => setMapPanel(null, true));
+  }
   document.addEventListener("site-section-change", (event) => {
     if (event.detail.section === "mapa") {
       removePlaybackBlock("section");
       refreshMapLayout();
       renderVirtualRows();
     } else {
+      setMapPanel(null);
       state.playbackWanted = false;
       addPlaybackBlock("section");
       closeMapTooltip();
@@ -2457,6 +2561,7 @@ function bindEvents() {
   dom.nextPeriod.addEventListener("click", () => setPeriod(state.currentPeriod + 1));
   dom.shareView.addEventListener("click", shareCurrentView);
   dom.toggleTemporalAnalysis.addEventListener("click", () => {
+    if (!state.temporalExpanded && state.openMapPanel) setMapPanel(null);
     setTemporalAnalysisExpanded(!state.temporalExpanded);
   });
   dom.temporalAnalysis.addEventListener("click", (event) => {
@@ -2557,6 +2662,10 @@ function bindEvents() {
         closeDetail();
         return;
       }
+      if (state.openMapPanel) {
+        setMapPanel(null, true);
+        return;
+      }
       if (state.pseudoFullscreen) {
         exitPseudoFullscreen();
         return;
@@ -2579,6 +2688,9 @@ function bindEvents() {
     clearTimeout(state.mapResumeTimer);
     closeMapTooltip();
     addPlaybackBlock("map");
+  });
+  map.on("dragstart zoomstart", () => {
+    if (!state.fittingScope) state.mapOverview = false;
   });
   map.on("moveend zoomend", () => {
     clearTimeout(state.mapResumeTimer);
@@ -2675,3 +2787,4 @@ async function initialize() {
 }
 
 initialize();
+
