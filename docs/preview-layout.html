@@ -34,15 +34,23 @@
         <option value="390,844">390 × 844 — celular</option>
       </select>
     </label>
+    <label for="previewLayout">Estilo
+      <select id="previewLayout">
+        <option value="">Automático</option>
+        <option value="intermediario">Intermediário</option>
+        <option value="compacto">Compacto</option>
+      </select>
+    </label>
     <span id="previewInfo" aria-live="polite"></span>
   </header>
   <div id="previewStage">
-    <iframe id="layoutPreview" title="Site em 1920 × 1080" src="../?mes=1991-01&amp;serie=brasil&amp;grafico=fechado#mapa"></iframe>
+    <iframe id="layoutPreview" title="Site em 1920 × 1080" src="../?mes=1991-01&amp;serie=brasil&amp;grafico=fechado&amp;preview=0.65#mapa"></iframe>
   </div>
   <script>
     const stage = document.getElementById('previewStage');
     const frame = document.getElementById('layoutPreview');
     const size = document.getElementById('previewSize');
+    const layout = document.getElementById('previewLayout');
     const info = document.getElementById('previewInfo');
     function fitPreview() {
       const [width, height] = size.value.split(',').map(Number);
@@ -55,6 +63,12 @@
       info.textContent = `${width} × ${height} pixels de layout, zoom interno 100%; imagem ajustada a ${Math.round(scale * 100)}% para caber nesta prévia`;
     }
     size.addEventListener('change', fitPreview);
+    layout.addEventListener('change', () => {
+      const url = new URL(frame.src);
+      if (layout.value) url.searchParams.set('layout', layout.value);
+      else url.searchParams.delete('layout');
+      frame.src = url.href;
+    });
     new ResizeObserver(fitPreview).observe(stage);
     fitPreview();
   </script>
