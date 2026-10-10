@@ -50,7 +50,8 @@ test('width and height both select usable layouts, including browser zoom equiva
     [1920,1080,'wide'], [1600,900,'wide'],
     [1366,768,'intermediate'], [1280,720,'intermediate'],
     [1536,864,'intermediate'], [1920,800,'intermediate'],
-    [1024,768,'compact'], [1366,620,'compact'], [960,540,'compact'], [390,844,'compact'],
+    [768,1024,'compact'], [820,1180,'compact'], [1180,820,'intermediate'],
+    [860,412,'compact'], [412,860,'compact'], [320,568,'compact'], [1024,768,'compact'], [1366,620,'compact'], [960,540,'compact'], [390,844,'compact'],
   ]) assert.equal(context.layoutStyleForViewport(width, height), expected, `${width}x${height}`);
 });
 test('compact panels open together and each closes without changing the other', () => {

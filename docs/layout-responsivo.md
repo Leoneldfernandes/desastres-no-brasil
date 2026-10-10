@@ -29,3 +29,11 @@ Use `docs/preview-layout.html` para comparar 1920×1080, 1366×768, 1280×800, 1
 Verificar: conteúdo e legenda dentro dos quadros; ausência de sobreposição; acesso à exportação e à privacidade por rolagem; foco e Escape; preservação das seleções; mês central e controles alinhados; reprodução e série temporal; navegação para Sobre/Dashboard; enquadramento panorâmico e zoom manual.
 
 Para reverter, use um PR revertendo as alterações de interface do PR #64 e atualize a versão e os hashes dos arquivos. Não restaure uma base de dados antiga nem altere a data original de implementação do site (20/08/2026).
+
+## Organização móvel (PR #67)
+
+A camada móvel usa `(max-width: 760px), (max-width: 1000px) and (max-height: 500px)`. Ela é independente da escolha dos três estilos existentes, considerando a largura e a altura efetivamente disponíveis, em pixels CSS. Girar ou redimensionar recalcula a organização; a mesma instância de cada campo é movida entre o cabeçalho e Opções, conservando seleção e eventos. Tablets com mais espaço seguem os estilos de desktop existentes.
+
+A legenda móvel abre sob os botões, tem rolagem própria e contém todas as tipologias e símbolos, sem virar um segundo filtro. Abrir um painel ou a série temporal recolhe a legenda; iniciar reprodução também a recolhe, mas permite consultá-la novamente durante a animação. Opções dá acesso ao diálogo original de privacidade, sem alterar a validade ou o comportamento da escolha salva.
+
+O retorno do fundo sólido por mouse durante a reprodução exige `(hover: hover) and (pointer: fine)`. Toque não mantém hover opaco. O fundo continua em 50% durante reprodução e sólido ao pausar, com transição de 600 ms (sem animação quando o sistema solicita movimento reduzido).

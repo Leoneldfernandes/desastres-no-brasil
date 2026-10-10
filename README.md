@@ -2,7 +2,7 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
-Versão do site: **v0.66 · Em desenvolvimento**, publicada pelo PR #66. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
+Versão do site: **v0.67 · Em desenvolvimento**, publicada pelo PR #67. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
 
 As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em telas largas, o conjunto acompanha o centro do mapa. As capinhas ficam parcialmente sobrepostas, com largura 10% maior por aba em telas com espaço suficiente. A ordem de sobreposição é Mapa, Dashboard e Sobre; a aba selecionada sempre fica em primeiro plano, conectada à moldura do conteúdo, sem uma faixa separada ocupando a altura do mapa. O Mapa abre inicialmente e preserva os filtros ao alternar de seção; sair dele pausa a reprodução. O Dashboard avisa que novos gráficos e análises estão em desenvolvimento. O Sobre apresenta autoria, fonte dos dados, orientações de interpretação e preferências de privacidade. Os fragmentos `#dashboard` e `#sobre` permitem abrir diretamente essas seções sem alterar os parâmetros da visualização.
 
@@ -144,3 +144,9 @@ Durante a reprodução, apenas o fundo da barra temporal fica a 50% da opacidade
 ### Adaptação à janela
 
 O mapa usa estilos amplo, intermediário e compacto conforme largura e altura disponíveis, inclusive com zoom de página. Em janelas menores, painéis abertos por botão preservam filtros e resultados e deixam mais espaço para o mapa. O zoom cartográfico tem passos de 0,25. Veja os [limites e a conferência responsiva](docs/layout-responsivo.md).
+
+### Telas pequenas e privacidade
+
+Até 760 pixels de largura disponível, ou até 1000 pixels com altura de até 500 pixels, os controles adotam a organização móvel: cabeçalho e reprodutor menores, ferramentas em duas colunas e legenda completa recolhível. O menu **Opções** reúne aparência, atualizações e privacidade. Recorte territorial e abas permanecem visíveis. A escolha depende do espaço em pixels CSS no navegador, incluindo orientação e zoom, e não do modelo ou das polegadas do aparelho. Tablets maiores seguem os estilos amplo, intermediário ou compacto existentes.
+
+**Opções → Privacidade e estatísticas de acesso** reabre o mesmo aviso usado no desktop. A escolha de estatísticas fica salva no navegador por até 180 dias; aceitar ou recusar não impede a consulta ao mapa. Nenhuma mudança na política de coleta faz parte desta versão.
