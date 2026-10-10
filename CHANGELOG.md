@@ -15,6 +15,7 @@ A nova versão só passa a identificar o site após a incorporação e publicaç
 - Centraliza as abas Mapa, Dashboard e Sobre no cabeçalho dos modos intermediário e compacto, usando uma linha própria quando faltar largura.
 - Preserva filtros, mês, controles do reprodutor e o visual amplo aprovado.
 - Centraliza as setas de mês anterior e próximo com ícones vetoriais, preservando o alinhamento e o tamanho dos botões junto ao Reproduzir.
+- Centraliza o mês, o ano e o valor dentro da caixa informativa da série temporal, incluindo ocorrências e os demais indicadores.
 
 ## 0.65 — 09/10/2026 · PR #65
 

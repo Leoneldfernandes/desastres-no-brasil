@@ -1657,6 +1657,7 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   display: flex;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
   align-self: stretch;
   max-width: none;
   padding: 8px 10px;
@@ -1728,6 +1729,8 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   text-align: center;
   gap: 8px;
 }
+
+.period-display { text-align: center; }
 
 .player-controls {
   grid-area: player;
