@@ -1,12 +1,19 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #64, a identificação adotada é `v0.64`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #65, a identificação adotada é `v0.65`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #64 identifica o site como `v0.64`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #65 identifica o site como `v0.65`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.65 — 09/10/2026 · PR #65
+
+- Permite escolher o estilo intermediário ou compacto pela URL, inclusive em Full HD, com `layout=intermediario` ou `layout=compacto`.
+- Preserva a escolha ao navegar pelos meses, mudar filtros e compartilhar; sem o parâmetro, mantém a adaptação automática.
+- Mantém o compacto em janelas abaixo do espaço mínimo do intermediário.
+- Acrescenta a escolha de estilo à página de revisão e identifica sua URL por versão para evitar uma prévia antiga em cache.
 
 ## 0.64 — 09/10/2026 · PR #64
 

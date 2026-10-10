@@ -14,6 +14,12 @@ Painéis fechados não recebem foco. Abrir leva o foco ao botão de fechamento; 
 
 O zoom do mapa usa `zoomSnap: 0.25` e `zoomDelta: 0.25`. A roda usa 240 pixels por nível completo. O limite inferior passa a 2 para permitir o enquadramento nacional em janelas baixas. A visão panorâmica acompanha o redimensionamento; quando a pessoa aproxima ou arrasta o mapa, sua escolha é mantida até retornar ao panorama.
 
+## Escolha pela URL
+
+Acrescente `?layout=intermediario` ou `?layout=compacto` ao endereço para usar esses estilos mesmo em 1920×1080. Se já houver parâmetros, use `&layout=...` antes de `#mapa`. Sem `layout`, ou com um valor desconhecido, a escolha é automática. O parâmetro permanece ao mudar o mês, os filtros ou compartilhar a visualização.
+
+O compacto pode ser escolhido em qualquer tamanho. O intermediário exige pelo menos 1180×680 pixels úteis; abaixo disso, a interface usa o compacto para preservar o acesso aos controles. O atalho não aparece nos menus e não é uma senha nem uma restrição de acesso.
+
 ## Conferência
 
 Use `docs/preview-layout.html` para comparar 1920×1080, 1366×768, 1280×800, 1280×720, 1024×768, 1366×620, 1024×620 e celular. Os tamanhos de 1536×864, 1280×720 e 960×540 representam o espaço de layout de uma janela 1920×1080 com zoom de página de 125%, 150% e 200%, respectivamente; não simulam a rasterização ou a nitidez desse zoom. A prévia ajusta visualmente o iframe para caber na janela do observador; dentro dele, o layout usa o tamanho indicado a 100%.

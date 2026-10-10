@@ -2287,7 +2287,16 @@ function fitScopeOverview() {
   state.fittingScope = false;
 }
 
-function layoutStyleForViewport(width, height) {
+function requestedLayoutFromUrl(search) {
+  const requested = new URLSearchParams(search).get("layout");
+  if (requested === "compacto") return "compact";
+  if (requested === "intermediario") return "intermediate";
+  return null;
+}
+
+function layoutStyleForViewport(width, height, requested = null) {
+  if (requested === "compact") return "compact";
+  if (requested === "intermediate" && width >= 1180 && height >= 680) return "intermediate";
   if (width < 1180 || height < 680) return "compact";
   if (width >= 1600 && height >= 900) return "wide";
   return "intermediate";
@@ -2332,7 +2341,7 @@ function setMapPanel(name, returnFocus = false) {
 }
 
 function syncResponsiveLayout() {
-  const next = layoutStyleForViewport(document.documentElement.clientWidth, window.innerHeight);
+  const next = layoutStyleForViewport(document.documentElement.clientWidth, window.innerHeight, requestedLayoutFromUrl(window.location.search));
   if (next !== state.layoutStyle) {
     state.openMapPanel = null;
     state.layoutStyle = next;
