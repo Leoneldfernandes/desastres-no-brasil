@@ -38,9 +38,9 @@ function harness(layout = 'compact') {
     element(`toggle${name === 'filters' ? 'Filters' : 'Results'}Panel`);
   }
   document.querySelector = selector => elements.get(selector.split(' ')[0].slice(1)).close;
-  const state = { layoutStyle: layout, openMapPanel: null, activeTypes: new Set([1, 4]), currentPeriod: 27 };
+  const state = { layoutStyle: layout, openMapPanels: new Set(), activeTypes: new Set([1, 4]), currentPeriod: 27 };
   const context = vm.createContext({ document, state, URLSearchParams, dom: { 'section-mapa': shell, mapStage }, window: { requestAnimationFrame: fn => fn() }, renderVirtualRows() {}, mapIsFullscreen: () => false, setTemporalAnalysisExpanded(expanded) { state.temporalExpanded = expanded; } });
-  vm.runInContext(['requestedLayoutFromUrl', 'layoutStyleForViewport', 'syncMapPanels', 'setMapPanel'].map(functionSource).join('\n'), context);
+  vm.runInContext(['requestedLayoutFromUrl', 'layoutStyleForViewport', 'syncMapPanels', 'setMapPanel', 'closeMapPanels'].map(functionSource).join('\n'), context);
   return { context, state, elements, document };
 }
 
@@ -53,7 +53,7 @@ test('width and height both select usable layouts, including browser zoom equiva
     [1024,768,'compact'], [1366,620,'compact'], [960,540,'compact'], [390,844,'compact'],
   ]) assert.equal(context.layoutStyleForViewport(width, height), expected, `${width}x${height}`);
 });
-test('compact panels open individually and remain inaccessible while closed', () => {
+test('compact panels open together and each closes without changing the other', () => {
   const h = harness();
   h.context.syncMapPanels();
   assert.equal(h.elements.get('filtersSidebar').hidden, true);
@@ -63,9 +63,21 @@ test('compact panels open individually and remain inaccessible while closed', ()
   assert.equal(h.elements.get('toggleFiltersPanel').attrs['aria-expanded'], 'true');
   assert.equal(h.document.activeElement.id, 'filtersClose');
   h.context.setMapPanel('results');
-  assert.equal(h.elements.get('filtersSidebar').inert, true);
+  assert.equal(h.elements.get('filtersSidebar').inert, false);
   assert.equal(h.elements.get('resultsSidebar').hidden, false);
   assert.equal(h.document.activeElement.id, 'resultsClose');
+  assert.equal(h.elements.get('section-mapa').dataset.openPanels, 'filters results');
+  h.context.setMapPanel('filters', false, true);
+  assert.equal(h.elements.get('filtersSidebar').hidden, true);
+  assert.equal(h.elements.get('resultsSidebar').hidden, false);
+  assert.equal(h.elements.get('toggleFiltersPanel').attrs['aria-expanded'], 'false');
+  assert.equal(h.elements.get('toggleResultsPanel').attrs['aria-expanded'], 'true');
+  assert.equal(h.document.activeElement.id, 'toggleFiltersPanel');
+  h.context.setMapPanel('filters');
+  h.context.setMapPanel('results', false, true);
+  assert.equal(h.elements.get('filtersSidebar').hidden, false);
+  assert.equal(h.elements.get('resultsSidebar').hidden, true);
+  assert.equal(h.document.activeElement.id, 'toggleResultsPanel');
 });
 test('URL shortcuts choose smaller layouts on wide screens and reject unknown values', () => {
   const { context } = harness();
@@ -81,7 +93,7 @@ test('closing a drawer restores focus without losing filter or period state', ()
   const h = harness();
   const selection = h.state.activeTypes;
   h.context.setMapPanel('filters');
-  h.context.setMapPanel(null, true);
+  h.context.setMapPanel('filters', false, true);
   assert.equal(h.document.activeElement.id, 'toggleFiltersPanel');
   assert.equal(h.state.activeTypes, selection);
   assert.equal(h.state.currentPeriod, 27);
@@ -98,7 +110,7 @@ test('opening a drawer after the chart frees space without changing the selected
   assert.equal(h.state.activeTypes, selection);
   assert.equal(h.state.currentPeriod, 27);
   h.state.temporalExpanded = true;
-  h.context.setMapPanel(null, true);
+  h.context.setMapPanel('results', false, true);
   assert.equal(h.state.temporalExpanded, true);
 });
 test('returning to wide layout exposes the same panels and selections', () => {
@@ -121,4 +133,17 @@ test('map buttons and wheel use quarter zoom increments', () => {
   assert.equal(options.zoomDelta, .25);
   assert.equal(options.zoomSnap, .25);
   assert.equal(options.wheelPxPerZoomLevel, 240);
+});
+
+test('leaving the map can close both drawers while keeping selections and month', () => {
+  const h = harness();
+  h.context.setMapPanel('filters');
+  h.context.setMapPanel('results');
+  h.context.closeMapPanels();
+  assert.equal(h.state.openMapPanels.size, 0);
+  assert.equal(h.elements.get('filtersSidebar').inert, true);
+  assert.equal(h.elements.get('resultsSidebar').inert, true);
+  assert.equal(h.elements.get('section-mapa').dataset.openPanels, '');
+  assert.deepEqual([...h.state.activeTypes], [1,4]);
+  assert.equal(h.state.currentPeriod, 27);
 });

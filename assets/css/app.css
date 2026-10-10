@@ -1738,7 +1738,12 @@ body.map-pseudo-fullscreen { overflow: hidden; }
 .player-controls .icon-button {
   width: 38px;
   height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.player-controls .icon-button svg { display: block; flex: 0 0 auto; }
 
 .playback-settings {
   grid-area: settings;
@@ -2900,6 +2905,7 @@ body[data-layout] .sidebar.is-drawer {
 body[data-layout] .sidebar-left.is-drawer { left: calc(var(--map-left) + 12px); }
 body[data-layout] .sidebar-right.is-drawer { right: 12px; }
 .sidebar.is-drawer .drawer-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.drawer-heading { position: sticky; top: 0; z-index: 2; flex-shrink: 0; background: var(--bg); }
 .drawer-heading strong { font-size: .9rem; }
 .drawer-close { flex: 0 0 38px; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 7px; background: var(--control-bg); color: var(--text); font-size: 1.4rem; cursor: pointer; }
 .sidebar.is-drawer .panel { flex: 0 0 auto; }
@@ -2910,7 +2916,7 @@ body[data-layout] .sidebar-right.is-drawer { right: 12px; }
 body[data-layout]:not([data-layout="wide"]) .app-header.folder-header {
   height: auto;
   min-height: 94px;
-  grid-template-columns: minmax(260px,1fr) 336px auto;
+  grid-template-columns: minmax(0,1fr) 336px minmax(0,1fr);
   grid-template-rows: auto;
   gap: 12px;
   padding: 10px 12px;
@@ -2923,7 +2929,7 @@ body[data-layout]:not([data-layout="wide"]) .header-actions .update-status-wrap 
 .map-stage:fullscreen .map-panel-toggles,
 .map-stage.is-pseudo-fullscreen .map-panel-toggles { display: none !important; }
 
-@media (max-width: 1179px) {
+@media (max-width: 1255px) {
   body[data-layout]:not([data-layout="wide"]) .app-header.folder-header { grid-template-columns: minmax(0,1fr) minmax(420px,1fr); grid-template-rows: auto auto; padding-bottom: 0; gap: 8px 12px; }
   body[data-layout]:not([data-layout="wide"]) .folder-header .header-actions { grid-column: 2; grid-row: 1; justify-self: end; }
   body[data-layout]:not([data-layout="wide"]) .folder-header .site-navigation { grid-column: 1 / -1; grid-row: 2; margin-bottom: 0; justify-self: center; }
@@ -2944,7 +2950,25 @@ body[data-layout]:not([data-layout="wide"]) .header-actions .update-status-wrap 
 }
 @media (max-height: 620px) {
   body[data-layout] .sidebar.is-drawer { bottom: 12px; max-height: calc(100% - 74px); }
-  body[data-layout] .app-shell[data-open-panel="filters"] .sidebar-left.is-drawer,
-  body[data-layout] .app-shell[data-open-panel="results"] .sidebar-right.is-drawer { bottom: var(--drawer-bottom,160px); }
+  body[data-layout] .app-shell[data-open-panels~="filters"] .sidebar-left.is-drawer,
+  body[data-layout] .app-shell[data-open-panels~="results"] .sidebar-right.is-drawer { bottom: var(--drawer-bottom,160px); }
 }
 
+
+/* When both compact drawers cannot fit beside each other, share their height.
+   Cards keep their colors and each drawer scrolls independently. */
+@media (max-width: 760px) {
+  body[data-layout="compact"] .app-shell[data-open-panels~="filters"][data-open-panels~="results"] {
+    --drawer-available: calc(100% - 62px - var(--drawer-bottom, 160px));
+  }
+  body[data-layout="compact"] .app-shell[data-open-panels~="filters"][data-open-panels~="results"] .sidebar.is-drawer {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    height: calc(var(--drawer-available) / 2 - 6px);
+    bottom: auto;
+  }
+  body[data-layout="compact"] .app-shell[data-open-panels~="filters"][data-open-panels~="results"] .sidebar-right.is-drawer {
+    top: calc(62px + var(--drawer-available) / 2 + 6px);
+  }
+}
