@@ -39,7 +39,7 @@ function harness(layout = 'compact') {
   }
   document.querySelector = selector => elements.get(selector.split(' ')[0].slice(1)).close;
   const state = { layoutStyle: layout, openMapPanel: null, activeTypes: new Set([1, 4]), currentPeriod: 27 };
-  const context = vm.createContext({ document, state, URLSearchParams, dom: { 'section-mapa': shell, mapStage }, window: { requestAnimationFrame: fn => fn() }, renderVirtualRows() {}, mapIsFullscreen: () => false });
+  const context = vm.createContext({ document, state, URLSearchParams, dom: { 'section-mapa': shell, mapStage }, window: { requestAnimationFrame: fn => fn() }, renderVirtualRows() {}, mapIsFullscreen: () => false, setTemporalAnalysisExpanded(expanded) { state.temporalExpanded = expanded; } });
   vm.runInContext(['requestedLayoutFromUrl', 'layoutStyleForViewport', 'syncMapPanels', 'setMapPanel'].map(functionSource).join('\n'), context);
   return { context, state, elements, document };
 }
@@ -86,6 +86,20 @@ test('closing a drawer restores focus without losing filter or period state', ()
   assert.equal(h.state.activeTypes, selection);
   assert.equal(h.state.currentPeriod, 27);
   assert.equal(h.elements.get('filtersSidebar').hidden, true);
+});
+test('opening a drawer after the chart frees space without changing the selected data', () => {
+  const h = harness();
+  const selection = h.state.activeTypes;
+  h.state.temporalExpanded = true;
+  h.context.setMapPanel('results');
+  assert.equal(h.state.temporalExpanded, false);
+  assert.equal(h.elements.get('resultsSidebar').hidden, false);
+  assert.equal(h.document.activeElement.id, 'resultsClose');
+  assert.equal(h.state.activeTypes, selection);
+  assert.equal(h.state.currentPeriod, 27);
+  h.state.temporalExpanded = true;
+  h.context.setMapPanel(null, true);
+  assert.equal(h.state.temporalExpanded, true);
 });
 test('returning to wide layout exposes the same panels and selections', () => {
   const h = harness('intermediate');

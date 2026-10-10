@@ -10,7 +10,7 @@ A interface acompanha a largura e a altura úteis da janela, em pixels CSS. O zo
 
 Os 60–65% de área inicial do mapa são uma referência de equilíbrio do desktop aprovado, não um teto: recolher uma lateral pode liberar mais área. A abertura temporária de um painel ocupa parte do mapa sem mudar sua dimensão nem deslocar a barra temporal. Os mesmos elementos e dados são reutilizados em todos os estilos.
 
-Painéis fechados não recebem foco. Abrir leva o foco ao botão de fechamento; fechar por esse botão ou Escape devolve o foco ao botão de abertura. Conteúdos extensos têm rolagem. Abrir a série temporal fecha o painel flutuante para dar espaço ao gráfico. Os controles de painel ficam ocultos em tela cheia, onde apenas o mapa é exibido. Nenhum painel se recolhe por temporizador ou movimento do mouse.
+Painéis fechados não recebem foco. Abrir leva o foco ao botão de fechamento; fechar por esse botão ou Escape devolve o foco ao botão de abertura. Conteúdos extensos têm rolagem. Abrir a série temporal fecha o painel flutuante para dar espaço ao gráfico; abrir um painel flutuante recolhe a série, preservando sua seleção, para manter os quadros acessíveis em janelas baixas. Os controles de painel ficam ocultos em tela cheia, onde apenas o mapa é exibido. Nenhum painel se recolhe por temporizador ou movimento do mouse.
 
 O zoom do mapa usa `zoomSnap: 0.25` e `zoomDelta: 0.25`. A roda usa 240 pixels por nível completo. O limite inferior passa a 2 para permitir o enquadramento nacional em janelas baixas. A visão panorâmica acompanha o redimensionamento; quando a pessoa aproxima ou arrasta o mapa, sua escolha é mantida até retornar ao panorama.
 

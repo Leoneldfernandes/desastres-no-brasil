@@ -2330,6 +2330,7 @@ function syncMapPanels(returnFocus = false) {
 }
 
 function setMapPanel(name, returnFocus = false) {
+  if (name && state.temporalExpanded) setTemporalAnalysisExpanded(false);
   const previous = state.openMapPanel;
   state.openMapPanel = name;
   syncMapPanels(returnFocus);

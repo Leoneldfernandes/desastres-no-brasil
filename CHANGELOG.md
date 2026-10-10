@@ -10,6 +10,10 @@ A nova versão só passa a identificar o site após a incorporação e publicaç
 
 ## 0.65 — 09/10/2026 · PR #65
 
+- Corrige a precedência das regras do cabeçalho em janelas abaixo de 1180 pixels, evitando que o menu direito fique fora da tela.
+- Recolhe a série temporal ao abrir um painel flutuante, preservando as seleções e evitando que os quadros fiquem sem espaço em janelas baixas.
+- Evita sobreposição dos controles de zoom com as ferramentas do mapa no celular.
+
 - Permite escolher o estilo intermediário ou compacto pela URL, inclusive em Full HD, com `layout=intermediario` ou `layout=compacto`.
 - Preserva a escolha ao navegar pelos meses, mudar filtros e compartilhar; sem o parâmetro, mantém a adaptação automática.
 - Mantém o compacto em janelas abaixo do espaço mínimo do intermediário.
