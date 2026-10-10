@@ -315,7 +315,7 @@ const state = {
   mapCreditsResizeObserver: null,
   restoringView: false,
   layoutStyle: "wide",
-  openMapPanel: null,
+  openMapPanels: new Set(),
   mapOverview: true,
   fittingScope: false,
 };
@@ -2302,7 +2302,7 @@ function layoutStyleForViewport(width, height, requested = null) {
   return "intermediate";
 }
 
-function syncMapPanels(returnFocus = false) {
+function syncMapPanels() {
   const shell = dom["section-mapa"];
   const activeElement = document.activeElement;
   for (const [name, sidebarId, buttonId] of [
@@ -2312,7 +2312,7 @@ function syncMapPanels(returnFocus = false) {
     const sidebar = document.getElementById(sidebarId);
     const button = document.getElementById(buttonId);
     const floating = state.layoutStyle === "compact" || (state.layoutStyle === "intermediate" && name === "results");
-    const open = floating && state.openMapPanel === name;
+    const open = floating && state.openMapPanels.has(name);
     const visible = !floating || open;
     sidebar.hidden = !visible;
     sidebar.inert = !visible;
@@ -2323,28 +2323,32 @@ function syncMapPanels(returnFocus = false) {
     if (!visible && sidebar.contains(activeElement)) {
       (dom.mapStage.contains(button) && !mapIsFullscreen() ? button : dom.mapStage.querySelector("#map")).focus({ preventScroll: true });
     }
-    if (returnFocus && state.openMapPanel === null && sidebar.contains(activeElement)) button.focus({ preventScroll: true });
   }
-  shell.dataset.openPanel = state.openMapPanel || "";
+  shell.dataset.openPanels = ["filters", "results"].filter(name => state.openMapPanels.has(name)).join(" ");
   window.requestAnimationFrame(renderVirtualRows);
 }
 
-function setMapPanel(name, returnFocus = false) {
-  if (name && state.temporalExpanded) setTemporalAnalysisExpanded(false);
-  const previous = state.openMapPanel;
-  state.openMapPanel = name;
-  syncMapPanels(returnFocus);
-  if (name) {
+function setMapPanel(name, open = true, returnFocus = false) {
+  if (open && state.temporalExpanded) setTemporalAnalysisExpanded(false);
+  if (open) state.openMapPanels.add(name);
+  else state.openMapPanels.delete(name);
+  syncMapPanels();
+  if (open) {
     document.querySelector(`#${name === "filters" ? "filtersSidebar" : "resultsSidebar"} .drawer-close`).focus({ preventScroll: true });
-  } else if (returnFocus && previous) {
-    document.getElementById(previous === "filters" ? "toggleFiltersPanel" : "toggleResultsPanel").focus({ preventScroll: true });
+  } else if (returnFocus) {
+    document.getElementById(name === "filters" ? "toggleFiltersPanel" : "toggleResultsPanel").focus({ preventScroll: true });
   }
+}
+
+function closeMapPanels() {
+  state.openMapPanels.clear();
+  syncMapPanels();
 }
 
 function syncResponsiveLayout() {
   const next = layoutStyleForViewport(document.documentElement.clientWidth, window.innerHeight, requestedLayoutFromUrl(window.location.search));
   if (next !== state.layoutStyle) {
-    state.openMapPanel = null;
+    state.openMapPanels.clear();
     state.layoutStyle = next;
   }
   document.body.dataset.layout = next;
@@ -2383,7 +2387,7 @@ function mapIsFullscreen() {
 }
 
 function syncFullscreenControl() {
-  if (mapIsFullscreen() && state.openMapPanel) setMapPanel(null);
+  if (mapIsFullscreen() && state.openMapPanels.size) closeMapPanels();
   const active = mapIsFullscreen();
   const label = active ? "Sair da tela cheia" : "Visualizar mapa em tela cheia";
   dom.toggleFullscreen.setAttribute("aria-label", label);
@@ -2510,10 +2514,10 @@ function handleTypeChange(event) {
 function bindEvents() {
   observeResponsiveLayout();
   for (const [name, id] of [["filters", "toggleFiltersPanel"], ["results", "toggleResultsPanel"]]) {
-    document.getElementById(id).addEventListener("click", () => setMapPanel(state.openMapPanel === name ? null : name));
+    document.getElementById(id).addEventListener("click", () => setMapPanel(name, !state.openMapPanels.has(name)));
   }
   for (const button of document.querySelectorAll("[data-close-map-panel]")) {
-    button.addEventListener("click", () => setMapPanel(null, true));
+    button.addEventListener("click", () => setMapPanel(button.closest(".sidebar").id === "filtersSidebar" ? "filters" : "results", false, true));
   }
   document.addEventListener("site-section-change", (event) => {
     if (event.detail.section === "mapa") {
@@ -2521,7 +2525,7 @@ function bindEvents() {
       refreshMapLayout();
       renderVirtualRows();
     } else {
-      setMapPanel(null);
+      closeMapPanels();
       state.playbackWanted = false;
       addPlaybackBlock("section");
       closeMapTooltip();
@@ -2571,7 +2575,7 @@ function bindEvents() {
   dom.nextPeriod.addEventListener("click", () => setPeriod(state.currentPeriod + 1));
   dom.shareView.addEventListener("click", shareCurrentView);
   dom.toggleTemporalAnalysis.addEventListener("click", () => {
-    if (!state.temporalExpanded && state.openMapPanel) setMapPanel(null);
+    if (!state.temporalExpanded && state.openMapPanels.size) closeMapPanels();
     setTemporalAnalysisExpanded(!state.temporalExpanded);
   });
   dom.temporalAnalysis.addEventListener("click", (event) => {
@@ -2672,8 +2676,10 @@ function bindEvents() {
         closeDetail();
         return;
       }
-      if (state.openMapPanel) {
-        setMapPanel(null, true);
+      if (state.openMapPanels.size) {
+        const focusedPanel = document.activeElement.closest?.(".sidebar.is-drawer");
+        const name = focusedPanel ? (focusedPanel.id === "filtersSidebar" ? "filters" : "results") : [...state.openMapPanels].at(-1);
+        setMapPanel(name, false, true);
         return;
       }
       if (state.pseudoFullscreen) {

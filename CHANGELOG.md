@@ -1,12 +1,21 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #65, a identificação adotada é `v0.65`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #66, a identificação adotada é `v0.66`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #65 identifica o site como `v0.65`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+Na publicação atual, o PR #66 identifica o site como `v0.66`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.66 — 09/10/2026 · PR #66
+
+- Permite abrir Filtros e indicadores e Resultados e impactos simultaneamente no modo compacto, com abertura e fechamento independentes.
+- Mantém os dois painéis lado a lado onde há largura; em janelas estreitas, organiza-os um acima do outro com rolagem própria e fechamento acessível.
+- Centraliza as abas Mapa, Dashboard e Sobre no cabeçalho dos modos intermediário e compacto, usando uma linha própria quando faltar largura.
+- Preserva filtros, mês, controles do reprodutor e o visual amplo aprovado.
+- Centraliza as setas de mês anterior e próximo com ícones vetoriais, preservando o alinhamento e o tamanho dos botões junto ao Reproduzir.
+- Centraliza o mês, o ano e o valor dentro da caixa informativa da série temporal, incluindo ocorrências e os demais indicadores.
 
 ## 0.65 — 09/10/2026 · PR #65
 

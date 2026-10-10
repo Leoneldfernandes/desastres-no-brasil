@@ -6,13 +6,15 @@ A interface acompanha a largura e a altura úteis da janela, em pixels CSS. O zo
 | --- | --- | --- |
 | Amplo | Largura a partir de 1600 e altura a partir de 900 | Duas laterais abertas, visual desktop preservado. |
 | Intermediário | Largura a partir de 1180 e altura a partir de 680, sem atingir ambos os limites do amplo | Filtros na lateral; resultados abertos por botão sobre o mapa. |
-| Compacto | Largura abaixo de 1180 **ou** altura abaixo de 680 | Ambos os painéis abertos por botão, um de cada vez. |
+| Compacto | Largura abaixo de 1180 **ou** altura abaixo de 680 | Ambos os painéis abertos por botões independentes; podem aparecer simultaneamente. |
 
 Os 60–65% de área inicial do mapa são uma referência de equilíbrio do desktop aprovado, não um teto: recolher uma lateral pode liberar mais área. A abertura temporária de um painel ocupa parte do mapa sem mudar sua dimensão nem deslocar a barra temporal. Os mesmos elementos e dados são reutilizados em todos os estilos.
 
-Painéis fechados não recebem foco. Abrir leva o foco ao botão de fechamento; fechar por esse botão ou Escape devolve o foco ao botão de abertura. Conteúdos extensos têm rolagem. Abrir a série temporal fecha o painel flutuante para dar espaço ao gráfico; abrir um painel flutuante recolhe a série, preservando sua seleção, para manter os quadros acessíveis em janelas baixas. Os controles de painel ficam ocultos em tela cheia, onde apenas o mapa é exibido. Nenhum painel se recolhe por temporizador ou movimento do mouse.
+Painéis fechados não recebem foco. Abrir leva o foco ao botão de fechamento; fechar por esse botão ou Escape devolve o foco ao botão de abertura. Conteúdos extensos têm rolagem. Cada botão alterna apenas seu painel. Escape fecha o painel com foco ou o último aberto. Quando ambos estão abertos, ficam lado a lado a partir de 761 pixels de largura; abaixo disso, dividem verticalmente o espaço acima do reprodutor, com rolagem independente e fechamento sempre acessível. Abrir a série temporal fecha os painéis flutuantes para dar espaço ao gráfico; abrir um painel flutuante recolhe a série, preservando sua seleção, para manter os quadros acessíveis em janelas baixas. Os controles de painel ficam ocultos em tela cheia, onde apenas o mapa é exibido. Nenhum painel se recolhe por temporizador ou movimento do mouse.
 
 O zoom do mapa usa `zoomSnap: 0.25` e `zoomDelta: 0.25`. A roda usa 240 pixels por nível completo. O limite inferior passa a 2 para permitir o enquadramento nacional em janelas baixas. A visão panorâmica acompanha o redimensionamento; quando a pessoa aproxima ou arrasta o mapa, sua escolha é mantida até retornar ao panorama.
+
+As abas Mapa, Dashboard e Sobre ficam no centro do cabeçalho nos estilos intermediário e compacto. A partir de 1256 pixels, usam colunas simétricas; abaixo disso, ficam em uma linha própria para não disputar espaço com os controles. O estilo amplo mantém o posicionamento aprovado.
 
 ## Escolha pela URL
 
