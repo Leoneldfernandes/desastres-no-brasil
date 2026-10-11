@@ -3066,9 +3066,9 @@ body[data-mobile="true"][data-layout] .site-tabs button { min-height: 42px; padd
 body[data-mobile="true"][data-layout] .mobile-options-panel { top: 58px; right: 8px; width: min(360px,calc(100% - 16px)); max-height: calc(100dvh - 80px); }
 body[data-mobile="true"][data-layout] .mobile-options-panel .field-theme { width: 100%; }
 body[data-mobile="true"][data-layout] .mobile-options-panel .field-theme select { width: 100%; height: 44px; }
-body[data-mobile="true"][data-layout] .mobile-options-panel .update-status-wrap { width: 100%; }
+body[data-mobile="true"][data-layout] .mobile-options-panel .update-status-wrap { width: 100%; max-width: none; }
 body[data-mobile="true"][data-layout] .mobile-options-panel .status-badge { width: 100%; min-height: 44px; }
-body[data-mobile="true"][data-layout] .mobile-options-panel .update-status-panel { position: static; width: 100%; max-width: none; margin-top: 8px; }
+body[data-mobile="true"][data-layout] .mobile-options-panel .update-status-panel { position: static; width: 100%; max-width: none; max-height: none; overflow: visible; margin-top: 8px; }
 body[data-mobile="true"][data-layout] #mobilePrivacyButton { width: 100%; margin-top: 14px; min-height: 44px; }
 
 body[data-mobile="true"][data-layout] .map-panel-toggles { top: 8px; left: 8px; max-width: calc(100% - 118px); gap: 4px; }
@@ -3129,4 +3129,9 @@ body[data-mobile="true"][data-layout] .timeline.is-analysis-expanded { max-heigh
 }
 @media (max-width: 374px) and (max-height: 650px) {
   body[data-mobile="true"][data-layout] .leaflet-top.leaflet-right { top: 60px; }
+}
+
+/* In mobile mode the player spans the map width: keep the scale above it. */
+body[data-mobile="true"][data-layout] .leaflet-control-scale {
+  bottom: max(var(--map-scale-bottom,22px),calc(var(--drawer-bottom,172px) - 12px));
 }
