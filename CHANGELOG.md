@@ -8,7 +8,7 @@ Na publicação atual, o PR #68 identifica o site como `v0.68`, inclusive por se
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
-## 0.68 — 10/10/2026 · PR #68
+## 0.68 — 11/10/2026 · PR #68
 
 - Corrige a largura das informações de Atualizações em Opções no celular, usando toda a largura disponível e a rolagem do menu.
 - Posiciona a escala acima do reprodutor nas telas móveis, preservando a leitura da data final do período e o comportamento de tela cheia.
