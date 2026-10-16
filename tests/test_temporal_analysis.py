@@ -211,7 +211,7 @@ class TemporalAnalysisTests(unittest.TestCase):
         self.assertIn('!event.target.closest("#temporalMunicipality")', self.script)
         self.assertNotIn("dom.temporalMunicipality.disabled", self.script)
 
-    def test_map_scale_follows_credits_instead_of_timeline_height(self) -> None:
+    def test_map_scale_uses_credits_as_baseline_with_collision_clearance(self) -> None:
         self.assertIn("function syncMapScaleOffset()", self.script)
         self.assertIn("new ResizeObserver(syncMapScaleOffset)", self.script)
         self.assertIn("--map-scale-bottom", self.script)
@@ -222,7 +222,7 @@ class TemporalAnalysisTests(unittest.TestCase):
         )
         self.assertRegex(
             self.styles,
-            r"(?s)\.leaflet-control-scale\s*\{.*?bottom: var\(--map-scale-bottom, 22px\)",
+            r"(?s)\.leaflet-control-scale\s*\{.*?bottom: max\(var\(--map-scale-bottom, 22px\), var\(--scale-overlap-bottom, 0px\)\)",
         )
         self.assertRegex(
             self.styles,

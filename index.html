@@ -11,11 +11,13 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=09f5d5a394f8">
+    <link rel="stylesheet" href="assets/css/app.css?v=dbe842b8c145">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/mobile-ui.js?v=84724d4924ba"></script>
-    <script defer src="assets/js/app.js?v=50f471efbde8"></script>
+    <script defer src="assets/js/playback-view.js?v=4f3b30f47e0f"></script>
+    <script defer src="assets/js/layout-shortcuts.js?v=116dab7734a1"></script>
+    <script defer src="assets/js/app.js?v=b06bcbef1005"></script>
     <script defer src="assets/js/navigation.js?v=0cba2ac131ab"></script>
     <script defer src="assets/js/visitor-config.js?v=68f13d2d94d3"></script>
     <script defer src="assets/js/welcome.js?v=2722b8b9ccb5"></script>
@@ -342,6 +344,16 @@
           <span><i class="key-swatch key-empty"></i> sem evento</span>
         </div>
 
+        <section id="fullscreenInvitation" class="fullscreen-invitation" aria-labelledby="fullscreenInvitationTitle" hidden>
+          <strong id="fullscreenInvitationTitle">Mais espaço para acompanhar?</strong>
+          <div><button class="button" type="button" id="acceptFullscreenInvitation">Tela cheia</button><button class="button secondary" type="button" id="dismissFullscreenInvitation">Agora não</button></div>
+        </section>
+        <button id="exitMobileFullscreen" class="mobile-fullscreen-exit" type="button" data-tooltip="Sair da tela cheia" hidden>Sair</button>
+        <div id="playbackDock" class="playback-dock" role="group" aria-label="Reprodução em tela cheia" hidden>
+          <span id="dockMonth" aria-label="Mês em exibição"></span>
+          <button id="dockPause" type="button" data-tooltip="Pausar linha temporal">❚❚ Pausar</button>
+          <button id="dockControls" type="button" data-tooltip="Mostrar controles de reprodução" aria-controls="timelinePanel">☷ Controles</button>
+        </div>
         <div class="loading-overlay" id="loadingOverlay">
           <div class="loading-card">
             <span class="loader" aria-hidden="true"></span>
@@ -524,7 +536,12 @@
     <section class="site-page" id="section-sobre" role="tabpanel" aria-labelledby="tab-sobre" tabindex="0" hidden>
       <div class="site-page-inner">
         <header class="about-heading">
-          <h2>Sobre o projeto &quot;Desastres no Brasil&quot;</h2>
+          <h2>S<button id="aboutLayoutTrigger" class="about-layout-trigger" type="button" aria-label="Atalhos de visualização" aria-expanded="false" aria-controls="aboutLayoutShortcuts">o</button>bre o projeto &quot;Desastres no Brasil&quot;</h2>
+          <nav id="aboutLayoutShortcuts" class="about-layout-shortcuts" aria-label="Atalhos de visualização" hidden>
+            <a data-layout-shortcut="amplo" href="#mapa">Amplo</a>
+            <a data-layout-shortcut="intermediario" href="?layout=intermediario#mapa">Intermediário</a>
+            <a data-layout-shortcut="compacto" href="?layout=compacto#mapa">Compacto</a>
+          </nav>
           <p class="about-subtitle"><em>Mapa interativo de ocorrências e impactos ao longo do tempo</em></p>
         </header>
         <p class="site-page-lead">Idealizado e desenvolvido para apoiar a pesquisa, o ensino e a consulta pública sobre desastres no Brasil. A proposta é tornar os dados mais acessíveis e facilitar a compreensão das ocorrências e de seus impactos nos municípios brasileiros.</p>
