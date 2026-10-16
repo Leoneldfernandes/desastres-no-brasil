@@ -8,9 +8,9 @@
 - Usar o modo ampliado existente quando a tela cheia nativa estiver indisponível. Toques no mapa continuam consultando municípios; não recuperam os controles.
 - A escala permanece acima dos créditos e só recebe afastamento extra quando sua posição cruza o reprodutor. O afastamento acompanha redimensionamento e zoom; o desktop sem colisão conserva sua posição.
 
-## Atalhos discretos no Sobre
+## Atalhos discretos — local pendente
 
-No título **Sobre o projeto "Desastres no Brasil"**, clicar/tocar na primeira letra **o**, de **Sobre**. Um clique revela três links: **Amplo**, **Intermediário** e **Compacto**. A letra mantém cor, fonte e tamanho do título. O mesmo acionador funciona por teclado (Enter ou Espaço); Escape recolhe os links.
+Preparados três destinos: **Amplo**, **Intermediário** e **Compacto**. O responsável definirá a letra ou local específico de acesso. Nenhum acionador foi ativado no título ou em outro ponto da interface; a proposta de cinco cliques também foi retirada. O módulo aguarda a presença do acionador a ser definido, sem modificar a navegação atual.
 
 **Amplo** remove o modo forçado e retorna ao comportamento automático: em 1920×1080 recupera o amplo aprovado; em janelas menores mantém a adaptação por largura e altura. Não força o desktop amplo em uma tela onde ele não cabe.
 
