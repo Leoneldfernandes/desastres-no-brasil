@@ -41,7 +41,10 @@
   const idle = createIdleController({ hide: () => setHidden(true), show: () => setHidden(false) });
   const controlArea = target => areas().some(el => el.contains(target)) || dock.contains(target) || exit.contains(target);
   function busy() {
-    return pressed || (keyboard && controlArea(document.activeElement))
+    const activeInput = controlArea(document.activeElement)
+      && document.activeElement?.matches('select, input, textarea');
+    return pressed || activeInput || (keyboard && controlArea(document.activeElement))
+      || Boolean(stage.querySelector('.leaflet-control-layers-expanded'))
       || !byId('municipalitySearchPanel').hidden || !byId('mapLegendPanel').hidden
       || byId('welcomeDialog').open || !byId('detailModal').classList.contains('is-hidden')
       || !byId('exportModal').classList.contains('is-hidden');
@@ -73,6 +76,9 @@
   }, true);
   document.addEventListener('focusin', () => { if (keyboard) refresh(); });
   document.addEventListener('focusout', () => { queueMicrotask(refresh); });
+  document.addEventListener('focusin', () => {
+    if (controlArea(document.activeElement) && document.activeElement?.matches('select, input, textarea')) refresh();
+  });
   stage.addEventListener('pointerdown', event => {
     keyboard = false;
     if (dock.contains(event.target) || exit.contains(event.target)) return;
@@ -81,7 +87,10 @@
   document.addEventListener('pointerup', () => { if (pressed) { pressed = false; idle.interact(); refresh(); } });
   document.addEventListener('pointercancel', () => { pressed = false; refresh(); });
   stage.addEventListener('input', () => { idle.interact(); refresh(); });
-  stage.addEventListener('change', () => { idle.interact(); refresh(); });
+  stage.addEventListener('change', event => {
+    if (!keyboard && event.target.matches('select')) event.target.blur();
+    idle.interact(); refresh();
+  });
   document.addEventListener('visibilitychange', refresh);
   document.addEventListener('site-section-change', () => { invitation.hidden = true; idle.reset(); });
   media.addEventListener('change', refresh);
