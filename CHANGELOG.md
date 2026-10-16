@@ -8,12 +8,12 @@ Na publicação atual, o PR #70 identifica o site como `v0.70`, inclusive por se
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
-## 0.70 — 16/10/2026 · PR #70 (em revisão)
+## 0.70 — 16/10/2026 · PR #70
 
 - Prepara convite opcional para tela cheia no celular e recolhimento de controles após cinco segundos sem interação, com mês, pausa, recuperação e saída sempre acessíveis.
 - Afasta a escala quando ela cruza o reprodutor, incluindo tablets, preservando o posicionamento sem colisão.
 - Inclui três atalhos discretos no parágrafo Como interpretar: A de Ausência (amplo), l de limitações (intermediário) e c de correções (compacto), preservando o texto e sua aparência.
-- Revisão visual da implementação e autorização de publicação pendentes. O site público continua na v0.68 até publicação autorizada.
+- Publicação autorizada pelo responsável em 16/10/2026. Implementação original preservada em 20/08/2026. A conferência publicada será registrada no PR.
 
 ## 0.68 — 11/10/2026 · PR #68
 
