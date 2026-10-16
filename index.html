@@ -11,11 +11,13 @@
     <title>Desastres no Brasil</title>
     <script src="assets/js/theme.js?v=2d1ec15bb553"></script>
     <link rel="stylesheet" href="assets/vendor/leaflet.css">
-    <link rel="stylesheet" href="assets/css/app.css?v=09f5d5a394f8">
+    <link rel="stylesheet" href="assets/css/app.css?v=99639a358aa0">
     <script defer src="assets/vendor/leaflet.js"></script>
     <script defer src="assets/js/export.js?v=23e2efd7121d" data-export-worker="assets/js/export-worker.js?v=12478d4473b5"></script>
     <script defer src="assets/js/mobile-ui.js?v=84724d4924ba"></script>
-    <script defer src="assets/js/app.js?v=50f471efbde8"></script>
+    <script defer src="assets/js/playback-view.js?v=5cdc6790d7e6"></script>
+    <script defer src="assets/js/layout-shortcuts.js?v=beda6a292be3"></script>
+    <script defer src="assets/js/app.js?v=b06bcbef1005"></script>
     <script defer src="assets/js/navigation.js?v=0cba2ac131ab"></script>
     <script defer src="assets/js/visitor-config.js?v=68f13d2d94d3"></script>
     <script defer src="assets/js/welcome.js?v=2722b8b9ccb5"></script>
@@ -144,7 +146,7 @@
               <dl class="update-status-details">
                 <div>
                   <dt>Versão do site</dt>
-                  <dd>v0.68 · Em desenvolvimento</dd>
+                  <dd>v0.70 · Em desenvolvimento</dd>
                 </div>
                 <div>
                   <dt>Data de implementação</dt>
@@ -152,7 +154,7 @@
                 </div>
                 <div>
                   <dt>Última atualização do site</dt>
-                  <dd><time datetime="2026-10-11">11/10/2026</time></dd>
+                  <dd><time datetime="2026-10-16">16/10/2026</time></dd>
                 </div>
               </dl>
             </section>
@@ -342,6 +344,16 @@
           <span><i class="key-swatch key-empty"></i> sem evento</span>
         </div>
 
+        <section id="fullscreenInvitation" class="fullscreen-invitation" aria-labelledby="fullscreenInvitationTitle" hidden>
+          <strong id="fullscreenInvitationTitle">Mais espaço para acompanhar?</strong>
+          <div><button class="button" type="button" id="acceptFullscreenInvitation">Tela cheia</button><button class="button secondary" type="button" id="dismissFullscreenInvitation">Agora não</button></div>
+        </section>
+        <button id="exitMobileFullscreen" class="mobile-fullscreen-exit" type="button" data-tooltip="Sair da tela cheia" hidden>Sair</button>
+        <div id="playbackDock" class="playback-dock" role="group" aria-label="Reprodução em tela cheia" hidden>
+          <span id="dockMonth" aria-label="Mês em exibição"></span>
+          <button id="dockPause" type="button" data-tooltip="Pausar linha temporal">❚❚ Pausar</button>
+          <button id="dockControls" type="button" data-tooltip="Mostrar controles de reprodução" aria-controls="timelinePanel">☷ Controles</button>
+        </div>
         <div class="loading-overlay" id="loadingOverlay">
           <div class="loading-card">
             <span class="loader" aria-hidden="true"></span>
@@ -551,7 +563,7 @@
           </article>
           <article class="panel about-card">
             <h3>Como interpretar</h3>
-            <p>O mês corresponde à data do evento registrada na fonte. Ausência de registro não significa ausência de desastre. Os valores refletem os danos declarados e podem apresentar limitações ou receber correções.</p>
+            <p>O mês corresponde à data do evento registrada na fonte. <a class="layout-letter" data-layout-shortcut="amplo" href="#mapa" aria-label="Abrir visual amplo">A</a>usência de registro não significa ausência de desastre. Os valores refletem os danos declarados e podem apresentar <a class="layout-letter" data-layout-shortcut="intermediario" href="?layout=intermediario#mapa" aria-label="Abrir visual intermediário">l</a>imitações ou receber <a class="layout-letter" data-layout-shortcut="compacto" href="?layout=compacto#mapa" aria-label="Abrir visual compacto">c</a>orreções.</p>
             <a href="https://github.com/Leoneldfernandes/desastres-no-brasil/blob/main/docs/metodologia.md" target="_blank" rel="noopener">Leia a metodologia</a>
           </article>
           <article class="panel about-card">

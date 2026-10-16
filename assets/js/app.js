@@ -1426,11 +1426,27 @@ function syncTemporalControls() {
   dom.temporalContextLabel.textContent = temporalContextText();
 }
 
+function scaleOverlapOffset(stageBottom, timeline, scale) {
+  const overlaps = scale.width > 0 && scale.left < timeline.right && scale.right > timeline.left
+    && scale.top < timeline.bottom && scale.bottom > timeline.top;
+  return overlaps ? Math.ceil(stageBottom - timeline.top + 12) : 0;
+}
+
 function syncMapScaleOffset() {
   const attribution = dom.mapStage.querySelector(".leaflet-control-attribution");
   const creditHeight = attribution?.getBoundingClientRect().height || 18;
   const offset = Math.ceil(creditHeight + MAP_SCALE_CREDIT_GAP);
   dom.mapStage.style.setProperty("--map-scale-bottom", `${offset}px`);
+  const scale = dom.mapStage.querySelector(".leaflet-control-scale");
+  if (!scale || dom.mapStage.classList.contains("playback-controls-hidden")) return;
+  const stageBottom = dom.mapStage.getBoundingClientRect().bottom;
+  const rect = scale.getBoundingClientRect();
+  // Measure the credit-relative baseline, not an in-flight CSS transition.
+  const baseline = { width: rect.width, left: rect.left, right: rect.right,
+    top: stageBottom - offset - rect.height, bottom: stageBottom - offset };
+  const clearance = scaleOverlapOffset(stageBottom, dom.timelinePanel.getBoundingClientRect(), baseline);
+  if (clearance) dom.mapStage.style.setProperty("--scale-overlap-bottom", `${clearance}px`);
+  else dom.mapStage.style.removeProperty("--scale-overlap-bottom");
 }
 
 function observeMapCreditsSize() {
@@ -1440,6 +1456,8 @@ function observeMapCreditsSize() {
   if (!attribution) return;
   state.mapCreditsResizeObserver = new ResizeObserver(syncMapScaleOffset);
   state.mapCreditsResizeObserver.observe(attribution);
+  const scale = dom.mapStage.querySelector(".leaflet-control-scale");
+  if (scale) state.mapCreditsResizeObserver.observe(scale);
 }
 
 function setTemporalAnalysisExpanded(expanded, syncUrl = true) {
@@ -1461,6 +1479,7 @@ function setTemporalAnalysisExpanded(expanded, syncUrl = true) {
     if (state.temporalExpanded) drawTemporalChart();
   });
   if (syncUrl) syncViewUrl();
+  syncPlaybackView();
 }
 
 function setTemporalMetric(metric) {
@@ -1766,6 +1785,7 @@ function setPeriod(index) {
     );
   }
   syncViewUrl();
+  syncPlaybackView();
 }
 
 function tooltipContent(code) {
@@ -2203,6 +2223,11 @@ function schedulePlayback(delay = state.playbackSpeed) {
   }, delay);
 }
 
+function syncPlaybackView() {
+  window.AtlasPlaybackView?.update({ playing: canPlayback(), fullscreen: mapIsFullscreen(),
+    month: dom.displayPeriod.textContent, expanded: state.temporalExpanded });
+}
+
 function syncPlaybackUi() {
   clearTimeout(state.playbackTimer);
   window.AtlasMobileUI?.onPlaybackChanged(canPlayback());
@@ -2234,6 +2259,7 @@ function syncPlaybackUi() {
   if (!state.playbackWanted && state.ready && state.temporalSeries.length) {
     renderTemporalTooltip(state.currentPeriod, true);
   }
+  syncPlaybackView();
   if (canPlayback()) schedulePlayback(state.playbackSpeed);
 }
 
@@ -2242,6 +2268,7 @@ function togglePlayback() {
   state.playbackWanted = !state.playbackWanted;
   if (state.playbackWanted && state.currentPeriod >= state.periods.length - 1) setPeriod(0);
   syncPlaybackUi();
+  if (state.playbackWanted) window.AtlasPlaybackView?.onPlayRequested();
 }
 
 function addPlaybackBlock(reason) {
@@ -2372,6 +2399,7 @@ function observeResponsiveLayout() {
       const timelineHeight = dom.timelinePanel.offsetHeight;
       dom["section-mapa"].style.setProperty("--drawer-bottom", `${timelineHeight + 34}px`);
       map.invalidateSize({ animate: false });
+      syncMapScaleOffset();
       if (state.mapOverview) fitScopeOverview();
       renderVirtualRows();
       drawTemporalChart();
@@ -2399,6 +2427,7 @@ function syncFullscreenControl() {
   dom.toggleFullscreen.setAttribute("data-tooltip", label);
   dom.toggleFullscreen.setAttribute("aria-pressed", String(active));
   dom.toggleFullscreen.classList.toggle("is-active", active);
+  syncPlaybackView();
 }
 
 function enterPseudoFullscreen() {
@@ -2714,6 +2743,8 @@ function bindEvents() {
   map.on("dragstart zoomstart", () => {
     if (!state.fittingScope) state.mapOverview = false;
   });
+  document.addEventListener("map-controls-visibility-change", refreshMapLayout);
+  map.on("zoomend", syncMapScaleOffset);
   map.on("moveend zoomend", () => {
     clearTimeout(state.mapResumeTimer);
     state.mapResumeTimer = window.setTimeout(() => removePlaybackBlock("map"), 180);
@@ -2739,6 +2770,7 @@ function bindEvents() {
 
 async function initialize() {
   bindEvents();
+  window.AtlasPlaybackView?.connect({ togglePlayback, toggleFullscreen: toggleMapFullscreen });
   try {
     const [manifest, updateStatus] = await Promise.all([
       fetchJson("data/manifest.json", "no-cache"),

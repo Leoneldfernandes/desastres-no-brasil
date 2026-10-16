@@ -950,7 +950,7 @@ input:focus-visible,
 .leaflet-control-scale {
   position: absolute;
   right: 0;
-  bottom: var(--map-scale-bottom, 22px);
+  bottom: max(var(--map-scale-bottom, 22px), var(--scale-overlap-bottom, 0px));
   margin: 0 !important;
   transition: bottom 140ms ease;
 }
@@ -3134,4 +3134,39 @@ body[data-mobile="true"][data-layout] .timeline.is-analysis-expanded { max-heigh
 /* In mobile mode the player spans the map width: keep the scale above it. */
 body[data-mobile="true"][data-layout] .leaflet-control-scale {
   bottom: max(var(--map-scale-bottom,22px),calc(var(--drawer-bottom,172px) - 12px));
+}
+
+/* Preserve the interpretation paragraph's normal appearance, including hover. */
+.site-page .about-card p a.layout-letter,
+.site-page .about-card p a.layout-letter:visited,
+.site-page .about-card p a.layout-letter:hover,
+.site-page .about-card p a.layout-letter:active {
+  color: inherit; font: inherit; text-decoration: none; background: none;
+  border: 0; padding: 0; margin: 0; cursor: text;
+}
+.site-page .about-card p a.layout-letter:focus-visible {
+  outline: 2px solid var(--cyan); outline-offset: 2px;
+}
+.fullscreen-invitation, .playback-dock, .mobile-fullscreen-exit { display: none; }
+body[data-mobile="true"] .fullscreen-invitation:not([hidden]) { position: absolute; z-index: 1050; left: 8px; right: 8px; bottom: var(--drawer-bottom,172px); display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel-bg); color: var(--text); font-size: .85rem; }
+.fullscreen-invitation > div { display: flex; gap: 8px; }
+.fullscreen-invitation button { min-height: 44px; flex: 1; padding: 6px; }
+body[data-mobile="true"] .mobile-fullscreen-exit:not([hidden]) { display: block; position: absolute; top: 8px; left: 8px; z-index: 1100; min-height: 44px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--panel-bg); color: var(--text); font-weight: 700; }
+body[data-mobile="true"] .playback-dock:not([hidden]) { display: flex; align-items: center; justify-content: center; gap: 8px; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: min(330px,calc(100% - 16px)); height: 48px; z-index: 1100; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--panel-bg); color: var(--text); }
+.playback-dock > span { color: var(--cyan); font-size: .82rem; font-weight: 700; }
+.playback-dock button { min-height: 44px; padding: 0 6px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font-size: .78rem; font-weight: 700; }
+body[data-mobile="true"] .map-stage .timeline,
+body[data-mobile="true"] .map-stage .map-tools,
+body[data-mobile="true"] .map-stage .leaflet-top,
+body[data-mobile="true"] .map-stage .north-indicator { transition: opacity 600ms ease; }
+body[data-mobile="true"] .map-stage.playback-controls-hidden .timeline,
+body[data-mobile="true"] .map-stage.playback-controls-hidden .map-tools,
+body[data-mobile="true"] .map-stage.playback-controls-hidden .leaflet-top,
+body[data-mobile="true"] .map-stage.playback-controls-hidden .north-indicator { opacity: 0; pointer-events: none; }
+body[data-mobile="true"][data-layout] .map-stage.playback-controls-hidden .leaflet-control-scale { bottom: max(var(--map-scale-bottom,22px),82px); }
+@media (prefers-reduced-motion: reduce) {
+  body[data-mobile="true"] .map-stage .timeline,
+  body[data-mobile="true"] .map-stage .map-tools,
+  body[data-mobile="true"] .map-stage .leaflet-top,
+  body[data-mobile="true"] .map-stage .north-indicator { transition: none; }
 }

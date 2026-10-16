@@ -13,6 +13,8 @@ VERSIONED_ASSETS = (
     "assets/js/export-worker.js",
     "assets/js/app.js",
     "assets/js/mobile-ui.js",
+    "assets/js/playback-view.js",
+    "assets/js/layout-shortcuts.js",
     "assets/js/navigation.js",
     "assets/js/visitor-config.js",
     "assets/js/welcome.js",
