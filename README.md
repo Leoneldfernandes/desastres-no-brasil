@@ -151,4 +151,4 @@ Até 760 pixels de largura disponível, ou até 1000 pixels com altura de até 5
 
 **Opções → Privacidade e estatísticas de acesso** reabre o mesmo aviso usado no desktop. A escolha de estatísticas fica salva no navegador por até 180 dias; aceitar ou recusar não impede a consulta ao mapa. Nenhuma mudança na política de coleta faz parte desta versão.
 
-A próxima revisão de reprodução móvel e a situação dos atalhos estão descritas em [Reprodução móvel e atalhos](docs/reproducao-movel.md). O acionador dos atalhos aguarda a definição do responsável.
+A próxima revisão de reprodução móvel e a situação dos atalhos estão descritas em [Reprodução móvel e atalhos](docs/reproducao-movel.md). Os três atalhos ficam discretamente no A de Ausência, no l de limitações e no c de correções, no parágrafo Como interpretar da seção Sobre.

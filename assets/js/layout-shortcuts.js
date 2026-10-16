@@ -1,4 +1,4 @@
-/* A convenience gesture, not access control: one letter in the About title. */
+/* Discreet layout links in the interpretation paragraph; not access control. */
 (() => {
   'use strict';
   function layoutUrl(href, layout) {
@@ -11,21 +11,15 @@
   }
   if (typeof module !== 'undefined' && module.exports) module.exports = { layoutUrl };
   if (typeof document === 'undefined') return;
-  const trigger = document.getElementById('aboutLayoutTrigger');
-  const panel = document.getElementById('aboutLayoutShortcuts');
-  if (!trigger || !panel) return;
-  const links = panel.querySelectorAll('[data-layout-shortcut]');
-  const syncLinks = () => links.forEach(link => { link.href = layoutUrl(window.location.href, link.dataset.layoutShortcut); });
-  const close = () => { panel.hidden = true; trigger.setAttribute('aria-expanded', 'false'); };
-  trigger.addEventListener('click', () => {
-    syncLinks(); panel.hidden = !panel.hidden;
-    trigger.setAttribute('aria-expanded', String(!panel.hidden));
+  const links = document.querySelectorAll('#section-sobre [data-layout-shortcut]');
+  const syncLinks = () => links.forEach(link => {
+    link.href = layoutUrl(window.location.href, link.dataset.layoutShortcut);
   });
+  // Native anchors preserve ordinary click, keyboard, copy-link and new-tab actions.
   links.forEach(link => link.addEventListener('click', syncLinks));
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !panel.hidden && !document.getElementById('welcomeDialog')?.open) {
-      close(); trigger.focus({ preventScroll: true }); event.preventDefault();
-    }
-  });
-  document.addEventListener('site-section-change', close);
+  document.addEventListener('site-section-change', syncLinks);
+  window.addEventListener('pageshow', syncLinks);
+  window.addEventListener('popstate', syncLinks);
+  window.addEventListener('hashchange', syncLinks);
+  syncLinks();
 })();

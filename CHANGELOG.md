@@ -12,7 +12,7 @@ A nova versão só passa a identificar o site após a incorporação e publicaç
 
 - Prepara convite opcional para tela cheia no celular e recolhimento de controles após cinco segundos sem interação, com mês, pausa, recuperação e saída sempre acessíveis.
 - Afasta a escala quando ela cruza o reprodutor, incluindo tablets, preservando o posicionamento sem colisão.
-- Prepara três destinos de layout. O acionador aguarda a definição do responsável; nenhum ponto de acesso foi ativado.
+- Inclui três atalhos discretos no parágrafo Como interpretar: A de Ausência (amplo), l de limitações (intermediário) e c de correções (compacto), preservando o texto e sua aparência.
 - Revisão visual da implementação e autorização de publicação pendentes. O site público continua na v0.68 até publicação autorizada.
 
 ## 0.68 — 11/10/2026 · PR #68

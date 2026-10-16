@@ -58,3 +58,12 @@ test('scale moves only when its baseline intersects the player, independent of s
   assert.equal(context.scaleOverlapOffset(1024, player, { ...scale, top: 850, bottom: 870 }), 0);
   assert.equal(context.scaleOverlapOffset(1024, player, { ...scale, width: 0 }), 0);
 });
+
+test('discreet links wrap only the three requested letters and preserve the paragraph', () => {
+  const html = fs.readFileSync(require.resolve('../index.html'), 'utf8');
+  const fragment = html.split('<h3>Como interpretar</h3>')[1].match(/<p>(.*?)<\/p>/s)[1];
+  assert.equal(fragment.replace(/<[^>]+>/g, ''), 'O mês corresponde à data do evento registrada na fonte. Ausência de registro não significa ausência de desastre. Os valores refletem os danos declarados e podem apresentar limitações ou receber correções.');
+  const letters = [...fragment.matchAll(/data-layout-shortcut="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map(m => [m[1], m[2]]);
+  assert.deepEqual(letters, [['amplo', 'A'], ['intermediario', 'l'], ['compacto', 'c']]);
+  assert.equal(html.includes('id="aboutLayoutTrigger"'), false);
+});

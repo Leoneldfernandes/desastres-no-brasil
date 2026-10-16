@@ -8,9 +8,17 @@
 - Usar o modo ampliado existente quando a tela cheia nativa estiver indisponível. Toques no mapa continuam consultando municípios; não recuperam os controles.
 - A escala permanece acima dos créditos e só recebe afastamento extra quando sua posição cruza o reprodutor. O afastamento acompanha redimensionamento e zoom; o desktop sem colisão conserva sua posição.
 
-## Atalhos discretos — local pendente
+## Atalhos discretos em Como interpretar
 
-Preparados três destinos: **Amplo**, **Intermediário** e **Compacto**. O responsável definirá a letra ou local específico de acesso. Nenhum acionador foi ativado no título ou em outro ponto da interface; a proposta de cinco cliques também foi retirada. O módulo aguarda a presença do acionador a ser definido, sem modificar a navegação atual.
+No parágrafo de **Como interpretar**, dentro de **Sobre**, os três links estão nas letras definidas pelo responsável:
+
+| Local exato | Destino |
+| --- | --- |
+| **A** inicial da primeira ocorrência de **Ausência** | Amplo |
+| **l** inicial de **limitações** | Intermediário |
+| **c** inicial da última palavra **correções** | Compacto |
+
+São links diretos, acionados com um clique ou toque; não há menu oculto, sequência de cliques ou acionador no título Sobre. Texto, cor, fonte e espaçamento do parágrafo são mantidos. Não há sublinhado, alteração de cor ao passar o mouse, tooltip ou cursor de link. A navegação por teclado preserva o indicador de foco e os links têm nomes acessíveis. O texto visível não explica os atalhos; o registro fica nesta documentação.
 
 **Amplo** remove o modo forçado e retorna ao comportamento automático: em 1920×1080 recupera o amplo aprovado; em janelas menores mantém a adaptação por largura e altura. Não força o desktop amplo em uma tela onde ele não cabe.
 
