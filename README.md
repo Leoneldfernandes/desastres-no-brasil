@@ -6,7 +6,7 @@ Versão do site: **v0.70 · Em desenvolvimento**, publicada pelo PR #70. Veja o 
 
 As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em telas largas, o conjunto acompanha o centro do mapa. As capinhas ficam parcialmente sobrepostas, com largura 10% maior por aba em telas com espaço suficiente. A ordem de sobreposição é Mapa, Dashboard e Sobre; a aba selecionada sempre fica em primeiro plano, conectada à moldura do conteúdo, sem uma faixa separada ocupando a altura do mapa. O Mapa abre inicialmente e preserva os filtros ao alternar de seção; sair dele pausa a reprodução. O Dashboard avisa que novos gráficos e análises estão em desenvolvimento. O Sobre apresenta autoria, fonte dos dados, orientações de interpretação e preferências de privacidade. Os fragmentos `#dashboard` e `#sobre` permitem abrir diretamente essas seções sem alterar os parâmetros da visualização.
 
-A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4 e só são ativadas após autorização do visitante. Antes da configuração da propriedade, a apresentação não solicita consentimento nem envia visitas. Veja [ativação das métricas e migração do endereço](docs/metricas-e-migracao.md).
+A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4, já configurado, e só são ativadas após autorização do visitante. A recusa permite usar o mapa normalmente. Veja [estado das métricas, privacidade e endereço](docs/metricas-e-migracao.md).
 
 <!-- atlas-release:start -->
 Mapa espaço-temporal dos registros oficiais de desastres no Brasil, com cobertura nacional e todos os meses de janeiro de 1991 a dezembro de 2025.
@@ -151,4 +151,4 @@ Até 760 pixels de largura disponível, ou até 1000 pixels com altura de até 5
 
 **Opções → Privacidade e estatísticas de acesso** reabre o mesmo aviso usado no desktop. A escolha de estatísticas fica salva no navegador por até 180 dias; aceitar ou recusar não impede a consulta ao mapa. Nenhuma mudança na política de coleta faz parte desta versão.
 
-A próxima revisão de reprodução móvel e a situação dos atalhos estão descritas em [Reprodução móvel e atalhos](docs/reproducao-movel.md). Os três atalhos ficam discretamente no A de Ausência, no l de limitações e no c de correções, no parágrafo Como interpretar da seção Sobre.
+A reprodução móvel com convite opcional de tela cheia e controles recolhíveis foi publicada na v0.70 e aprovada por toque no S23 Ultra; a Issue #17 está encerrada. O funcionamento e a conferência estão descritos em [Reprodução móvel e atalhos](docs/reproducao-movel.md). Os três atalhos, concluídos na Issue #69, ficam discretamente no A de Ausência, no l de limitações e no c de correções, no parágrafo Como interpretar da seção Sobre.

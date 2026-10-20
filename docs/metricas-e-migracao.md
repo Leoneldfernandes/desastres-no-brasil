@@ -8,13 +8,19 @@ Endereço publicado após a renomeação do repositório: `https://leoneldfernan
 
 ## Google Analytics 4
 
-A propriedade **Desastres no Brasil** e seu fluxo Web foram configurados em 1 de outubro de 2026. ID de medição público: `G-3606SCXD0R`. A conferência administrativa confirmou: medição otimizada desligada; Google Signals e dados fornecidos pelo usuário não ativados; coleta granular de localização/dispositivo desligada; personalização de anúncios permitida em 0 de 307 regiões; compartilhamento opcional da conta desligado; retenção de usuários e eventos em dois meses, sem redefinir o prazo com nova atividade; acesso da conta restrito ao responsável. A ativação no código está condicionada à autorização de cada visitante.
+A propriedade **Desastres no Brasil** e seu fluxo Web foram configurados em 1 de outubro de 2026. ID de medição público: `G-3606SCXD0R`. A integração está configurada em `assets/js/visitor-config.js`, com `privacySettingsVerified: true`; cada visitante continua precisando autorizar a coleta.
 
-A integração permanece desativada até existir uma propriedade real e suas opções serem conferidas. Nesse intervalo, a janela apresenta o mapa e o botão “Explorar mapa”, sem pedir uma autorização que ainda não seria usada.
+A conferência administrativa registrada na ativação confirmou medição otimizada desligada, Google Signals e dados fornecidos pelo usuário não ativados, personalização de anúncios permitida em 0 de 307 regiões, compartilhamento opcional da conta desligado, retenção de usuários e eventos em dois meses sem redefinição com nova atividade e acesso restrito ao responsável. Em 02/10/2026, a coleta granular de localização e dispositivo foi ativada a pedido do responsável para permitir relatórios por cidade; o aviso foi atualizado na v0.42.4. A localização é aproximada e a mesma opção inclui metadados técnicos de dispositivo.
+
+Este registro documenta as decisões e conferências anteriores; a revisão documental de 20/10/2026 não alterou nem reauditou as configurações privadas da conta Google. A [Issue #30](https://github.com/Leoneldfernandes/desastres-no-brasil/issues/30) registra a conclusão desta entrega. Não há contador público no mapa.
+
+### Manutenção ou reconfiguração
+
+As etapas abaixo servem para uma futura troca de propriedade ou revisão administrativa; não são pendências de ativação:
 
 1. Na conta Google do responsável, criar ou selecionar uma propriedade GA4 do projeto e um fluxo de dados da Web. Usar o endereço publicado do site. O cadastro e a aceitação de termos precisam do responsável; senhas não devem ser compartilhadas no repositório ou no chat.
 2. No fluxo da Web, desativar **Medição otimizada**. Isso evita eventos extras e visualizações duplicadas causadas pelas mudanças de URL dos filtros do mapa.
-3. Na coleta de dados da propriedade, manter **Google Signals**, publicidade, personalização de anúncios e dados fornecidos pelo usuário desativados. Desativar a coleta granular de localização e dispositivo; conferir os rótulos atuais no painel. Dados geográficos mais amplos, como país, ainda podem ser derivados pelo Google e são informados no aviso.
+3. Na coleta de dados da propriedade, manter **Google Signals**, publicidade, personalização de anúncios e dados fornecidos pelo usuário desativados. Preservar a decisão aprovada de localização aproximada por país, estado e cidade, com os metadados técnicos associados; conferir os rótulos atuais no painel e manter o aviso coerente com a configuração.
 4. Definir a retenção de eventos e usuários em dois meses, manter o painel privado e desativar opções de compartilhamento de dados que não sejam necessárias. Não vincular Google Ads nem conceder acesso público aos relatórios.
 5. Copiar o **ID de medição** público, no formato `G-XXXXXXXXXX`, para `assets/js/visitor-config.js`. Definir `privacySettingsVerified: true` somente após conferir as opções acima. Esse ID não dá acesso de leitura à conta; não é necessário segredo de API.
 6. Atualizar os hashes SHA-256 das referências de arquivos alterados em `index.html` e executar a validação.
@@ -24,7 +30,7 @@ A configuração do site não consegue auditar as opções privadas da proprieda
 
 ## Autorização e significado dos números
 
-A janela traz uma opção de estatísticas desligada inicialmente, “Salvar minha escolha”, “Concordo e continuar” e “Continuar sem contabilizar”. A recusa permite usar o mapa normalmente. “Sobre e privacidade” reabre as preferências.
+A janela traz uma opção de estatísticas desligada inicialmente, “Salvar minha escolha”, “Concordo e continuar” e “Continuar sem contabilizar”. A recusa permite usar o mapa normalmente. “Sobre e privacidade” reabre as preferências; no celular, o acesso fica em **Opções → Privacidade e estatísticas de acesso**.
 
 O Google só recebe pedidos após uma autorização válida. Usamos o modo de consentimento básico: o script não é baixado antes da escolha. Na recusa posterior, a flag oficial `ga-disable-ID` bloqueia a medição e os cookies próprios do Analytics, com prefixo `dnb`, são removidos. A decisão pode ser revista em outra aba e é armazenada localmente por até 180 dias. Cookies de Analytics usam esse mesmo prazo máximo. A retirada da autorização não apaga dados já recebidos pelo Google.
 
@@ -36,17 +42,17 @@ O Analytics usa cookies e informações técnicas. O Google declara que deriva l
 
 ## Migração do endereço e pesquisa Google
 
-Renomear o repositório de `desastres-temporais` para `desastres-no-brasil` em **GitHub → Settings → Repository name**. A operação exige acesso administrativo, que não é fornecido pelo conector GitHub usado para commits e PRs.
+O repositório e o site já usam **desastres-no-brasil**. A apresentação, o título e o subtítulo estão publicados no endereço indicado no início deste documento. A consulta de atualização do Atlas deriva o nome do repositório do endereço do GitHub Pages.
 
-1. Publicar e conferir a apresentação, o título e o subtítulo.
-2. Renomear o repositório e conferir **Settings → Pages** e o novo endereço publicado.
-3. Testar mapa, filtros, compartilhamento, exportação e consulta de atualização do Atlas. O código dessa consulta deriva o nome do repositório do endereço do GitHub Pages.
-4. Atualizar links divulgados. O usuário optou por trocar o link, sem manter uma página no endereço antigo. O GitHub redireciona links do repositório, mas não o endereço do GitHub Pages.
-5. Depois de verificar o novo endereço, definir a URL canônica, disponibilizar `sitemap.xml` e `robots.txt` e enviar a URL ao Google Search Console da conta do responsável. A indexação depende do Google; publicar essas informações não garante inclusão imediata nem posição na pesquisa.
+O responsável optou pela troca do link, sem manter uma página no endereço antigo. O GitHub redireciona links do repositório, mas não o endereço do GitHub Pages. A divulgação deve usar o endereço atual.
 
-## Navegação futura
+A preparação para pesquisa Google permanece como etapa separada: conferir URL canônica, preparar `sitemap.xml` e `robots.txt` e encaminhar a URL pelo Google Search Console da conta do responsável. Esta revisão não acessou o Search Console nem confirmou o estado de indexação. A indexação depende do Google; os arquivos não garantem inclusão imediata nem posição na pesquisa.
 
-A navegação **Introdução | Dashboard | Sobre** está planejada na issue #40 para um PR separado. O mapa e os indicadores atuais podem iniciar o Dashboard; a Introdução e o Sobre terão espaço próprio para orientações, fontes, metodologia e autoria. A integração de métricas deste PR já usa o provedor escolhido, Google Analytics.
+## Navegação publicada e próxima etapa
+
+A navegação **Mapa | Dashboard | Sobre** foi publicada na v0.43.0. O Mapa é a tela inicial; o Sobre reúne apresentação, autoria, fontes, interpretação e privacidade. O Dashboard ainda apresenta o aviso de desenvolvimento: seu conteúdo analítico depende de planejamento e proposta próprios.
+
+Resumo semanal de métricas por e-mail ou painel permanece apenas como possibilidade futura, sem automação contratada nesta entrega.
 
 ## Referências técnicas
 

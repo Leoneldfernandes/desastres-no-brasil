@@ -1,6 +1,6 @@
 # Reprodução móvel e atalhos de visualização
 
-## Experiência proposta
+## Experiência publicada na v0.70
 
 - Na primeira reprodução de cada visita (aba/sessão), oferecer **Tela cheia** e **Agora não**, sem interromper nem forçar a reprodução. O armazenamento funcional é opcional e não contém dados de visitantes.
 - Em tela cheia móvel, recolher a barra e as ferramentas após **5 segundos sem interação**. Seleção ativa, menus abertos, foco por teclado, pausa, gráficos expandidos e aba oculta impedem o recolhimento.
@@ -24,10 +24,14 @@ São links diretos, acionados com um clique ou toque; não há menu oculto, sequ
 
 Os links alteram apenas o parâmetro `layout` e o fragmento para `#mapa`. Mês, território, tipologias, município e contexto da série são preservados. Os limites de largura e altura continuam valendo: o pedido intermediário usa compacto onde falta espaço. Trata-se de conveniência discreta, não de autenticação ou controle de acesso.
 
-## Validação antes da publicação
+## Validação concluída
 
-Automatizados: verificar temporizador com relógio controlado, interação/foco, recuperação/pausa/saída, links com parâmetros completos, colisão geométrica da escala, hashes dos assets, testes existentes e integridade dos dados.
+O [PR #70](https://github.com/Leoneldfernandes/desastres-no-brasil/pull/70) foi incorporado e a v0.70 publicada em 16/10/2026, após autorização explícita. Foram aprovados 81 testes Python e 50 Node, incluindo temporizador, interação/foco, URLs dos atalhos, colisão da escala, hashes e integridade dos dados. CI da main e GitHub Pages concluídos com sucesso.
 
-Conferência visual ainda obrigatória na branch: 1920×1080 (três estilos), 1366×768, 768×1024, 820×1180, 1024×768, 1180×820, 412×860, 390×844, 320×568 e 860×412. Validar toque físico no S23 Ultra e tela cheia nativa/alternativa. Confirmar que Pausar e Controles respondem ao primeiro toque, que seletores abertos e foco por teclado não somem e que a escala não cruza barra ou dock.
+Conferência no site publicado, com zoom interno de 100%: 1920×1080 (três estilos), 1366×768, 768×1024, 820×1180, 1024×768, 1180×820, 412×860, 320×568 e 860×412. Desktop Full HD preserva mapa 1283×982 e reprodutor 820×119. Nos tablets afetados, a escala termina 12 px acima da barra; nas posições sem colisão, mantém o afastamento anterior. Sem rolagem horizontal nas janelas conferidas.
 
-O navegador de revisão desta sessão bloqueou arquivos locais por política de protocolo. A revisão de interface da nova branch não foi afirmada como concluída. A imagem de proposta anterior é conceitual, não prova da implementação. A Issue #17 permanece aberta até concluir a verificação e a publicação autorizada.
+Foram conferidos convite opcional, recolhimento, recuperação sem pausar, pausa no primeiro clique, saída, proteção da série expandida e do foco por teclado, privacidade, busca e compartilhamento. Os três atalhos preservaram SC, novembro/2025, Granizo e Florianópolis, com o parágrafo visualmente inalterado.
+
+Em 16/10/2026, o responsável confirmou a verificação por toque no seu S23 Ultra após receber a lista de testes de tela cheia, controles, pausa, saída, busca, filtros, velocidade e orientação. A [Issue #17](https://github.com/Leoneldfernandes/desastres-no-brasil/issues/17) foi encerrada. A [Issue #69](https://github.com/Leoneldfernandes/desastres-no-brasil/issues/69), dos atalhos, também está concluída.
+
+A conferência por janelas simuladas e a aprovação no S23 Ultra não representam testes físicos de todos os tablets ou navegadores. O navegador móvel utilizado não foi informado; não há validação individual de fullscreen nativo por navegador.
