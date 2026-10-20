@@ -10,10 +10,10 @@ A nova versão só passa a identificar o site após a incorporação e publicaç
 
 ## 0.70 — 16/10/2026 · PR #70
 
-- Prepara convite opcional para tela cheia no celular e recolhimento de controles após cinco segundos sem interação, com mês, pausa, recuperação e saída sempre acessíveis.
+- Inclui convite opcional para tela cheia no celular e recolhimento de controles após cinco segundos sem interação, com mês, pausa, recuperação e saída sempre acessíveis.
 - Afasta a escala quando ela cruza o reprodutor, incluindo tablets, preservando o posicionamento sem colisão.
 - Inclui três atalhos discretos no parágrafo Como interpretar: A de Ausência (amplo), l de limitações (intermediário) e c de correções (compacto), preservando o texto e sua aparência.
-- Publicação autorizada pelo responsável em 16/10/2026. Implementação original preservada em 20/08/2026. A conferência publicada será registrada no PR.
+- Publicação autorizada pelo responsável em 16/10/2026. Implementação original preservada em 20/08/2026. Conferência publicada registrada no PR #70; toque no S23 Ultra aprovado pelo responsável em 16/10/2026. Issues #17 e #69 encerradas.
 
 ## 0.68 — 11/10/2026 · PR #68
 
