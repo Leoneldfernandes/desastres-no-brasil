@@ -75,8 +75,8 @@ class SearchMetadataTests(unittest.TestCase):
         self.assertEqual(len(head.meta.get("google-site-verification", [])), 1)
         self.assertRegex(head.meta["google-site-verification"][0], r"^[A-Za-z0-9_-]{20,}$")
         self.assertEqual(len(head.meta.get("robots", [])), 1)
-        # A liberação autorizada troca somente noindex por index; regras conflitantes falham.
-        self.assertIn(head.meta["robots"][0], ("noindex, follow", "index, follow"))
+        # Liberação explícita registrada no PR #73; a prévia continua excluída.
+        self.assertEqual(head.meta["robots"][0], "index, follow")
 
     def test_layout_preview_stays_out_of_search_results(self):
         preview = read_head(ROOT / "docs" / "preview-layout.html")

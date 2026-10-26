@@ -2,13 +2,13 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
-Versão do site: **v0.72 · Em desenvolvimento**, publicada pelo PR #72. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
+Versão do site: **v0.73 · Em desenvolvimento**, publicada pelo PR #73. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
 
 As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em telas largas, o conjunto acompanha o centro do mapa. As capinhas ficam parcialmente sobrepostas, com largura 10% maior por aba em telas com espaço suficiente. A ordem de sobreposição é Mapa, Dashboard e Sobre; a aba selecionada sempre fica em primeiro plano, conectada à moldura do conteúdo, sem uma faixa separada ocupando a altura do mapa. O Mapa abre inicialmente e preserva os filtros ao alternar de seção; sair dele pausa a reprodução. O Dashboard avisa que novos gráficos e análises estão em desenvolvimento. O Sobre apresenta autoria, fonte dos dados, orientações de interpretação e preferências de privacidade. Os fragmentos `#dashboard` e `#sobre` permitem abrir diretamente essas seções sem alterar os parâmetros da visualização.
 
 A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4, já configurado, e só são ativadas após autorização do visitante. A recusa permite usar o mapa normalmente. Veja [estado das métricas, privacidade e endereço](docs/metricas-e-migracao.md).
 
-A preparação para pesquisa Google foi autorizada para publicação com `noindex` temporário; a liberação para busca aguarda autorização após a qualificação. Inclui título e descrição aprovados, URL canônica, sitemap e metatag real de propriedade. A propriedade foi adicionada ao Search Console; o resultado da confirmação após publicação é acompanhado no PR #72. Nenhuma indexação foi solicitada. Veja o [estado e roteiro de liberação](docs/indexacao-google.md).
+A indexação da página principal foi liberada pelo responsável em 26/10/2026, no PR #73, com `index, follow`. Título e descrição aprovados, URL canônica, sitemap e metatag de propriedade foram preservados; a prévia de layout continua com `noindex`. A confirmação no Search Console, o envio do sitemap e o pedido manual de indexação são acompanhados no PR #73. Permitir indexação não garante inclusão imediata nos resultados. Veja o [estado e roteiro de indexação](docs/indexacao-google.md).
 
 <!-- atlas-release:start -->
 Mapa espaço-temporal dos registros oficiais de desastres no Brasil, com cobertura nacional e todos os meses de janeiro de 1991 a dezembro de 2025.
