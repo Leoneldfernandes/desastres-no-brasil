@@ -46,7 +46,7 @@ O repositório e o site já usam **desastres-no-brasil**. A apresentação, o t�
 
 O responsável optou pela troca do link, sem manter uma página no endereço antigo. O GitHub redireciona links do repositório, mas não o endereço do GitHub Pages. A divulgação deve usar o endereço atual.
 
-A preparação para pesquisa Google está em revisão separada, aguardando liberação após a qualificação: título e descrição candidatos, URL canônica, sitemap e regra temporária `noindex` na branch. Nenhuma publicação, verificação de propriedade ou solicitação ao Search Console foi feita nesta etapa. O roteiro está em [Indexação Google](indexacao-google.md). `robots.txt` só tem efeito na raiz do host, não na pasta deste projeto, e não é necessário para enviar o sitemap pelo Search Console. A indexação depende do Google; os arquivos não garantem inclusão imediata nem posição na pesquisa.
+A preparação para pesquisa Google está em revisão separada, aguardando liberação após a qualificação: título e descrição candidatos, URL canônica, sitemap e regra temporária `noindex` na branch. A propriedade foi adicionada no Search Console e a metatag real está no PR #72, aguardando autorização de publicação para confirmar a propriedade. Nenhuma indexação foi solicitada. O roteiro está em [Indexação Google](indexacao-google.md). `robots.txt` só tem efeito na raiz do host, não na pasta deste projeto, e não é necessário para enviar o sitemap pelo Search Console. A indexação depende do Google; os arquivos não garantem inclusão imediata nem posição na pesquisa.
 
 ## Navegação publicada e próxima etapa
 

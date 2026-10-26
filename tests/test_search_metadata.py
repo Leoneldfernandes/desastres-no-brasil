@@ -72,6 +72,8 @@ class SearchMetadataTests(unittest.TestCase):
         description = head.meta["description"][0]
         for subject in ("Atlas Digital", "ocorrências", "danos humanos", "prejuízos econômicos", "município"):
             self.assertIn(subject, description)
+        self.assertEqual(len(head.meta.get("google-site-verification", [])), 1)
+        self.assertRegex(head.meta["google-site-verification"][0], r"^[A-Za-z0-9_-]{20,}$")
         self.assertEqual(len(head.meta.get("robots", [])), 1)
         # A liberação autorizada troca somente noindex por index; regras conflitantes falham.
         self.assertIn(head.meta["robots"][0], ("noindex, follow", "index, follow"))

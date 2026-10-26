@@ -1,19 +1,20 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #70, a identificação adotada é `v0.70`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na revisão do PR #72, a identificação preparada é `v0.72`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-Na publicação atual, o PR #70 identifica o site como `v0.70`, inclusive por se tratar de um ajuste pequeno. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+O PR #72 prepara a identificação `v0.72`; ela só passa a valer no site após a publicação autorizada. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
-## Em preparação — Pesquisa Google
+## 0.72 — 26/10/2026 · PR #72 (em revisão)
 
 - Prepara título e descrição candidatos, URL canônica e sitemap de um único endereço, preservando o cabeçalho, os textos de autoria e a navegação.
 - Mantém `noindex` temporário na branch e documenta a liberação explícita após a qualificação; Search Console e solicitação de indexação permanecem pendentes.
 - Acrescenta validação dos metadados e sitemap e esclarece a localização do robots.txt na raiz do host.
-- A interface pública continua v0.70. Versão e data serão atualizadas antes da publicação autorizada do PR, sem antecipar a liberação para busca.
+- Inclui a metatag real fornecida pelo Search Console da conta do responsável; a propriedade foi adicionada, mas a confirmação depende da publicação e verificação.
+- Prepara versão v0.72, data de atualização e prévia; preserva a implementação original em 20/08/2026. A interface pública continua v0.70 até autorizar a publicação. A indexação permanece bloqueada no candidato até liberação específica após a qualificação.
 
 ## 0.70 — 16/10/2026 · PR #70
 

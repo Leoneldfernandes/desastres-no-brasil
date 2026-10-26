@@ -2,13 +2,13 @@
 
 **Mapa interativo de ocorrências e impactos ao longo do tempo.**
 
-Versão do site: **v0.70 · Em desenvolvimento**, publicada pelo PR #70. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
+Versão desta revisão: **v0.72 · Em desenvolvimento**, preparada no PR #72 e ainda não publicada. Veja o [histórico de versões e a regra de atualização](CHANGELOG.md). A versão da interface é independente da versão da base do Atlas.
 
 As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em telas largas, o conjunto acompanha o centro do mapa. As capinhas ficam parcialmente sobrepostas, com largura 10% maior por aba em telas com espaço suficiente. A ordem de sobreposição é Mapa, Dashboard e Sobre; a aba selecionada sempre fica em primeiro plano, conectada à moldura do conteúdo, sem uma faixa separada ocupando a altura do mapa. O Mapa abre inicialmente e preserva os filtros ao alternar de seção; sair dele pausa a reprodução. O Dashboard avisa que novos gráficos e análises estão em desenvolvimento. O Sobre apresenta autoria, fonte dos dados, orientações de interpretação e preferências de privacidade. Os fragmentos `#dashboard` e `#sobre` permitem abrir diretamente essas seções sem alterar os parâmetros da visualização.
 
 A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4, já configurado, e só são ativadas após autorização do visitante. A recusa permite usar o mapa normalmente. Veja [estado das métricas, privacidade e endereço](docs/metricas-e-migracao.md).
 
-A preparação para pesquisa Google está em revisão e aguarda liberação após a qualificação: título e descrição candidatos, URL canônica e sitemap. A branch inclui `noindex` temporário, que só afeta o site se for publicada. Ainda não houve verificação de propriedade nem solicitação de indexação no Search Console. Veja o [estado e roteiro de liberação](docs/indexacao-google.md).
+A preparação para pesquisa Google está em revisão e aguarda liberação após a qualificação: título e descrição candidatos, URL canônica e sitemap. A branch inclui `noindex` temporário, que só afeta o site se for publicada. A propriedade foi adicionada ao Search Console; sua confirmação aguarda a publicação autorizada da metatag real. Nenhuma indexação foi solicitada. Veja o [estado e roteiro de liberação](docs/indexacao-google.md).
 
 <!-- atlas-release:start -->
 Mapa espaço-temporal dos registros oficiais de desastres no Brasil, com cobertura nacional e todos os meses de janeiro de 1991 a dezembro de 2025.
