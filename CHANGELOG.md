@@ -1,12 +1,19 @@
 # Versões do site
 
-A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #72, a identificação adotada é `v0.72`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
+A versão do site identifica a interface publicada e é independente da versão da base do Atlas. Na publicação do PR #73, a identificação adotada é `v0.73`, vinculada ao número do PR conforme a preferência do responsável pelo projeto. As versões anteriores permanecem registradas com sua numeração original.
 
 ## Regra de atualização
 
-O PR #72 identifica o site como `v0.72`, conforme a publicação autorizada. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
+O PR #73 identifica o site como `v0.73`, conforme a liberação autorizada. A indicação da próxima atualização será decidida pelo responsável pelo projeto; não acrescentar um terceiro número automaticamente. A primeira versão completa (`1.0`) também depende dessa decisão.
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
+
+## 0.73 — 26/10/2026 · PR #73
+
+- Libera a indexação da página principal, trocando `noindex, follow` por `index, follow`, conforme nova autorização explícita do responsável em 26/10/2026.
+- Preserva título, descrição, URL canônica, sitemap, metatag de propriedade, créditos, dados, controles e consentimento do Analytics.
+- Mantém a página auxiliar de revisão fora das buscas e sincroniza versão, documentação e prévia. Implementação original preservada em 20/08/2026.
+- Registra no PR o resultado da publicação e das etapas externas no Search Console, sem presumir inclusão nos resultados a partir do deploy.
 
 ## 0.72 — 26/10/2026 · PR #72
 

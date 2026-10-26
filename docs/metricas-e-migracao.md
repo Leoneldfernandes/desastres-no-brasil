@@ -46,7 +46,7 @@ O repositório e o site já usam **desastres-no-brasil**. A apresentação, o t�
 
 O responsável optou pela troca do link, sem manter uma página no endereço antigo. O GitHub redireciona links do repositório, mas não o endereço do GitHub Pages. A divulgação deve usar o endereço atual.
 
-A publicação da preparação para pesquisa Google foi autorizada no PR #72, mantendo noindex: título e descrição aprovados, URL canônica, sitemap e metatag real de propriedade. A liberação para busca aguarda autorização após a qualificação. A propriedade foi adicionada no Search Console; o resultado da confirmação após publicação é registrado no PR #72. Nenhuma indexação foi solicitada. O roteiro está em [Indexação Google](indexacao-google.md). `robots.txt` só tem efeito na raiz do host, não na pasta deste projeto, e não é necessário para enviar o sitemap pelo Search Console. A indexação depende do Google; os arquivos não garantem inclusão imediata nem posição na pesquisa.
+A preparação foi publicada no PR #72 com noindex. Em 26/10/2026, o responsável autorizou liberar a indexação imediatamente: o PR #73 troca a página principal para `index, follow`, preservando título, descrição, URL canônica, sitemap e metatag de propriedade. A propriedade foi adicionada no Search Console; confirmação, envio do sitemap e pedido manual são acompanhados no PR #73. O roteiro está em [Indexação Google](indexacao-google.md). `robots.txt` só tem efeito na raiz do host, não na pasta deste projeto, e não é necessário para enviar o sitemap pelo Search Console. Permitir indexação e solicitar rastreamento não garantem prazo nem posição nos resultados.
 
 ## Navegação publicada e próxima etapa
 
