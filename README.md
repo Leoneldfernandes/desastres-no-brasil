@@ -8,6 +8,8 @@ As abas **Mapa**, **Dashboard** e **Sobre** ficam integradas ao cabeçalho. Em t
 
 A apresentação inicial orienta a navegação. As estatísticas privadas usam Google Analytics 4, já configurado, e só são ativadas após autorização do visitante. A recusa permite usar o mapa normalmente. Veja [estado das métricas, privacidade e endereço](docs/metricas-e-migracao.md).
 
+A preparação para pesquisa Google está em revisão e aguarda liberação após a qualificação: título e descrição candidatos, URL canônica e sitemap. A branch inclui `noindex` temporário, que só afeta o site se for publicada. Ainda não houve verificação de propriedade nem solicitação de indexação no Search Console. Veja o [estado e roteiro de liberação](docs/indexacao-google.md).
+
 <!-- atlas-release:start -->
 Mapa espaço-temporal dos registros oficiais de desastres no Brasil, com cobertura nacional e todos os meses de janeiro de 1991 a dezembro de 2025.
 

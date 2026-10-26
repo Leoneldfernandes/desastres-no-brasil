@@ -8,6 +8,13 @@ Na publicação atual, o PR #70 identifica o site como `v0.70`, inclusive por se
 
 A nova versão só passa a identificar o site após a incorporação e publicação do PR. No PR que muda a versão, atualizar juntos a seção Atualização do site em `index.html`, a identificação no `README.md` e este histórico. A seção mostra a versão, a data de implementação original do site e a última atualização. A data original é fixa: **20/08/2026**, confirmada pela [primeira publicação bem-sucedida no GitHub Pages](https://github.com/Leoneldfernandes/desastres-no-brasil/actions/runs/32402841959). Ao publicar uma nova versão, atualizar apenas a versão e a data da última atualização; preservar a data original. A navegação Mapa / Dashboard / Sobre foi introduzida em `0.43.0`.
 
+## Em preparação — Pesquisa Google
+
+- Prepara título e descrição candidatos, URL canônica e sitemap de um único endereço, preservando o cabeçalho, os textos de autoria e a navegação.
+- Mantém `noindex` temporário na branch e documenta a liberação explícita após a qualificação; Search Console e solicitação de indexação permanecem pendentes.
+- Acrescenta validação dos metadados e sitemap e esclarece a localização do robots.txt na raiz do host.
+- A interface pública continua v0.70. Versão e data serão atualizadas antes da publicação autorizada do PR, sem antecipar a liberação para busca.
+
 ## 0.70 — 16/10/2026 · PR #70
 
 - Inclui convite opcional para tela cheia no celular e recolhimento de controles após cinco segundos sem interação, com mês, pausa, recuperação e saída sempre acessíveis.
