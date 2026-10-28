@@ -2465,6 +2465,8 @@ body.map-pseudo-fullscreen { overflow: hidden; }
   line-height: 1.4;
 }
 
+.welcome-actions #saveVisitChoice { flex-basis: 100%; }
+
 .welcome-dialog summary:focus-visible,
 .welcome-dialog a:focus-visible {
   outline: 2px solid var(--cyan);
