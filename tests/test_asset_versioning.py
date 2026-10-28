@@ -39,6 +39,14 @@ class AssetReferenceParser(HTMLParser):
 
 
 class AssetVersioningTests(unittest.TestCase):
+    def test_consent_actions_keep_equal_primary_choices_and_full_width_save(self) -> None:
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        actions = html.split('<div class="welcome-actions">', 1)[1].split("</div>", 1)[0]
+        self.assertLess(actions.index('id="declineVisit"'), actions.index('id="acceptVisit"'))
+        self.assertLess(actions.index('id="acceptVisit"'), actions.index('id="saveVisitChoice"'))
+        css = (ROOT / "assets/css/app.css").read_text(encoding="utf-8")
+        self.assertIn(".welcome-actions #saveVisitChoice { flex-basis: 100%; }", css)
+
     def test_interface_assets_use_their_content_hash(self) -> None:
         parser = AssetReferenceParser()
         parser.feed((ROOT / "index.html").read_text(encoding="utf-8"))
